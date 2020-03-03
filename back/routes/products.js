@@ -1,21 +1,20 @@
-const express = require('express')
-const routes = express.Router()
-
+const express = require("express");
+const routes = express.Router();
 //importando Models
-const Product = require('../models/ProductoModel')
+const { Producto } = require("../models/index");
 
-routes.get('/productos', (req, res, next) => {
-    Product.findAll()
-        .then(productos => {
-            res.status(200).send(productos)
-        })
-        .catch(next)
-})
+routes.get("/productos", (req, res, next) => {
+  Producto.findAll()
+    .then(productos => {
+      res.status(200).send(productos);
+    })
+    .catch(next);
+});
 
-routes.get('/productos/:id', (req, res, next) => {
-    Product.findByPk(req.params.id)
-        .then(producto => {
-            res.status(200).send(producto)
-        })
-        .catch(next)
-})
+routes.get("/productos/:id", (req, res, next) => {
+  Producto.findByPk(req.params.id)
+    .then(producto => {
+      res.status(200).send(producto);
+    })
+    .catch(next);
+});
