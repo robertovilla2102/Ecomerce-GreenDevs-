@@ -19,7 +19,7 @@ User.init(
     imgProfile: { type: S.STRING, allowNull: false },
     isAdmin: { type: S.BOOLEAN }
   },
-  { sequelize: db, modelName: "User" }
+  { sequelize: db, modelName: "user" }
 );
 
 User.addHook("beforeCreate", user => {
