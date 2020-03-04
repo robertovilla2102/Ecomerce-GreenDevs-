@@ -4,6 +4,19 @@ const { User } = require("../models/index");
 const passport = require("passport");
 const Valoracion = require("../models/ValoracionesModel");
 
+router.post("/user/register", function(req, res) {
+  User.create(req.body).then(user =>
+    user ? res.sendStatus(200) : res.status(404).send("No se creo la cuenta ")
+  );
+});
+router.post("/user/login", passport.authenticate("local"), function(req, res) {
+  res.status(200).send(req.user);
+});
+router.get("/user/logout", function(req, res) {
+  req.logout();
+  res.sendStatus(200);
+});
+
 router.get('/pepe', (req, res) => {
   User.findAll()
     .then(users => {
