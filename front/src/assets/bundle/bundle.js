@@ -37259,7 +37259,13 @@ var Main = /*#__PURE__*/function (_React$Component) {
   _createClass(Main, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Bienvenido a la nada"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_ProductsContainer__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Bienvenido a la nada"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+        path: "/products",
+        component: _containers_ProductsContainer__WEBPACK_IMPORTED_MODULE_3__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
+        from: "/",
+        to: "/products"
+      })));
     }
   }]);
 
@@ -37282,46 +37288,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _css_estioscomunes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../css/estioscomunes */ "./src/react/css/estioscomunes.jsx");
 
- //cssde imagenes
+ //importando css
 
-var styleImg = {
-  width: "220px",
-  height: '320px',
-  margin: '10px'
-};
-var styleH6 = {
-  textAlign: "center",
-  marginBottom: '0'
-};
-var styleP = {
-  textAlign: "center",
-  marginTop: '2px'
-};
+
 /* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
-  var products = _ref.products;
+  var productList = _ref.productList;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Lista de Plantas"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
-  }, products.map(function (product, index) {
-    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "img-thumbnail"
+  }, productList.map(function (product, index) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "img-thumbnail",
+      style: _css_estioscomunes__WEBPACK_IMPORTED_MODULE_2__["styleDivProduct"]
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-      to: "/products/".concat(id),
+      to: "/products/".concat(product.id),
       key: index,
       className: "col-xs-3"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       src: product.imgProfile,
       alt: "img-planta",
-      style: styleImg
-    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
-      style: styleH6
+      style: _css_estioscomunes__WEBPACK_IMPORTED_MODULE_2__["styleImg"]
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+      style: _css_estioscomunes__WEBPACK_IMPORTED_MODULE_2__["styleH"]
     }, product.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      style: styleP
-    }, product.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      style: styleP
-    }, product.description)));
+      style: _css_estioscomunes__WEBPACK_IMPORTED_MODULE_2__["styleP"]
+    }, "$", product.price, ".00")));
   })));
 });
 
@@ -37384,7 +37378,7 @@ var ProductContainer = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Products__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        products: this.props.list
+        productList: this.props.lista
       });
     }
   }]);
@@ -37394,7 +37388,7 @@ var ProductContainer = /*#__PURE__*/function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    list: state.productos.list
+    lista: state.productos.list
   };
 };
 
@@ -37407,6 +37401,42 @@ var mapDispathToProps = function mapDispathToProps(dispatch, ownProps) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispathToProps)(ProductContainer));
+
+/***/ }),
+
+/***/ "./src/react/css/estioscomunes.jsx":
+/*!*****************************************!*\
+  !*** ./src/react/css/estioscomunes.jsx ***!
+  \*****************************************/
+/*! exports provided: styleImg, styleDivProduct, styleH, styleP */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "styleImg", function() { return styleImg; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "styleDivProduct", function() { return styleDivProduct; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "styleH", function() { return styleH; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "styleP", function() { return styleP; });
+var styleImg = {
+  width: "220px",
+  height: '320px',
+  margin: '10px'
+};
+var styleDivProduct = {
+  width: "250px",
+  height: '420px',
+  margin: '15px',
+  alignContent: 'center',
+  backgroundColor: 'transparent'
+};
+var styleH = {
+  textAlign: "center",
+  marginBottom: '0'
+};
+var styleP = {
+  textAlign: "center",
+  marginTop: '2px'
+};
 
 /***/ }),
 
@@ -37444,10 +37474,10 @@ var receivedProduct = function receivedProduct(product) {
 
 var fetchProducts = function fetchProducts() {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('localhost:3001/api/products').then(function (products) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://localhost:3001/api/products').then(function (products) {
       return products.data;
-    }).then(function (products) {
-      return dispatch(receivedProducts(products));
+    }).then(function (productos) {
+      return dispatch(receivedProducts(productos));
     })["catch"](function (err) {
       return console.error(err);
     });
@@ -37456,7 +37486,7 @@ var fetchProducts = function fetchProducts() {
 
 var fetchProduct = function fetchProduct(id) {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("localhost:3001/api/products/".concat(id)).then(function (product) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://localhost:3001/api/products/".concat(id)).then(function (product) {
       return product.data;
     }).then(function (product) {
       return dispatch(receivedProduct(product));
