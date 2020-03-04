@@ -21,7 +21,7 @@ export default ()=>{
         <button type="submit" className="btn btn-primary">Sign in</button>
       </form>
       <div className="dropdown-divider"></div>
-      <a className="dropdown-item" href="#">Nuevo? Registrate</a>
+      <Link to='/register' className="dropdown-item" href="#">Nuevo? Registrate</Link>
     </div>
   </div>
   )

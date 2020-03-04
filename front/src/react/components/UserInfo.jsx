@@ -6,7 +6,7 @@ export default ()=>{
   return(
     <div className="dropdown">
       <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {user.name}}
+        UnBotánico
       </button>
       <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a className="dropdown-item" href="#">Mi Carrito</a>
