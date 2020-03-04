@@ -20,7 +20,7 @@ User.init(
     address: { type: S.STRING },
     salt: { type: S.STRING },
     imgProfile: { type: S.TEXT },
-    isAdmin: { type: S.BOOLEAN },
+    isAdmin: { type: S.BOOLEAN, defaultValue: false },
     facebookLog: { type: S.BOOLEAN, defaultValue: false }
   },
   { sequelize: db, modelName: "user" }

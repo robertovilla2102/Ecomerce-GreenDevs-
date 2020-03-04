@@ -2,6 +2,16 @@ const { User, Producto } = require("./models/index");
 
 User.bulkCreate([
   {
+    userName: "Admin Master",
+    userEmail: "master@master.com",
+    imgProfile:
+      "https://www.interecotec.com/wp-content/uploads/2017/02/person-icon.png",
+    password: "contraseña",
+    birthDay: "15/2/90",
+    address: " Lodetumama 555",
+    isAdmin: true
+  },
+  {
     userName: "Juan",
     userEmail: "lalal@masdasdas.com",
     imgProfile:
