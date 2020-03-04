@@ -4,11 +4,13 @@ import { connect } from 'react-redux'
 
 //importando containers
 import ProductsContainer from '../containers/ProductsContainer'
+import Navbar from '../containers/NavbarContainer'
 
 class Main extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <Navbar/>
         <h1>Bienvenido a la nada</h1>
 
         <Switch>
@@ -21,4 +23,4 @@ class Main extends React.Component {
   }
 }
 
-export default connect(null, null)(Main) 
+export default connect(null, null)(Main)
