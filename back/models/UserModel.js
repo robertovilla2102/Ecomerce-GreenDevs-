@@ -2,12 +2,13 @@ const S = require("sequelize");
 const db = require("../config/db/index");
 const crypto = require("crypto");
 
-class User extends S.Model {}
+class User extends S.Model { }
 
 User.init(
   {
     provider: { type: S.STRING }, //Lo necesita passport-facebook para guardar infode sesion
     provider_id: { type: S.STRING }, //Lo necesita passport-facebook para guardar info de sesion
+
     userName: { type: S.STRING },
     userEmail: {
       type: S.STRING,
@@ -25,7 +26,7 @@ User.init(
   { sequelize: db, modelName: "user" }
 );
 
-User.prototype.hashPassword = function(user) {
+User.prototype.hashPassword = function (user) {
   user.salt = crypto.randomBytes(20).toString("hex");
   user.password = crypto
     .createHmac("sha1", user.salt)
@@ -33,7 +34,7 @@ User.prototype.hashPassword = function(user) {
     .digest("hex");
 };
 
-User.prototype.validPassword = function(password) {
+User.prototype.validPassword = function (password) {
   const match = crypto
     .createHmac("sha1", this.salt)
     .update(password)
