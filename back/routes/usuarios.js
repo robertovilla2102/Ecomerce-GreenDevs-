@@ -27,7 +27,7 @@ router.get('/pepe', (req, res) => {
 router.post("/register", (req, res) => {
   const newUser = User.build(req.body);
   newUser.hashPassword(newUser.password);
-  newUser.save() 
+  newUser.save()
   res.json(newUser);
 });
 
@@ -36,7 +36,7 @@ router.post("/registerLocal", (req, res) => {
     .then(user => {
       res.status(201).send(user)
     })
-    .catch(() => res.sendStatus(403, 'Ha ocurido un error'))
+    .catch((error) => res.status(402).send(error))
 });
 
 
@@ -56,7 +56,7 @@ router.get("/logout", function (req, res) {
   res.sendStatus(200);
 });
 
-router.post(":id/valoracion", function(req, res) {
+router.post(":id/valoracion", function (req, res) {
   Valoracion.create({
     ...req.body,
     userId: req.user.id,
@@ -65,7 +65,7 @@ router.post(":id/valoracion", function(req, res) {
   res.sendStatus(404);
 });
 
-router.put(":id/add-review", function(req, res) {
+router.put(":id/add-review", function (req, res) {
   Valoracion.update(req.body, { where: { id: req.params.id } });
 });
 
