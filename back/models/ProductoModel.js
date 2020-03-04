@@ -1,35 +1,38 @@
-const db = require('../config/db/index')
-const S = require('sequelize')
+const db = require("../config/db/index");
+const S = require("sequelize");
 
-class Producto extends S.Model { }
+class Producto extends S.Model {}
 
-Producto.init({
+Producto.init(
+  {
     name: {
-        type: S.STRING,
-        allowNull: false
+      type: S.STRING,
+      allowNull: false
     },
 
     price: {
-        type: S.INTEGER,
-        allowNull: false
+      type: S.INTEGER,
+      allowNull: false
     },
 
     imgProfile: {
-        type: S.STRING
+      type: S.STRING
     },
 
     stock: {
-        type: S.INTEGER
+      type: S.INTEGER
     },
 
     description: {
-        type: S.TEXT
+      type: S.TEXT
     },
 
     disponibilidad: {
-        type: S.BOOLEAN
+      type: S.BOOLEAN,
+      defaultValue: true
     }
-}, { sequelize: db, modelName: 'producto' })
+  },
+  { sequelize: db, modelName: "producto" }
+);
 
-
-module.exports = Producto
+module.exports = Producto;
