@@ -6,17 +6,19 @@ class User extends S.Model {}
 
 User.init(
   {
-    userName: { type: S.STRING, allowNull: false },
+    proiver: { type: S.STRING }, //Lo necesita passport-facebook para guardar infode sesion
+    profiver_id: { type: S.STRING }, //Lo necesita passport-facebook para guardar info de sesion
+    userName: { type: S.STRING },
     userEmail: {
       type: S.STRING,
       unique: true,
       validate: { isEmail: true, notEmpty: true }
     },
-    password: { type: S.STRING, allowNull: false },
-    birthDay: { type: S.STRING, allowNull: false },
-    adress: { type: S.STRING, allowNull: false },
+    password: { type: S.STRING },
+    birthDay: { type: S.STRING },
+    address: { type: S.STRING },
     salt: { type: S.STRING },
-    imgProfile: { type: S.STRING, allowNull: false },
+    imgProfile: { type: S.STRING },
     isAdmin: { type: S.BOOLEAN }
   },
   { sequelize: db, modelName: "user" }

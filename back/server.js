@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const passport = require("passport");
+const session = require("express-session");
 const db = require("./config/db/index");
 const cookieParser = require("cookie-parser");
 
@@ -24,7 +25,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-db.sync({ force: true }).then(() => {
+db.sync({ force: false }).then(() => {
   console.log("se ha sincronizado correctamente la db!");
   app.listen(3001, () => {
     console.log("El puerto escucha en el 3001!");
