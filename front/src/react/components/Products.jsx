@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 //importando css
-import { styleDivProduct, styleH, styleP, styleImg } from '../css/estioscomunes'
+import { styleDivProduct, styleH, styleP, styleImg } from '../css/estilosComunes'
 
 export default ({ productList }) => (
   <div className='container'>
@@ -11,7 +11,7 @@ export default ({ productList }) => (
 
     <div className="row">
       {productList.map((product, index) => (
-        <div className="img-thumbnail" style={styleDivProduct}>
+        <div className="img-thumbnail" style={styleDivProduct} key={index}>
           <Link to={`/products/${product.id}`} key={index} className='col-xs-3'>
             <img
               src={product.imgProfile}
