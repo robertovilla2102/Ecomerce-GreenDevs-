@@ -4,11 +4,9 @@ const { User } = require("../models/index");
 const passport = require("passport");
 
 router.post("/register", (req, res) => {
-  User.create(req.body)
-    .then(user => {
-      res.sendStatus(200);
-    })
-    .catch(err => res.send(403));
+  const newUser = User.build(req.body);
+  newUser.hashPassword(newUser.password);
+  newUser.save();
 });
 
 router.post("/login", passport.authenticate("local"), (req, res) => {
