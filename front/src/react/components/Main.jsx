@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Router, Redirect, Switch } from 'react-router-dom'
+import { Link, Route, Redirect, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 //importando containers
@@ -10,13 +10,11 @@ class Main extends React.Component {
     return (
       <React.Fragment>
         <h1>Bienvenido a la nada</h1>
-        <ProductsContainer />
 
-        {/* 
         <Switch>
-          <Router path='/products' component={ProductsContainer} />
+          <Route path='/products' component={ProductsContainer} />
           <Redirect from='/' to='/products' />
-        </Switch> */}
+        </Switch>
 
       </React.Fragment>
     )

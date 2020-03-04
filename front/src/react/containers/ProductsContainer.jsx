@@ -15,15 +15,16 @@ class ProductContainer extends React.Component {
     render() {
         return (
             <Products
-                products={this.props.list}
+                productList={this.props.lista}
             />
         )
     }
 }
 
 const mapStateToProps = (state, ownProps) => {
+
     return {
-        list: state.productos.list
+        lista: state.productos.list
     }
 }
 
