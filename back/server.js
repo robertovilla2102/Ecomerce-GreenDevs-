@@ -4,9 +4,12 @@ const passport = require("passport");
 const session = require("express-session");
 const db = require("./config/db/index");
 const cookieParser = require("cookie-parser");
+const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+const xhr = new XMLHttpRequest();
 
 const app = express();
 require("./config/passport");
+require("./config/passport-facebook");
 require("./models/index");
 
 app.use(express.urlencoded({ extended: true }));

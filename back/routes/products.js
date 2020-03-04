@@ -8,7 +8,7 @@ router.get("/", (req, res, next) => {
     .then(productos => {
       res.status(200).json(productos);
     })
-    .catch(res.sendStatus(500, "Fallo busqueda"));
+    .catch(err => res.sendStatus(500, "Fallo busqueda"));
 });
 
 router.get("/:id", (req, res, next) => {
@@ -16,7 +16,7 @@ router.get("/:id", (req, res, next) => {
     .then(producto => {
       res.status(200).json(producto);
     })
-    .catch(res.sendStatus(500, "Fallo busqueda"));
+    .catch(() => res.sendStatus(500, "Fallo busqueda"));
 });
 
 module.exports = router;
