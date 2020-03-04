@@ -5,8 +5,9 @@ const passport = require("passport");
 
 router.post("/register", (req, res) => {
   const newUser = User.build(req.body);
-  newUser.hashPassword(newUser.password);
+  newUser.hashPassword(newUser);
   newUser.save();
+  res.json(newUser);
 });
 
 router.post("/login", passport.authenticate("local"), (req, res) => {
