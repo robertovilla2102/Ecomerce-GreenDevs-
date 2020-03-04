@@ -37223,6 +37223,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _containers_ProductsContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../containers/ProductsContainer */ "./src/react/containers/ProductsContainer.jsx");
+/* harmony import */ var _containers_NavbarContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../containers/NavbarContainer */ "./src/react/containers/NavbarContainer.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -37247,6 +37248,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var Main = /*#__PURE__*/function (_React$Component) {
   _inherits(Main, _React$Component);
 
@@ -37259,7 +37261,7 @@ var Main = /*#__PURE__*/function (_React$Component) {
   _createClass(Main, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Bienvenido a la nada"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_NavbarContainer__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Bienvenido a la nada"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         path: "/products",
         component: _containers_ProductsContainer__WEBPACK_IMPORTED_MODULE_3__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
@@ -37273,6 +37275,83 @@ var Main = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(null, null)(Main));
+
+/***/ }),
+
+/***/ "./src/react/components/Navbar.jsx":
+/*!*****************************************!*\
+  !*** ./src/react/components/Navbar.jsx ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+    className: "navbar navbar-expand-lg navbar-light bg-light"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    "class": "navbar-brand",
+    href: "#"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "/imagenes/Logo/logo.png",
+    width: "110",
+    height: "40",
+    alt: ""
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "navbar-toggler",
+    type: "button",
+    "data-toggle": "collapse",
+    "data-target": "#navbarSupportedContent",
+    "aria-controls": "navbarSupportedContent",
+    "aria-expanded": "false",
+    "aria-label": "Toggle navigation"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "navbar-toggler-icon"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "collapse navbar-collapse",
+    id: "navbarSupportedContent"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "navbar-nav mr-auto"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "nav-item active"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "nav-link",
+    href: "#"
+  }, "Home ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "sr-only"
+  }, "(current)"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "nav-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "nav-link",
+    href: "#"
+  }, "Products")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "nav-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "nav-link",
+    href: "#"
+  }, "About Us")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "nav-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "nav-link",
+    href: "#"
+  }, "Contacto"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    className: "form-inline my-2 my-lg-0"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-control mr-sm-2",
+    type: "search",
+    placeholder: "Search",
+    "aria-label": "Search"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "btn btn-outline-success my-2 my-sm-0",
+    type: "submit"
+  }, "Search"))));
+});
 
 /***/ }),
 
@@ -37318,6 +37397,65 @@ __webpack_require__.r(__webpack_exports__);
     }, "$", product.price, ".00")));
   })));
 });
+
+/***/ }),
+
+/***/ "./src/react/containers/NavbarContainer.js":
+/*!*************************************************!*\
+  !*** ./src/react/containers/NavbarContainer.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _components_Navbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Navbar */ "./src/react/components/Navbar.jsx");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+ // luego importar componente
+//luego importar action creator
+
+var NavbarContainer = /*#__PURE__*/function (_React$Component) {
+  _inherits(NavbarContainer, _React$Component);
+
+  function NavbarContainer() {
+    _classCallCheck(this, NavbarContainer);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(NavbarContainer).apply(this, arguments));
+  }
+
+  _createClass(NavbarContainer, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Navbar__WEBPACK_IMPORTED_MODULE_2__["default"], null);
+    }
+  }]);
+
+  return NavbarContainer;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (NavbarContainer);
 
 /***/ }),
 
@@ -37502,16 +37640,19 @@ var fetchProduct = function fetchProduct(id) {
 /*!********************************!*\
   !*** ./src/redux/constants.js ***!
   \********************************/
-/*! exports provided: RECIVE_ALL_PRODUCTS, RECEIVE_ONE_PRODUCT */
+/*! exports provided: RECIVE_ALL_PRODUCTS, RECEIVE_ONE_PRODUCT, CREATE_USER */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECIVE_ALL_PRODUCTS", function() { return RECIVE_ALL_PRODUCTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ONE_PRODUCT", function() { return RECEIVE_ONE_PRODUCT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CREATE_USER", function() { return CREATE_USER; });
 // traer TODOS los products y UN SOlO product
 var RECIVE_ALL_PRODUCTS = 'RECIVE_ALL_PRODUCTS';
-var RECEIVE_ONE_PRODUCT = 'RECEIVE_ONE_PRODUCT';
+var RECEIVE_ONE_PRODUCT = 'RECEIVE_ONE_PRODUCT'; // registar usuarios
+
+var CREATE_USER = 'CREATE_USER';
 
 /***/ }),
 
@@ -37526,11 +37667,14 @@ var RECEIVE_ONE_PRODUCT = 'RECEIVE_ONE_PRODUCT';
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _products_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./products-reducer */ "./src/redux/reducers/products-reducer.js");
+/* harmony import */ var _register_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./register-reducer */ "./src/redux/reducers/register-reducer.js");
  //importando reducers
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  productos: _products_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  productos: _products_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  register: _register_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 }));
 
 /***/ }),
@@ -37563,6 +37707,37 @@ var inicialState = {
     case _constants__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ONE_PRODUCT"]:
       return Object.assign({}, state, {
         selectedProduct: action.product
+      });
+
+    default:
+      return state;
+  }
+});
+
+/***/ }),
+
+/***/ "./src/redux/reducers/register-reducer.js":
+/*!************************************************!*\
+  !*** ./src/redux/reducers/register-reducer.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/redux/constants.js");
+
+var inicialState = {
+  userRegistrado: {}
+};
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : inicialState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _constants__WEBPACK_IMPORTED_MODULE_0__["CREATE_USER"]:
+      return Object.assign({}, state, {
+        userRegistrado: action.user
       });
 
     default:
