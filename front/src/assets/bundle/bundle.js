@@ -37502,16 +37502,19 @@ var fetchProduct = function fetchProduct(id) {
 /*!********************************!*\
   !*** ./src/redux/constants.js ***!
   \********************************/
-/*! exports provided: RECIVE_ALL_PRODUCTS, RECEIVE_ONE_PRODUCT */
+/*! exports provided: RECIVE_ALL_PRODUCTS, RECEIVE_ONE_PRODUCT, CREATE_USER */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECIVE_ALL_PRODUCTS", function() { return RECIVE_ALL_PRODUCTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ONE_PRODUCT", function() { return RECEIVE_ONE_PRODUCT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CREATE_USER", function() { return CREATE_USER; });
 // traer TODOS los products y UN SOlO product
 var RECIVE_ALL_PRODUCTS = 'RECIVE_ALL_PRODUCTS';
-var RECEIVE_ONE_PRODUCT = 'RECEIVE_ONE_PRODUCT';
+var RECEIVE_ONE_PRODUCT = 'RECEIVE_ONE_PRODUCT'; // registar usuarios
+
+var CREATE_USER = 'CREATE_USER';
 
 /***/ }),
 
@@ -37526,11 +37529,14 @@ var RECEIVE_ONE_PRODUCT = 'RECEIVE_ONE_PRODUCT';
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _products_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./products-reducer */ "./src/redux/reducers/products-reducer.js");
+/* harmony import */ var _register_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./register-reducer */ "./src/redux/reducers/register-reducer.js");
  //importando reducers
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  productos: _products_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  productos: _products_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  register: _register_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 }));
 
 /***/ }),
@@ -37563,6 +37569,37 @@ var inicialState = {
     case _constants__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ONE_PRODUCT"]:
       return Object.assign({}, state, {
         selectedProduct: action.product
+      });
+
+    default:
+      return state;
+  }
+});
+
+/***/ }),
+
+/***/ "./src/redux/reducers/register-reducer.js":
+/*!************************************************!*\
+  !*** ./src/redux/reducers/register-reducer.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/redux/constants.js");
+
+var inicialState = {
+  userRegistrado: {}
+};
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : inicialState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _constants__WEBPACK_IMPORTED_MODULE_0__["CREATE_USER"]:
+      return Object.assign({}, state, {
+        userRegistrado: action.user
       });
 
     default:
