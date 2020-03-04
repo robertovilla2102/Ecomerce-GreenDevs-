@@ -4,12 +4,17 @@ import { connect } from 'react-redux'
 
 //importando containers
 import ProductsContainer from '../containers/ProductsContainer'
+<<<<<<< HEAD
+import Navbar from '../containers/NavbarContainer'
+=======
 import RegisterContainer from '../containers/RegisterContainer'
+>>>>>>> 13a4a8ca2420b590b2e878e15d4ce0390f6f3894
 
 class Main extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <Navbar/>
         <h1>Bienvenido a la nada</h1>
 
         <div className="container">
@@ -32,4 +37,4 @@ class Main extends React.Component {
   }
 }
 
-export default connect(null, null)(Main) 
+export default connect(null, null)(Main)
