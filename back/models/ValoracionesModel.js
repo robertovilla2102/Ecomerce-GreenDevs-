@@ -1,8 +1,7 @@
 const S = require("sequelize");
-
 const db = require("../config/db/index");
 
-const Validacion = db.define("favoritos", {
+const Valoracion = db.define("valoracion", {
   rating: {
     type: S.DOUBLE
   },
@@ -10,4 +9,4 @@ const Validacion = db.define("favoritos", {
     type: S.STRING
   }
 });
-module.exports = Validacion;
+module.exports = Valoracion;

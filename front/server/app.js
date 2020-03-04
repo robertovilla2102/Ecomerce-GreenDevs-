@@ -1,12 +1,18 @@
 const express = require('express')
+const path = require('path')
 const app = express()
+
+const XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest
+
+const xhr = new XMLHttpRequest()
 
 app.set("port", process.env.PORT || 3000)
 
-app.use(express.static(__dirname + "/../src/assets/"))
+//ruta publcia
+app.use(express.static(__dirname + "/../src/assets"))
 
 app.get("/*", (req, res) => {
-    res.sendFile(__dirname + "/../src/assets/" + "index.html")
+    res.sendFile(path.join(__dirname, "/../src/assets", "index.html"))
 })
 
 app.listen(app.get("port"), () => {

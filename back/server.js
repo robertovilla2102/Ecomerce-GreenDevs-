@@ -1,20 +1,36 @@
-const express = require('express')
-const app = express()
+const express = require("express");
+const morgan = require("morgan");
+const passport = require("passport");
+const session = require("express-session");
+const db = require("./config/db/index");
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
-const db = require('./config/db/index')
-const morgan = require('morgan')
+const app = express();
+require("./config/passport");
+require("./config/passport-facebook");
+require("./models/index");
 
-//middleware alingresar a la app
-app.use(morgan('dev'))
+app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(morgan("dev"));
+app.use(cookieParser());
+app.use(
+  session({
+    secret: "mysecret",
+    resave: true,
+    saveUninitialized: true
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.set(express.urlencoded({ extendend: true }))
-app.set(express.json())
+app.use("/api", require("./routes/index"));
 
-db.sync({ extended: false })
-    .then(() => {
-        console.log('se ha sincronizado correctamente la db!')
-        app.listen(3001, () => {
-            console.log('El puerto escucha en el 3001!')
-        })
-    })
-
+db.sync({ force: false }).then(() => {
+  console.log("DB is connected");
+  app.listen(3001, () => {
+    console.log("El puerto escucha en el 3001!");
+  });
+});

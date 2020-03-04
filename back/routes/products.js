@@ -1,21 +1,22 @@
-const express = require('express')
-const routes = express.Router()
-
+const express = require("express");
+const router = express.Router();
 //importando Models
-const Product = require('../models/ProductoModel')
+const { Producto } = require("../models/index");
 
-routes.get('/productos', (req, res, next) => {
-    Product.findAll()
-        .then(productos => {
-            res.status(200).send(productos)
-        })
-        .catch(next)
-})
+router.get("/", (req, res, next) => {
+  Producto.findAll()
+    .then(productos => {
+      res.status(200).json(productos);
+    })
+    .catch(err => res.sendStatus(500, "Fallo busqueda"));
+});
 
-routes.get('/productos/:id', (req, res, next) => {
-    Product.findByPk(req.params.id)
-        .then(producto => {
-            res.status(200).send(producto)
-        })
-        .catch(next)
-})
+router.get("/:id", (req, res, next) => {
+  Producto.findByPk(req.params.id)
+    .then(producto => {
+      res.status(200).json(producto);
+    })
+    .catch(() => res.sendStatus(500, "Fallo busqueda"));
+});
+
+module.exports = router;
