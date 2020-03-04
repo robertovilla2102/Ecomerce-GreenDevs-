@@ -9,11 +9,9 @@ const app = express();
 require("./config/passport");
 require("./models/index");
 
-//middleware alingresar a la app
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(morgan("dev"));
-
-app.set(express.urlencoded({ extendend: true }));
-app.set(express.json());
 app.use(cookieParser());
 app.use(
   session({
@@ -25,8 +23,10 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use("/api", require("./routes/index"));
+
 db.sync({ force: false }).then(() => {
-  console.log("se ha sincronizado correctamente la db!");
+  console.log("DB is connected");
   app.listen(3001, () => {
     console.log("El puerto escucha en el 3001!");
   });

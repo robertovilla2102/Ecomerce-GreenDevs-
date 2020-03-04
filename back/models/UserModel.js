@@ -14,11 +14,11 @@ User.init(
       unique: true,
       validate: { isEmail: true, notEmpty: true }
     },
-    password: { type: S.STRING },
-    birthDay: { type: S.STRING },
-    address: { type: S.STRING },
+    password: { type: S.STRING, allowNull: false },
+    birthDay: { type: S.STRING, allowNull: false },
+    address: { type: S.STRING, allowNull: false },
     salt: { type: S.STRING },
-    imgProfile: { type: S.STRING },
+    imgProfile: { type: S.TEXT, allowNull: false },
     isAdmin: { type: S.BOOLEAN }
   },
   { sequelize: db, modelName: "user" }
