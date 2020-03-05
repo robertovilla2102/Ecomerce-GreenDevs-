@@ -4,24 +4,33 @@ import UserInfo from "./UserInfo";
 import UserRegister from "./UserRegister";
 
 export default ({
-  onSubmitLogin,
+  handlerInputForm,
   onSubmitSearch,
   handlerInput,
-  inputSearch
+  inputSearch,
+  onSubmitForm,
+  user
 }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <Link to='/home' className="navbar-brand" href="#">
+      <Link to="/home" className="navbar-brand" href="#">
         <img src="/imagenes/Logo/logo.png" width="110" height="40" alt="" />
       </Link>
 
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span className="navbar-toggler-icon"></span>
       </button>
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
-
           <li className="nav-item active">
             <a className="nav-link" href="#">
               Home <span className="sr-only">(current)</span>
@@ -29,7 +38,9 @@ export default ({
           </li>
 
           <li className="nav-item">
-            <Link to='/products' className="nav-link" href="#">Products</Link>
+            <Link to="/products" className="nav-link" href="#">
+              Products
+            </Link>
           </li>
 
           <li className="nav-item">
@@ -43,7 +54,6 @@ export default ({
               Contacto
             </a>
           </li>
-
         </ul>
         <form className="form-inline my-2 my-lg-0" onSubmit={onSubmitSearch}>
           <input
@@ -63,13 +73,19 @@ export default ({
           </button>
         </form>
       </div>
-      <div style={{ marginLeft: "5px", marginRight: "5px" }}>
-        <UserRegister onSubmitLogin={onSubmitLogin} />
-      </div>
-      <div style={{ marginLeft: "5px", marginRight: "5px" }}>
-        <UserInfo />
-      </div>
 
+      {user.userName ? (
+        <div className="row ml-1">
+          <UserInfo user={user} />
+        </div>
+      ) : (
+        <div className="row ml-1">
+          <UserRegister
+            onSubmitForm={onSubmitForm}
+            handlerInputForm={handlerInputForm}
+          />
+        </div>
+      )}
     </nav>
   );
 };

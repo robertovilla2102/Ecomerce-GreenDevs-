@@ -1,8 +1,17 @@
-import { RECEIVE_ONE_PRODUCT, RECIVE_ALL_PRODUCTS } from "../constants";
+import {
+  RECEIVE_ONE_PRODUCT,
+  RECIVE_ALL_PRODUCTS,
+  RECIVE_PRODUCTS_SEARCH
+} from "../constants";
 import axios from "axios";
 
 const receivedProducts = products => ({
   type: RECIVE_ALL_PRODUCTS,
+  products
+});
+
+const receivedProductsSearch = products => ({
+  type: RECIVE_PRODUCTS_SEARCH,
   products
 });
 
@@ -30,9 +39,9 @@ export const fetchProduct = id => dispatch => {
 };
 
 export const fetchProductsByName = name => dispatch => {
-  axios
+  return axios
     .get(`http://localhost:3001/api/products/search/${name}`)
     .then(res => res.data)
-    .then(products => dispatch(receivedProducts(products)))
+    .then(products => dispatch(receivedProductsSearch(products)))
     .catch(err => console.error(err));
 };

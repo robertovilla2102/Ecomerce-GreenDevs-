@@ -9,9 +9,6 @@ router.get("/", function(req, res, next) {
 });
 
 router.post("/add/:productId", function(req, res, next) {
-  console.log(req.body);
-  const { cantidad, estado } = req.body;
-
   Carrito.create({ cantidad, estado, productoId: req.params.productId })
     .then(productos => res.json(productos))
     .catch(err => res.json(err));
