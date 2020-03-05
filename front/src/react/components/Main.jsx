@@ -6,7 +6,8 @@ import { connect } from 'react-redux'
 import ProductsContainer from '../containers/ProductsContainer'
 import Navbar from '../containers/NavbarContainer'
 import RegisterContainer from '../containers/RegisterContainer'
-import Header from '../containers/HeaderContainer'
+import Home from '../containers/Home'
+
 
 
 class Main extends React.Component {
@@ -14,14 +15,15 @@ class Main extends React.Component {
     return (
       <React.Fragment>
         <Navbar />
-        <Header />
 
         <Switch>
+          <Route path='/home' component={Home} />
+
           <Route path='/products' component={ProductsContainer} />
 
           <Route path='/register' component={RegisterContainer} />
 
-          <Redirect to='/' />
+          <Redirect from='/' to='/home' />
 
         </Switch>
 
