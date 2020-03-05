@@ -5,9 +5,13 @@ import { Link } from 'react-router-dom'
 import { styleDivProduct, styleH, styleP, styleImg } from '../css/estilosComunes'
 
 export default ({ productList }) => (
-  <div className='container'>
-    <h3>Lista de Plantas</h3>
-    <hr />
+  <div style={{marginTop:"10px"}}>
+    <div className="jumbotron jumbotron-fluid">
+      <div className="container">
+        <h1 className="display-4">Nuestras Plantas</h1>
+        <p className="lead">Conocé la selección de plantas que tenemos para vos. </p>
+      </div>
+    </div>
 
     <div className="row">
       {productList.map((product, index) => (
