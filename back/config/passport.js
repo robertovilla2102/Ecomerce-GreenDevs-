@@ -8,8 +8,6 @@ passport.use(
     password,
     done
   ) {
-    console.log("ENTRO A PASSPORT");
-
     User.findOne({ where: { userEmail: userEmail } }).then(user => {
       if (!user) {
         return done(null, false);

@@ -17,7 +17,7 @@ router.post("/register", (req, res) => {
 });
 
 router.post("/register-local", (req, res) => {
-  User.create(req.body)
+  User.create(req.body.user)
     .then(user => {
       res.status(201).json({
         userName: user.userName,
