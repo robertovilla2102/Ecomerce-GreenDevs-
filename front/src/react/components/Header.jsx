@@ -1,9 +1,8 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
-
-export default ()=>{
-  return(
+export default () => {
+  return (
     <div id="carouselExampleIndicators" className="carousel slide carousel-fluid" data-ride="carousel">
       <ol className="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
@@ -12,34 +11,31 @@ export default ()=>{
       </ol>
       <div className="carousel-inner">
         <div className="carousel-item active">
-          <img className="d-block w-100" src="/imagenes/Header/1.png" alt="First slide"/>
+          <img className="d-block w-100" src="/imagenes/Header/1.png" alt="First slide" />
         </div>
         <div className="carousel-item">
-          <img className="d-block w-100" src="/imagenes/Header/2.png" alt="Second slide"/>
+          <img className="d-block w-100" src="/imagenes/Header/2.png" alt="Second slide" />
         </div>
         <div className="carousel-item">
-          <img className="d-block w-100" src="/imagenes/Header/3.png" alt="Third slide"/>
+          <img className="d-block w-100" src="/imagenes/Header/3.png" alt="Third slide" />
         </div>
         <div className="carousel-item">
-          <img className="d-block w-100" src="/imagenes/Header/4.png" alt="Third slide"/>
+          <img className="d-block w-100" src="/imagenes/Header/4.png" alt="Third slide" />
         </div>
         <div className="carousel-item">
-          <img className="d-block w-100" src="/imagenes/Header/5.png" alt="Third slide"/>
+          <img className="d-block w-100" src="/imagenes/Header/5.png" alt="Third slide" />
         </div>
         <div className="carousel-item">
-          <img className="d-block w-100" src="/imagenes/Header/6.png" alt="Third slide"/>
+          <img className="d-block w-100" src="/imagenes/Header/6.png" alt="Third slide" />
         </div>
         <div className="carousel-item">
-          <img className="d-block w-100" src="/imagenes/Header/7.png" alt="Third slide"/>
+          <img className="d-block w-100" src="/imagenes/Header/7.png" alt="Third slide" />
         </div>
         <div className="carousel-item">
-          <img className="d-block w-100" src="/imagenes/8.png" alt="Third slide"/>
+          <img className="d-block w-100" src="/imagenes/Header/9.png" alt="Third slide" />
         </div>
         <div className="carousel-item">
-          <img className="d-block w-100" src="/imagenes/Header/9.png" alt="Third slide"/>
-        </div>
-        <div className="carousel-item">
-          <img className="d-block w-100" src="/imagenes/Header/11.png" alt="Third slide"/>
+          <img className="d-block w-100" src="/imagenes/Header/11.png" alt="Third slide" />
         </div>
       </div>
       <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

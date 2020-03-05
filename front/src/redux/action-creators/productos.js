@@ -28,3 +28,12 @@ export const fetchProduct = id => dispatch => {
     .then(product => dispatch(receivedProduct(product)))
     .catch(err => console.error(err));
 };
+
+export const fetchProductsByName = name => dispatch => {
+  axios
+    .get(`http://localhost:3001/api/products/search/${name}`)
+    .then(res => res.data)
+    .then(products => dispatch(receivedProducts(products)))
+    .catch(err => console.error(err));
+};
+

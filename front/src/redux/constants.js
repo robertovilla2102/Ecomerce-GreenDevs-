@@ -4,3 +4,6 @@ export const RECEIVE_ONE_PRODUCT = 'RECEIVE_ONE_PRODUCT'
 
 // registar usuarios
 export const CREATE_USER = 'CREATE_USER'
+
+//loguearse 
+export const LOGUEAR_USER = 'LOGUEAR_USER'

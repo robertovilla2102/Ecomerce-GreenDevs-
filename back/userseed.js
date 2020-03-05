@@ -75,7 +75,7 @@ User.bulkCreate([
 
 Producto.bulkCreate([
   {
-    name: "Potus",
+    name: "potus",
     price: 50,
     imgProfile:
       "https://i.pinimg.com/236x/4d/ff/35/4dff35e33ad72356f163a01d185f10cc.jpg",
@@ -84,7 +84,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Helecho",
+    name: "helecho",
     price: 30,
     imgProfile:
       "https://i.pinimg.com/236x/4d/ff/35/4dff35e33ad72356f163a01d185f10cc.jpg",
@@ -93,7 +93,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Ficus",
+    name: "ficus",
     price: 100,
     imgProfile:
       "https://i.pinimg.com/236x/4d/ff/35/4dff35e33ad72356f163a01d185f10cc.jpg",
@@ -102,7 +102,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Enredadera",
+    name: "enredadera",
     price: 5,
     imgProfile:
       "https://i.pinimg.com/236x/4d/ff/35/4dff35e33ad72356f163a01d185f10cc.jpg",
@@ -111,7 +111,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Palmera",
+    name: "palmera",
     price: 300,
     imgProfile:
       "https://i.pinimg.com/236x/4d/ff/35/4dff35e33ad72356f163a01d185f10cc.jpg",
@@ -120,7 +120,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Sauce",
+    name: "sauce",
     price: 5000,
     imgProfile:
       "https://i.pinimg.com/236x/4d/ff/35/4dff35e33ad72356f163a01d185f10cc.jpg",
@@ -129,7 +129,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Pasto",
+    name: "pasto",
     price: 10,
     imgProfile:
       "https://i.pinimg.com/236x/4d/ff/35/4dff35e33ad72356f163a01d185f10cc.jpg",
@@ -138,7 +138,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Flor",
+    name: "flor",
     price: 33,
     imgProfile:
       "https://i.pinimg.com/236x/4d/ff/35/4dff35e33ad72356f163a01d185f10cc.jpg",
