@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const Op = require("sequelize").Op;
 //importando Models
 const { Producto } = require("../models/index");
 
@@ -17,6 +18,17 @@ router.get("/:id", (req, res, next) => {
       res.status(200).json(producto);
     })
     .catch(() => res.sendStatus(500, "Fallo busqueda"));
+});
+
+router.get("/search/:name", (req, res) => {
+  Producto.findAll({
+    where: { name: { [Op.substring]: req.params.name } }
+  })
+    .then(productos => {
+      console.log(productos);
+      res.json(productos);
+    })
+    .catch(err => console.log(err));
 });
 
 module.exports = router;
