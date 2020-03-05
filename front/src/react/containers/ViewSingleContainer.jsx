@@ -13,8 +13,12 @@ class ViewSingleContainer extends React.Component {
   }
 
   render() {
-    console.log(this.props.producto);
-    return <ViewSingle product={this.props.producto} />;
+    return (
+      <div>
+        <ViewSingle product={this.props.producto} />{" "}
+      </div>
+    );
+
   }
 }
 

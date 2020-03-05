@@ -36,3 +36,4 @@ export const fetchProductsByName = name => dispatch => {
     .then(products => dispatch(receivedProducts(products)))
     .catch(err => console.error(err));
 };
+
