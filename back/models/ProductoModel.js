@@ -35,4 +35,11 @@ Producto.init(
   { sequelize: db, modelName: "producto" }
 );
 
+Producto.addHook("beforeCreate", producto => {
+  console.log(producto.name);
+
+  producto.name = producto.name.toLowerCase();
+  console.log(producto.name);
+});
+
 module.exports = Producto;
