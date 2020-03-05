@@ -3,8 +3,12 @@ import { Link } from "react-router-dom";
 import UserInfo from "./UserInfo";
 import UserRegister from "./UserRegister";
 
-
-export default () => {
+export default ({
+  onSubmitLogin,
+  onSubmitSearch,
+  handlerInput,
+  inputSearch
+}) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <Link to='/home' className="navbar-brand" href="#">
@@ -19,7 +23,9 @@ export default () => {
         <ul className="navbar-nav mr-auto">
 
           <li className="nav-item active">
-            <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+            <a className="nav-link" href="#">
+              Home <span className="sr-only">(current)</span>
+            </a>
           </li>
 
           <li className="nav-item">
@@ -27,30 +33,43 @@ export default () => {
           </li>
 
           <li className="nav-item">
-            <a className="nav-link" href="#">About Us</a>
+            <a className="nav-link" href="#">
+              About Us
+            </a>
           </li>
 
           <li className="nav-item">
-            <a className="nav-link" href="#">Contacto</a>
+            <a className="nav-link" href="#">
+              Contacto
+            </a>
           </li>
 
         </ul>
-
-        <form className="form-inline my-2 my-lg-0">
-          <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-          <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <form className="form-inline my-2 my-lg-0" onSubmit={onSubmitSearch}>
+          <input
+            className="form-control mr-sm-2"
+            type="search"
+            name="search"
+            placeholder="Search"
+            aria-label="Search"
+            value={inputSearch}
+            onChange={handlerInput}
+          />
+          <button
+            className="btn btn-outline-success my-2 my-sm-0"
+            type="submit"
+          >
+            Search
+          </button>
         </form>
       </div>
-
-      <div style={{ marginLeft: "5px", marginRight: "5px" }} >
-        <UserRegister />
+      <div style={{ marginLeft: "5px", marginRight: "5px" }}>
+        <UserRegister onSubmitLogin={onSubmitLogin} />
       </div>
-
-      <div style={{ marginLeft: "5px", marginRight: "5px" }} >
+      <div style={{ marginLeft: "5px", marginRight: "5px" }}>
         <UserInfo />
       </div>
 
     </nav>
-
-  )
-}
+  );
+};
