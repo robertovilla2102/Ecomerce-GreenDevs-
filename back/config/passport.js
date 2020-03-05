@@ -1,6 +1,6 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const User = require("../models/index");
+const { User } = require("../models/index");
 
 passport.use(
   new LocalStrategy({ usernameField: "userEmail" }, function(
@@ -8,6 +8,8 @@ passport.use(
     password,
     done
   ) {
+    console.log("ENTRO A PASSPORT");
+
     User.findOne({ where: { userEmail: userEmail } }).then(user => {
       if (!user) {
         return done(null, false);

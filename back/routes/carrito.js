@@ -16,7 +16,6 @@ router.get("/", function (req, res, next) {
     })
 })
 
-
 router.post("/add/:productId", function (req, res, next) {
   console.log(req.body);
   const { cantidad, estado } = req.body;

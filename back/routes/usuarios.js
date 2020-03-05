@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const { User } = require("../models/index");
+const { User, Valoracion } = require("../models/index");
 const passport = require("passport");
-const Valoracion = require("../models/ValoracionModel");
 
 router.get("/", (req, res) => {
   User.findAll().then(users => {
@@ -17,10 +16,16 @@ router.post("/register", (req, res) => {
   res.json(newUser);
 });
 
-router.post("/registerLocal", (req, res) => {
-  User.create(req.body.user)
+router.post("/register-local", (req, res) => {
+  User.create(req.body)
     .then(user => {
-      res.status(201).send(user);
+      res.status(201).json({
+        userName: user.userName,
+        userEmail: user.userEmail,
+        userProfile: user.imgProfile,
+        userBirthDay: user.birthDay,
+        userAddress: user.address
+      });
     })
     .catch(error => res.status(402).send(error));
 });
