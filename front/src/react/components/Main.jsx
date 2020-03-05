@@ -14,14 +14,14 @@ class Main extends React.Component {
     return (
       <React.Fragment>
         <Navbar />
-        <Header/>
+        <Header />
 
         <Switch>
           <Route path='/products' component={ProductsContainer} />
 
           <Route path='/register' component={RegisterContainer} />
 
-          <Redirect from='/' to='/products' />
+          <Redirect to='/' />
 
         </Switch>
 
