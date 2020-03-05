@@ -5,8 +5,9 @@ import { connect } from "react-redux";
 import ProductsContainer from '../containers/ProductsContainer'
 import Navbar from '../containers/NavbarContainer'
 import RegisterContainer from '../containers/RegisterContainer'
-import Header from '../containers/HeaderContainer'
 import Footer from '../containers/FooterContainer'
+import ViewSingleContainer from '../containers/ViewSingleContainer'
+import Home from '../containers/Home'
 
 
 class Main extends React.Component {
@@ -14,15 +15,19 @@ class Main extends React.Component {
     return (
       <React.Fragment>
         <Navbar />
-        
+
         <Switch>
+          <Route exact path="/home" component={Home} />
+
           <Route exact path="/products" component={ProductsContainer} />
+
           <Router exact path="/products/:id" component={ViewSingleContainer} />
+
           <Route exact path="/register" component={RegisterContainer} />
 
           <Redirect from='/' to='/home' />
         </Switch>
-        
+
         <Footer />
       </React.Fragment>
     );
