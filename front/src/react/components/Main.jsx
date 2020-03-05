@@ -7,6 +7,7 @@ import ProductsContainer from '../containers/ProductsContainer'
 import Navbar from '../containers/NavbarContainer'
 import RegisterContainer from '../containers/RegisterContainer'
 import Header from '../containers/HeaderContainer'
+import Footer from '../containers/FooterContainer'
 
 
 class Main extends React.Component {
@@ -15,6 +16,7 @@ class Main extends React.Component {
       <React.Fragment>
         <Navbar />
         <Header />
+        <Footer />
 
         <Switch>
           <Route path='/products' component={ProductsContainer} />
