@@ -21,3 +21,18 @@ export const styleP = {
   textAlign: "center",
   marginTop: '2px'
 }
+
+export const styleDivCAtegory = {
+  width: "350px",
+  height: '550px',
+  margin: '15px',
+  alignContent: 'center',
+  backgroundColor: 'transparent'
+}
+
+export const styleImgCategory = {
+  width: "100%",
+  height: '90%',
+  padding: '10px',
+  paddingBottom: '15px'
+}
