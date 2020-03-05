@@ -9,7 +9,8 @@ export default ({
   handlerInput,
   inputSearch,
   onSubmitForm,
-  user
+  user,
+  onSubmitLogout
 }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -76,7 +77,7 @@ export default ({
 
       {user.userName ? (
         <div className="row ml-1">
-          <UserInfo user={user} />
+          <UserInfo user={user} onSubmitLogout={onSubmitLogout} />
         </div>
       ) : (
         <div className="row ml-1">

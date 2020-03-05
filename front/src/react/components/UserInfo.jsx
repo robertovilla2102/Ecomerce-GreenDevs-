@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default ({ user }) => {
+export default ({ user, onSubmitLogout }) => {
   return (
     <div className="btn-group dropleft">
       <button
@@ -24,9 +24,9 @@ export default ({ user }) => {
         <a className="dropdown-item" href="#">
           Mis Compras
         </a>
-        <a className="dropdown-item" href="#">
+        <button onClick={onSubmitLogout} className="dropdown-item">
           Log Out
-        </a>
+        </button>
       </div>
     </div>
   );
