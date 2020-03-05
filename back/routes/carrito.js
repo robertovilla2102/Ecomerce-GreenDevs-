@@ -8,10 +8,13 @@ router.get("/", function(req, res, next) {
     .catch(res.sendStatus(500, "Fallo busqueda"));
 });
 
-router.post("/add", function(req, res, next) {
-  Carrito.create(req.body)
+router.post("/add/:productId", function(req, res, next) {
+  console.log(req.body);
+  const { cantidad, estado } = req.body;
+
+  Carrito.create({ cantidad, estado, productoId: req.params.productId })
     .then(productos => res.json(productos))
-    .catch(res.sendStatus(500, "Fallo creacion"));
+    .catch(err => res.json(err));
 });
 
 router.put("/edit/:id", function(req, res, next) {

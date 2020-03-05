@@ -8,6 +8,7 @@ import Navbar from "../containers/NavbarContainer";
 import RegisterContainer from "../containers/RegisterContainer";
 import ViewSingleContainer from "../containers/ViewSingleContainer";
 
+
 class Main extends React.Component {
   render() {
     return (
@@ -25,6 +26,7 @@ class Main extends React.Component {
           <Route exact path="/products" component={ProductsContainer} />
           <Router exact path="/products/:id" component={ViewSingleContainer} />
           <Route exact path="/register" component={RegisterContainer} />
+
 
           <Redirect from="/" to="/products" />
         </Switch>

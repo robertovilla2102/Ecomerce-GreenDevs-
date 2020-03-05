@@ -1,9 +1,9 @@
 const db = require("../config/db");
 const S = require("sequelize");
 
-class Compras extends S.Model {}
+class Compra extends S.Model {}
 
-Compras.init(
+Compra.init(
   {
     dateCompra: {
       type: S.INTEGER,
@@ -15,8 +15,8 @@ Compras.init(
   },
   {
     sequelize: db,
-    modelName: "comprado"
+    modelName: "compras"
   }
 );
 
-module.exports = Compras;
+module.exports = Compra;

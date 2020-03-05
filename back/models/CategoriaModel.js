@@ -1,16 +1,16 @@
 const db = require("../config/db/index");
 const S = require("sequelize");
 
-class Category extends S.Model {}
+class Categoria extends S.Model {}
 
-Category.init(
+Categoria.init(
   {
     name: {
       type: S.STRING,
       allowNull: false
     }
   },
-  { sequelize: db, modelName: "category" }
+  { sequelize: db, modelName: "categoria" }
 );
 
-module.exports = Category;
+module.exports = Categoria;

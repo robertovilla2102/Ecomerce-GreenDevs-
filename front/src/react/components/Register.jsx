@@ -3,77 +3,70 @@ import { Link } from 'react-router-dom'
 
 //importando cs
 
-export default ({ handleInput, handleSubmit }) => (
+export default ({ handleInput, handleSubmit, error }) => (
   <div className='container'>
-    <form>
-      <div className="form-group">
-        <label >Nombre y Apellido</label>
-        <input
-          type="text"
-          className="form-control"
-          name='userName'
-          onChange={handleInput}
-        />
-      </div>
+    <form className='form-signin'>
+      <input
+        type="text"
+        className="form-control"
+        name='userName'
+        placeholder="Ingresa Nombre"
+        onChange={handleInput}
+      />
 
-      <div className="form-group">
-        <label>Email</label>
-        <input
-          type="email"
-          className="form-control"
-          name='userEmail'
-          onChange={handleInput}
-        />
-      </div>
+      <input
+        type="email"
+        className="form-control"
+        name='userEmail'
+        placeholder="Ingresa Email"
+        onChange={handleInput}
+      />
 
-      <div className="form-group">
-        <label >Password</label>
-        <input
-          type='password'
-          className="form-control"
-          name='birthDay'
-          onChange={handleInput}
-        />
-      </div>
+      <input
+        type='text'
+        className="form-control"
+        placeholder="IngreseBirthday"
+        name='birthDay'
+        required=''
+        onChange={handleInput}
+      />
 
-      <div className="form-group">
-        <label >Birthday</label>
-        <input
-          type="text"
-          className="form-control"
-          name='password'
-          onChange={handleInput}
-        />
-      </div>
+      <input
+        type="password"
+        className="form-control"
+        placeholder="Ingresa password"
+        name='password'
+        onChange={handleInput}
+      />
 
-      <div className="form-group">
-        <label >Address</label>
-        <input
-          type="text"
-          className="form-control"
-          name='address'
-          onChange={handleInput}
-        />
-      </div>
+      <input
+        type="text"
+        className="form-control"
+        placeholder="Ingresa Adress"
+        name='address'
+        onChange={handleInput}
+      />
 
-      <div className="form-group">
-        <label >img Profile</label>
-        <input
-          type="text"
-          className="form-control"
-          name='imgProfile'
-          onChange={handleInput}
-        />
-      </div>
+      <select onChange={handleInput} name='imgProfile'>
+        <option value="volvo">img 1</option>
+        <option value="saab">img 2</option>
+        <option value="mercedes">img 3</option>
+      </select>
 
-      <Link to='/products'>
-        <button
-          className="btn btn-lg btn-dark btn-block"
-          type="submit"
-          onClick={handleSubmit}
-        >registarse
+      <button
+        className="btn btn-lg btn-dark btn-block"
+        type="submit"
+        onClick={handleSubmit}
+      >registarse
         </button>
-      </Link>
+
+      <hr />
+
+      {error
+        ?
+        <div className="alert alert-danger" role="alert">Intenta nuevamente, alguno de los campos es incorrecto!!</div>
+        : null
+      }
 
     </form>
   </div>

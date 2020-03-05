@@ -1,19 +1,19 @@
 const Carrito = require("./CarritoModel");
-const Category = require("./CategoryModel");
-const Compras = require("./ComprasModel");
+const Categoria = require("./CategoriaModel");
+const Compra = require("./CompraModel");
 const Producto = require("./ProductoModel");
 const User = require("./UserModel");
-const Valoraciones = require("./ValoracionesModel");
+const Valoracion = require("./ValoracionModel");
 
 //La valoracion pertenece a un usuario
-Valoraciones.belongsTo(User);
+Valoracion.belongsTo(User);
 //La valoracion pertenece a un  usuario
-Valoraciones.belongsTo(Producto);
+Valoracion.belongsTo(Producto);
 //Un producto tiene MUCHAS categorias
-Producto.hasMany(Category);
+Producto.belongsTo(Categoria);
 User.hasMany(Carrito);
 Producto.hasMany(Carrito);
 
-Carrito.belongsTo(Compras);
+Carrito.belongsTo(Compra);
 
-module.exports = { Carrito, Category, Compras, Producto, User, Valoraciones };
+module.exports = { Carrito, Categoria, Compra, Producto, User, Valoracion };
