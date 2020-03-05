@@ -26,10 +26,9 @@ class RegisterContainer extends React.Component {
   }
 
   handleInput(e) {
-    const key = e.target.name;
-    const value = e.target.value;
-    this.setState({ [key]: value });
-    console.log(this.state);
+    const key = e.target.name
+    const value = e.target.value
+    this.setState({ [key]: value })
   }
 
   handleSubmit(e) {

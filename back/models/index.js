@@ -12,7 +12,9 @@ Valoracion.belongsTo(Producto);
 //Un producto tiene MUCHAS categorias
 Producto.belongsTo(Categoria);
 User.hasMany(Carrito);
-Producto.hasMany(Carrito);
+
+Producto.hasMany(Carrito)
+Carrito.belongsTo(Producto)
 
 Carrito.belongsTo(Compra);
 
