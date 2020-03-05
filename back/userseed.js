@@ -75,7 +75,7 @@ User.bulkCreate([
 
 Producto.bulkCreate([
   {
-    name: "Agave",
+    name: "agave",
     price: 50,
     imgProfile:
       "/imagenes/Productos/1.png",
@@ -84,7 +84,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Planta del viento",
+    name: "planta del viento",
     price: 30,
     imgProfile:
       "/imagenes/Productos/2.png",
@@ -93,7 +93,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Cabeza negra",
+    name: "cabeza negra",
     price: 100,
     imgProfile:
       "/imagenes/Productos/3.png",
@@ -102,7 +102,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Aeonio",
+    name: "aeonio",
     price: 5,
     imgProfile:
       "/imagenes/Productos/4.png",
@@ -111,7 +111,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Maguey de monte",
+    name: "maguey de monte",
     price: 300,
     imgProfile:
       "/imagenes/Productos/5.png",
@@ -120,7 +120,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Góngaro Canario",
+    name: "góngaro Canario",
     price: 250,
     imgProfile:
       "/imagenes/Productos/6.png",
@@ -129,7 +129,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Madreperla",
+    name: "madreperla",
     price: 80,
     imgProfile:
       "/imagenes/Productos/7.png",
@@ -138,7 +138,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Gasteria",
+    name: "gasteria",
     price: 33,
     imgProfile:
       "/imagenes/Productos/8.png",
@@ -147,7 +147,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Planta Viva",
+    name: "planta Viva",
     price: 33,
     imgProfile:
       "/imagenes/Productos/9.png",
@@ -156,7 +156,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Cactus Barril",
+    name: "cactus Barril",
     price: 150,
     imgProfile:
       "/imagenes/Productos/10.png",
@@ -165,7 +165,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "San Pedro",
+    name: "san Pedro",
     price: 33,
     imgProfile:
       "/imagenes/Productos/11.png",
@@ -174,7 +174,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Cactus Erizo",
+    name: "cactus Erizo",
     price: 33,
     imgProfile:
       "/imagenes/Productos/12.png",
@@ -183,7 +183,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "La chumbrera",
+    name: "la chumbrera",
     price: 33,
     imgProfile:
       "/imagenes/Productos/13.png",
@@ -192,7 +192,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Cactus de Navidad",
+    name: "cactus de Navidad",
     price: 33,
     imgProfile:
       "/imagenes/Productos/14.png",
@@ -201,7 +201,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Cactus de flores rosas",
+    name: "cactus de flores rosas",
     price: 33,
     imgProfile:
       "/imagenes/Productos/15.png",
@@ -210,7 +210,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Cola de burro",
+    name: "cola de burro",
     price: 33,
     imgProfile:
       "/imagenes/Productos/16.png",
@@ -219,7 +219,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Flor",
+    name: "flor",
     price: 33,
     imgProfile:
       "/imagenes/Productos/17.png",
@@ -228,7 +228,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Planta Rosario",
+    name: "planta Rosario",
     price: 33,
     imgProfile:
       "/imagenes/Productos/18.png",
@@ -237,7 +237,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Cactus Llano",
+    name: "cactus Llano",
     price: 700,
     imgProfile:
       "/imagenes/Productos/19.png",
@@ -246,7 +246,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Cactus chico",
+    name: "cactus chico",
     price: 500,
     imgProfile:
       "/imagenes/Productos/20.png",
@@ -255,7 +255,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Arce Japonés",
+    name: "arce Japonés",
     price: 900,
     imgProfile:
       "/imagenes/Productos/29.png",
@@ -264,7 +264,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Arce Tridente",
+    name: "arce Tridente",
     price: 1900,
     imgProfile:
       "/imagenes/Productos/30.png",
@@ -273,7 +273,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Granado",
+    name: "granado",
     price: 800,
     imgProfile:
       "/imagenes/Productos/21.png",
@@ -282,7 +282,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Bonsai de Jacarandá",
+    name: "bonsai de Jacarandá",
     price: 3800,
     imgProfile:
       "/imagenes/Productos/22.png",
@@ -291,7 +291,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Olmo Chino",
+    name: "olmo Chino",
     price: 600,
     imgProfile:
       "/imagenes/Productos/23.png",
@@ -300,7 +300,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Zelkova Japonesa",
+    name: "zelkova Japonesa",
     price: 3460,
     imgProfile:
       "/imagenes/Productos/24.png",
@@ -309,7 +309,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Haya Europea",
+    name: "haya Europea",
     price: 1590,
     imgProfile:
       "/imagenes/Productos/25.png",
@@ -318,7 +318,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Haya Japonesa",
+    name: "haya Japonesa",
     price: 6900,
     imgProfile:
       "/imagenes/Productos/26.png",
@@ -327,7 +327,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Goshin",
+    name: "goshin",
     price: 9000,
     imgProfile:
       "/imagenes/Productos/27.png",
@@ -336,7 +336,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Bonsai Pequeño",
+    name: "bonsai Pequeño",
     price: 700,
     imgProfile:
       "/imagenes/Productos/28.png",
