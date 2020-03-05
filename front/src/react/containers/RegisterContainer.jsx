@@ -30,8 +30,6 @@ class RegisterContainer extends React.Component {
     const key = e.target.name
     const value = e.target.value
     this.setState({ [key]: value })
-    console.log(this.state)
-
   }
 
   handleSubmit(e) {

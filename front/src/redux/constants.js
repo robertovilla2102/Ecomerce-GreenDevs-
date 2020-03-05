@@ -7,3 +7,7 @@ export const CREATE_USER = 'CREATE_USER'
 
 //loguearse 
 export const LOGUEAR_USER = 'LOGUEAR_USER'
+
+// para agregar al carrito y traer cosas del carrito
+export const ADD_CARRITO = 'ADD_CARRITO'
+export const RECEIVE_CARRITO = 'RECEIVE_CARRITO'

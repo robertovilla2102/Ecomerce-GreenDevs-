@@ -2,7 +2,7 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
-export default ({ product }) => (
+export default ({ product, onSubmitCarrito }) => (
   <div
     className="card mb-12"
     style={{
@@ -38,17 +38,17 @@ export default ({ product }) => (
             Comprar
           </button>
         </Link>
-        <Link to={`/carrito/${product.id}`}>
-          <button
-            style={{
-              marginLeft: "40px"
-            }}
-            type="button"
-            class="btn btn-outline-success"
-          >
-            Agregar a carrito
+
+        <button
+          style={{
+            marginLeft: "40px"
+          }}
+          type="button"
+          class="btn btn-outline-success"
+          onClick={onSubmitCarrito}
+        >
+          Agregar a carrito
           </button>
-        </Link>
       </div>
     </div>
   </div>

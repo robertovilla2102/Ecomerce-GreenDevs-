@@ -5,7 +5,10 @@ const Carrito = db.define("carrito", {
     type: S.INTEGER
   },
   estado: {
-    type: S.STRING
+    //pending , comprado
+    type: S.STRING,
+    defaultValue: 'pending'
   }
-});
+})
+
 module.exports = Carrito;

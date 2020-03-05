@@ -8,7 +8,7 @@ import RegisterContainer from '../containers/RegisterContainer'
 import Footer from '../containers/FooterContainer'
 import ViewSingleContainer from '../containers/ViewSingleContainer'
 import Home from '../containers/Home'
-
+import CarritoContainer from '../containers/CarritoContainer'
 
 class Main extends React.Component {
   render() {
@@ -21,9 +21,11 @@ class Main extends React.Component {
 
           <Route exact path="/products" component={ProductsContainer} />
 
-          <Router exact path="/products/:id" component={ViewSingleContainer} />
+          <Route exact path="/products/:id" component={ViewSingleContainer} />
 
           <Route exact path="/register" component={RegisterContainer} />
+
+          <Route exact path="/carrito" component={CarritoContainer} />
 
           <Redirect from='/' to='/home' />
         </Switch>
