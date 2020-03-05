@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import UserInfo from "./UserInfo";
+import UserRegister from "./UserRegister";
 
 
 export default () => {
@@ -31,6 +33,12 @@ export default () => {
           <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
           <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
+      </div>
+      <div style={{marginLeft: "5px", marginRight: "5px"}} >
+        <UserRegister/>
+      </div>
+      <div style={{marginLeft: "5px", marginRight: "5px"}} >
+        <UserInfo/>
       </div>
     </nav>
 

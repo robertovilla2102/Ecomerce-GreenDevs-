@@ -8,15 +8,18 @@ import Register from '../components/Register'
 
 class RegisterContainer extends React.Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
+    console.log(this.props);
+
     this.state = {
       userName: '',
       userEmail: '',
       password: '',
       birthDay: '',
       address: '',
-      imgProfile: ''
+      imgProfile: '',
+      error: false
     }
 
     this.handleInput = this.handleInput.bind(this)
@@ -27,10 +30,19 @@ class RegisterContainer extends React.Component {
     const key = e.target.name
     const value = e.target.value
     this.setState({ [key]: value })
+    console.log(this.state)
+
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault()
     this.props.registerUser(this.state)
+      .then(error => {
+        error
+          ? this.setState({ error: true })
+          : this.props.history.push('/product')
+
+      })
   }
 
   render() {
@@ -38,6 +50,7 @@ class RegisterContainer extends React.Component {
       <Register
         handleInput={this.handleInput}
         handleSubmit={this.handleSubmit}
+        error={this.state.error}
       />
     )
   }

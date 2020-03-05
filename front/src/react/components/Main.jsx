@@ -13,13 +13,6 @@ class Main extends React.Component {
     return (
       <React.Fragment>
         <Navbar />
-        <h1>Bienvenido a la nada</h1>
-
-        <div className="container">
-          <Link to='/register'>
-            <button>registarse</button>
-          </Link>
-        </div>
 
         <Switch>
           <Route path='/products' component={ProductsContainer} />

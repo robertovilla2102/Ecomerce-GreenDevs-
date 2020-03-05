@@ -4,7 +4,7 @@ const { User } = require("../models/index");
 const passport = require("passport");
 const Valoracion = require("../models/ValoracionModel");
 
-router.get("/pepe", (req, res) => {
+router.get("/", (req, res) => {
   User.findAll().then(users => {
     res.status(200).send(users);
   });
@@ -22,7 +22,7 @@ router.post("/registerLocal", (req, res) => {
     .then(user => {
       res.status(201).send(user);
     })
-    .catch(() => res.sendStatus(403, "Ha ocurido un error"));
+    .catch(error => res.status(402).send(error));
 });
 
 router.post("/login", passport.authenticate("local"), (req, res) => {
