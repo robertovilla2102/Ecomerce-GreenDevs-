@@ -111,7 +111,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Maguey de monte",
+    name: "Maguey de monte"
     price: 300,
     imgProfile:
       "/imagenes/Productos/5.png",
@@ -219,7 +219,7 @@ Producto.bulkCreate([
     disponibilidad: true
   },
   {
-    name: "Flor",
+    name: "flor",
     price: 33,
     imgProfile:
       "/imagenes/Productos/17.png",

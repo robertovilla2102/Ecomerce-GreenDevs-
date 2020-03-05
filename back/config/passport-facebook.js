@@ -11,8 +11,6 @@ passport.use(
       callbackURL: "http://localhost:3001/api/auth/facebook/callback"
     },
     function(accessToken, refreshToken, profile, done) {
-      console.log(profile);
-
       User.findOrCreate({ where: { provider_id: profile.id } })
         .then(user => {
           if (user !== null) {
