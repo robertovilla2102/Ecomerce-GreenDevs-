@@ -2,7 +2,7 @@ const S = require("sequelize");
 const db = require("../config/db/index");
 const crypto = require("crypto");
 
-class User extends S.Model { }
+class User extends S.Model {}
 
 User.init(
   {
@@ -26,15 +26,15 @@ User.init(
   { sequelize: db, modelName: "user" }
 );
 
-User.prototype.hashPassword = function (user) {
+User.addHook("beforeCreate", user => {
   user.salt = crypto.randomBytes(20).toString("hex");
   user.password = crypto
     .createHmac("sha1", user.salt)
     .update(user.password)
     .digest("hex");
-};
+});
 
-User.prototype.validPassword = function (password) {
+User.prototype.validPassword = function(password) {
   const match = crypto
     .createHmac("sha1", this.salt)
     .update(password)

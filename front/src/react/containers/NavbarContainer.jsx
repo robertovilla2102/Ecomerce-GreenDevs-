@@ -1,46 +1,75 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
+import { withRouter } from "react-router";
 import { fetchProductsByName } from "../../redux/action-creators/productos";
+import { loginUser } from "../../redux/action-creators/login";
+import { connect } from "react-redux";
 
-// luego importar componente
+const NavbarContainer = ({ fetchProductsByName, history, user, loginUser }) => {
+  const [inputSearch, setInputSearch] = useState("");
+  const [inputEmail, setInputEmail] = useState("");
+  const [inputPassword, setInputPassword] = useState("");
 
-//luego importar action creator
+  const handlerInput = e => {
+    let search = e.target.value;
+    setInputSearch(value => search);
+  };
 
-class NavbarContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      inputSearch: ""
-    };
-    this.onSubmitSearch = this.onSubmitSearch.bind(this);
-    this.handlerInput = this.handlerInput.bind(this);
-  }
+  const handlerInputForm = e => {
+    const input = e.target.name;
+    switch (input) {
+      case "inputEmail":
+        setInputEmail(e.target.value);
+        break;
+      case "inputPassword":
+        setInputPassword(e.target.value);
+        break;
+    }
+  };
 
-  handlerInput(e) {
-    let value = e.target.value;
-    this.setState({ inputSearch: value });
-  }
-
-  onSubmitSearch(e) {
+  const onSubmitSearch = e => {
     e.preventDefault();
-    this.props.fetchProductsByName(this.state.inputSearch);
-  }
-  render() {
-    return (
-      <Navbar
-        onSubmitSearch={this.onSubmitSearch}
-        inputSearch={this.state.inputSearch}
-        handlerInput={this.handlerInput}
-      />
-    );
-  }
-}
+    fetchProductsByName(inputSearch).then(() => {
+      history.push(`/products/product/${inputSearch}`);
+    });
+  };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+  const onSubmitForm = e => {
+    e.preventDefault();
+    let email = e.target[0].value;
+    let password = e.target[1].value;
+    loginUser(email, password).then(() => {
+      history.push("/home");
+    });
+  };
+
+  return (
+    <div>
+      <Navbar
+        onSubmitForm={onSubmitForm}
+        handlerInputForm={handlerInputForm}
+        onSubmitSearch={onSubmitSearch}
+        inputSearch={inputSearch}
+        handlerInput={handlerInput}
+        user={user}
+      />
+    </div>
+  );
+};
+
+const mapStateToProps = (state, ownProps) => {
   return {
-    fetchProductsByName: name => dispatch(fetchProductsByName(name))
+    user: state.login.userLogueado
   };
 };
 
-export default connect(null, mapDispatchToProps)(NavbarContainer);
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    fetchProductsByName: name => dispatch(fetchProductsByName(name)),
+    loginUser: (email, password) => dispatch(loginUser(email, password))
+  };
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(NavbarContainer)
+);

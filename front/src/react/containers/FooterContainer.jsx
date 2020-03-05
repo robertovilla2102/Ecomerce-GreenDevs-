@@ -1,5 +1,5 @@
 import React from "react";
-import Footer from "../components/Footer"
+import Footer from "../components/Footer";
 
 // luego importar componente
 //luego importar action creator
@@ -7,8 +7,10 @@ import Footer from "../components/Footer"
 class FooterContainer extends React.Component {
   render() {
     return (
-      <Footer />
-    )
+      <div>
+        <Footer />
+      </div>
+    );
   }
 }
 

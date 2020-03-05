@@ -25,7 +25,6 @@ router.get("/search/:name", (req, res) => {
     where: { name: { [Op.substring]: req.params.name } }
   })
     .then(productos => {
-      console.log(productos);
       res.json(productos);
     })
     .catch(err => console.log(err));
