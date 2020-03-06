@@ -31,15 +31,22 @@ router.post("/register-local", (req, res) => {
 });
 
 router.post("/login", passport.authenticate("local"), (req, res) => {
-  res.status(200).json(req.user);
+  res.status(200).json({
+    userName: req.user.userName,
+    userEmail: req.user.userEmail,
+    birthDay: req.user.birthDay,
+    address: req.user.address,
+    imgProfile: req.user.imgProfile,
+    isAdmin: req.user.isAdmin
+  });
 });
 
-router.get("/logout", function (req, res) {
+router.get("/logout", function(req, res) {
   req.logOut();
   res.sendStatus(200);
 });
 
-router.post(":id/valoracion", function (req, res) {
+router.post(":id/valoracion", function(req, res) {
   Valoracion.create({
     ...req.body,
     userId: req.user.id,
@@ -48,7 +55,7 @@ router.post(":id/valoracion", function (req, res) {
   res.sendStatus(404);
 });
 
-router.put(":id/add-review", function (req, res) {
+router.put(":id/add-review", function(req, res) {
   Valoracion.update(req.body, { where: { id: req.params.id } });
 });
 

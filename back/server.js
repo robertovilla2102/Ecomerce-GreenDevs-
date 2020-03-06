@@ -11,7 +11,10 @@ require("./config/passport");
 require("./config/passport-facebook");
 require("./models/index");
 
+app.set("port", process.env.PORT || 3001);
+
 app.use(cors());
+app.use(express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -29,9 +32,13 @@ app.use(passport.session());
 
 app.use("/api", require("./routes/index"));
 
+app.get("/*", (req, res) => {
+  res.sendFile(__dirname + "/public/" + "index.html");
+});
+
 db.sync({ force: false }).then(() => {
   console.log("DB is connected");
-  app.listen(3001, () => {
-    console.log("El puerto escucha en el 3001!");
+  app.listen(app.get("port"), () => {
+    console.log("Server on port: ", app.get("port"));
   });
 });
