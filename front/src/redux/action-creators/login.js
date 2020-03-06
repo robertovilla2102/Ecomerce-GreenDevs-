@@ -5,7 +5,6 @@ const receivedUser = user => ({
   type: LOGUEAR_USER,
   user
 });
-
 // verifica en la base de datos si el usuario existe y lo loguea
 export const loginUser = (email, password) => dispatch => {
   return axios
