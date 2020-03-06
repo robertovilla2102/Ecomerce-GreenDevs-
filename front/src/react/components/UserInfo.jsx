@@ -15,9 +15,9 @@ export default ({ user }) => {
         {user.userName}
       </button>
       <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a className="dropdown-item" href="#">
+        <Link to='/carrito' className="dropdown-item">
           Mi Carrito
-        </a>
+        </Link>
         <a className="dropdown-item" href="#">
           Mi Perfil
         </a>

@@ -15,7 +15,7 @@ export default ({ handlerInputForm, onSubmitForm }) => {
           Enter your acount
         </button>
         <div className="dropdown-menu">
-          <form className="px-1" onSubmit={onSubmitForm}>
+          <form className="px-1" >
             <div className="form-group">
               <input
                 type="email"
@@ -34,12 +34,12 @@ export default ({ handlerInputForm, onSubmitForm }) => {
                 placeholder="Password"
               />
             </div>
-            <button type="submit" className="btn btn-primary btn-block">
+            <button type="submit" className="btn btn-primary btn-block" onClick={onSubmitForm}>
               Sign in
             </button>
           </form>
           <div className="dropdown-divider"></div>
-          <Link to="/register" className="dropdown-item" href="#">
+          <Link to="/register" className="dropdown-item">
             Nuevo? Registrate
           </Link>
         </div>

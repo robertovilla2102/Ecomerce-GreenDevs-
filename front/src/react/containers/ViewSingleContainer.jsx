@@ -11,12 +11,35 @@ import { createCarrito } from '../../redux/action-creators/carrito'
 class ViewSingleContainer extends React.Component {
   constructor() {
     super()
+    this.state = {
+      cantidad: 1
+    }
+
     this.onSubmitCarrito = this.onSubmitCarrito.bind(this)
+    this.addCantidad = this.addCantidad.bind(this)
+    this.removeCantidad = this.removeCantidad.bind(this)
+  }
+
+  addCantidad(e) {
+    e.preventDefault()
+    this.setState({
+      cantidad: this.state.cantidad + 1
+    })
+  }
+
+  removeCantidad(e) {
+    e.preventDefault()
+    this.setState({
+      cantidad: this.state.cantidad - 1,
+    })
   }
 
   onSubmitCarrito(e) {
     e.preventDefault()
-    this.props.createCarrito(this.props.match.params.id)
+    this.props.createCarrito(this.props.match.params.id, {
+      cantidad: this.state.cantidad,
+      user: this.props.usuario
+    })
   }
 
   componentDidMount() {
@@ -29,6 +52,9 @@ class ViewSingleContainer extends React.Component {
         <ViewSingle
           product={this.props.producto}
           onSubmitCarrito={this.onSubmitCarrito}
+          addCantidad={this.addCantidad}
+          removeCantidad={this.removeCantidad}
+          cantidad={this.state.cantidad}
         />
       </div>
     );
@@ -38,14 +64,15 @@ class ViewSingleContainer extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    producto: state.productos.selectedProduct
+    producto: state.productos.selectedProduct,
+    usuario: state.login.userLogueado.id
   };
 };
 
 const mapDispathToProps = (dispatch, ownProps) => {
   return {
     fetchProduct: id => dispatch(fetchProduct(id)),
-    createCarrito: productID => dispatch(createCarrito(productID))
+    createCarrito: (productID, body) => dispatch(createCarrito(productID, body))
   };
 };
 

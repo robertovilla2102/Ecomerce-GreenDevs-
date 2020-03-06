@@ -32,29 +32,32 @@ export default ({
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
-            <a className="nav-link" href="#">
+
+            <Link to='/home' className="nav-link" href="#">
               Home <span className="sr-only">(current)</span>
-            </a>
+            </Link>
           </li>
 
           <li className="nav-item">
-            <Link to="/products" className="nav-link" href="#">
+            <Link to="/products" className="nav-link">
               Products
             </Link>
           </li>
 
           <li className="nav-item">
-            <a className="nav-link" href="#">
+            <p className="nav-link">
               About Us
-            </a>
+            </p>
           </li>
 
           <li className="nav-item">
-            <a className="nav-link" href="#">
+            <p className="nav-link">
               Contacto
-            </a>
+            </p>
           </li>
+
         </ul>
+
         <form className="form-inline my-2 my-lg-0" onSubmit={onSubmitSearch}>
           <input
             className="form-control mr-sm-2"
@@ -79,13 +82,13 @@ export default ({
           <UserInfo user={user} />
         </div>
       ) : (
-        <div className="row ml-1">
-          <UserRegister
-            onSubmitForm={onSubmitForm}
-            handlerInputForm={handlerInputForm}
-          />
-        </div>
-      )}
+          <div className="row ml-1">
+            <UserRegister
+              onSubmitForm={onSubmitForm}
+              handlerInputForm={handlerInputForm}
+            />
+          </div>
+        )}
     </nav>
   );
 };

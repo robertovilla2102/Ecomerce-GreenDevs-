@@ -12,18 +12,18 @@ const receiveCarrito = carritos => ({
 })
 
 //agrega un carrito relacionando un userId y un ProductID
-export const createCarrito = (productID) => dispatch => {
+export const createCarrito = (productID, body) => dispatch => {
   axios
-    .post(`http://localhost:3001/api/carrito/add/${productID}`)
+    .post(`http://localhost:3001/api/carrito/add/${productID}`, { body })
     .then(carrito => carrito.data)
     .then(carritoCreado => dispatch(addCarrito(carritoCreado)))
     .catch(err => console.error(err))
 }
 
 //buscar todos los carritos relacionados con un UserID
-export const fetchCarritos = () => dispatch => {
+export const fetchCarritos = (id) => dispatch => {
   axios
-    .get(`http://localhost:3001/api/carrito`)
+    .get(`http://localhost:3001/api/carrito/${id}`)
     .then(carritos => carritos.data)
     .then(encontrados => dispatch(receiveCarrito(encontrados)))
     .catch(err => console.error(err))

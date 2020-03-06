@@ -11,7 +11,7 @@ class CarritoContaienr extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchCarritos()
+    this.props.fetchCarritos(this.props.user)
   }
 
   render() {
@@ -26,13 +26,14 @@ class CarritoContaienr extends React.Component {
 const mapStateToProps = (state, ownProps) => {
 
   return {
-    listaCarrito: state.carrito.listaCarrito
+    listaCarrito: state.carrito.listaCarrito,
+    user: state.login.userLogueado.id
   }
 }
 
 const mapDispathToProps = (dispatch, ownProps) => {
   return {
-    fetchCarritos: () => dispatch(fetchCarritos())
+    fetchCarritos: (id) => dispatch(fetchCarritos(id))
   }
 }
 

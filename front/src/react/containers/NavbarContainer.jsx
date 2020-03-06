@@ -36,11 +36,10 @@ const NavbarContainer = ({ fetchProductsByName, history, user, loginUser }) => {
 
   const onSubmitForm = e => {
     e.preventDefault();
-    let email = e.target[0].value;
-    let password = e.target[1].value;
-    loginUser(email, password).then(() => {
-      history.push("/home");
-    });
+    loginUser(inputEmail, inputPassword)
+      .then(() => {
+        history.push("/home");
+      });
   };
 
   return (
