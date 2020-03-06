@@ -31,14 +31,7 @@ router.post("/register-local", (req, res) => {
 });
 
 router.post("/login", passport.authenticate("local"), (req, res) => {
-  res.status(200).json({
-    userName: req.user.userName,
-    userEmail: req.user.userEmail,
-    birthDay: req.user.birthDay,
-    address: req.user.address,
-    imgProfile: req.user.imgProfile,
-    isAdmin: req.user.isAdmin
-  });
+  res.status(200).json(req.user);
 });
 
 router.get("/logout", function (req, res) {

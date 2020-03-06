@@ -2,12 +2,12 @@ const express = require("express");
 const router = express.Router();
 const { Carrito, Producto } = require("../models/index");
 
-router.get("/", function (req, res, next) {
+router.get("/:id", function (req, res, next) {
   Carrito.findAll({
     include: [{
       model: Producto,
     }],
-    where: { userId: req.user.id }
+    where: { userId: req.params.id }
   })
     .then(carritos => res.json(carritos))
     .catch((err) => {
@@ -18,15 +18,17 @@ router.get("/", function (req, res, next) {
 
 router.post("/add/:productId", function (req, res, next) {
   console.log(req.body);
-  const { cantidad, estado } = req.body;
+  //const { cantidad, estado } = req.body;
 
   Carrito.create({
-    cantidad,
-    estado,
+    cantidad: req.body.body.cantidad,
     productoId: req.params.productId,
-    userId: req.user.id
+    userId: req.body.body.user
   })
-    .then(productos => res.json(productos))
+    .then(productos => {
+      console.log(productos);
+      res.json(productos)
+    })
     .catch(err => res.json(err));
 });
 
