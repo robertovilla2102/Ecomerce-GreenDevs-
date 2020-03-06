@@ -1,8 +1,7 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
 
-export default ({ product, onSubmitCarrito, cantidad, removeCantidad, addCantidad, styleInputCont }) => (
+export default ({ product, onSubmitCarrito, cantidad, removeCantidad, addCantidad }) => (
   <div className="container">
 
     <div

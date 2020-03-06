@@ -13,6 +13,15 @@ export default () => {
         <div className="carousel-item active">
           <img className="d-block w-100" src="/imagenes/Header/1.png" alt="First slide" />
         </div>
+        <div className="carousel-item ">
+          <img className="d-block w-100" src="/imagenes/Header/6.png" alt="First slide" />
+        </div>
+        <div className="carousel-item ">
+          <img className="d-block w-100" src="/imagenes/Header/7.png" alt="First slide" />
+        </div>
+        <div className="carousel-item ">
+          <img className="d-block w-100" src="/imagenes/Header/3.png" alt="First slide" />
+        </div>
       </div>
       <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
         <span className="carousel-control-prev-icon" aria-hidden="true"></span>

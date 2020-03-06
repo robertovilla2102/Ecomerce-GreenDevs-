@@ -40,3 +40,8 @@ export const styleImgCategory = {
 export const styleInputCont = {
   width: "5px",
 }
+
+export const styleTransition = {
+  width: '110px',
+  height: '110px'
+}
