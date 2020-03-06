@@ -23,14 +23,14 @@ class ViewSingleContainer extends React.Component {
   addCantidad(e) {
     e.preventDefault()
     this.setState({
-      cantidad: this.state.cantidad + 1
+      cantidad: this.props.producto.stock > this.state.cantidad ? this.state.cantidad + 1 : this.state.cantidad
     })
   }
 
   removeCantidad(e) {
     e.preventDefault()
     this.setState({
-      cantidad: this.state.cantidad - 1,
+      cantidad: this.state.cantidad > 1 ? this.state.cantidad - 1 : this.state.cantidad
     })
   }
 
