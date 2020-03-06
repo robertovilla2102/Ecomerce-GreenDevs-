@@ -36,3 +36,7 @@ export const styleImgCategory = {
   padding: '10px',
   paddingBottom: '15px'
 }
+
+export const styleInputCont = {
+  width: "5px",
+}

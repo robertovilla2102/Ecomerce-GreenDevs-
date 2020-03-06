@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 //importando css
@@ -7,8 +6,9 @@ import { styleImgCategory, styleDivCAtegory, styleH } from '../css/estilosComune
 
 export default () => {
   return (
-    <div style={{marginBottom: "0"}}>
-      <div className="jumbotron jumbotron-fluid">
+    <div style={{ marginBottom: "0" }}>
+      <div>
+
         <div className="container-fluid">
           <div className="row d-flex justify-content-center" >
             <div

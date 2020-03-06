@@ -1,15 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../css/estilosFooter.css"
+import { styleH } from '../css/estilosComunes'
 
 export default () => {
   return (
     <section id="footer">
       <div className="container">
-        <div className="row text-center text-xs-center text-sm-left text-md-left">
-          <div className="col-xs-12 col-sm-4 col-md-4">
-            <h5>Nuestras Secciones</h5>
-            <ul className="list-unstyled quick-links">
+        <div className="row text-center text-xs-center text-sm-left text-md-left ">
+          <div className="col-xs-12 col-sm-4 col-md-4 ">
+            <h5 style={styleH}>Nuestras Secciones</h5>
+            <ul className="list-unstyled quick-links d-flex justify-content-center flex-column" style={{ alignItems: 'center' }}>
               <li><a href="javascript:void();"><i></i>Home</a></li>
               <li><a href="javascript:void();"><i></i>Productos</a></li>
               <li><a href="javascript:void();"><i></i>About Us</a></li>
@@ -18,8 +19,8 @@ export default () => {
             </ul>
           </div>
           <div className="col-xs-12 col-sm-4 col-md-4">
-            <h5>Sucursales</h5>
-            <ul className="list-unstyled quick-links">
+            <h5 style={styleH}>Sucursales</h5>
+            <ul className="list-unstyled quick-links d-flex justify-content-center flex-column" style={{ alignItems: 'center' }}>
               <li><a href="javascript:void();"><i></i>Merlo 3355</a></li>
               <li><a href="javascript:void();"><i></i>Flores 5673</a></li>
               <li><a href="javascript:void();"><i></i>Recoleta 3452</a></li>
@@ -28,8 +29,8 @@ export default () => {
             </ul>
           </div>
           <div className="col-xs-12 col-sm-4 col-md-4">
-            <h5>Horarios</h5>
-            <ul className="list-unstyled quick-links">
+            <h5 style={styleH}>Horarios</h5>
+            <ul className="list-unstyled quick-links d-flex justify-content-center flex-column" style={{ alignItems: 'center' }}>
               <li><a href="javascript:void();"><i></i>Lunes 9 a 19</a></li>
               <li><a href="javascript:void();"><i></i>Martes 9 a 19</a></li>
               <li><a href="javascript:void();"><i></i>Miercoles 10 a 19</a></li>

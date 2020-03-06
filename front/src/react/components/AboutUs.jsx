@@ -1,11 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-
-//importando css
-import { styleDivProduct, styleH, styleP, styleImg } from '../css/estilosComunes'
 
 export default () => (
-  <div  style={{marginTop: "0"}} id="carouselExampleIndicators" className="carousel slide carousel-fluid" data-ride="carousel">
+  <div style={{ marginTop: "0" }}>
     <ol className="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
       <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
