@@ -3,32 +3,31 @@ import { Link } from 'react-router-dom'
 
 export default ({ listaCarrito }) => (
   <div className="container">
-    <h3>Productos en tu carrito : </h3>
-
-    {listaCarrito.map(carrito => (
-      <div className='container' key={carrito.id}>
-        <br />
-        <br />
-        <div style={{ display: 'flex' }}>
-          <img
-            className='img-thumbnail '
-            src={carrito.producto.imgProfile}
-            alt="carrito.producto-picture"
-            style={{ width: "250px", height: '400px', margin: '15px' }}
-          />
-          <div style={{ margin: '15px' }}>
-            <br />
-            <h3>{carrito.producto.name}</h3>
-            <br />
-            <h3>Precio</h3>
-            <p>{carrito.producto.price}</p>
-            <h4>Stock</h4>
-            <small>{carrito.producto.stock}</small>
-            <hr />
-          </div>
-
+    <div>
+      <main className="jumbotron jumbotron-fluid">
+        <div className="container wow fadeIn">
+          <h4 className="d-flex justify-content-between align-items-center mb-3">
+            <span className="text-muted">Tu Carrito</span>
+            <span className="badge badge-secondary badge-pill">items</span>
+          </h4>
+          <ul className="list-group mb-3 z-depth-1">
+            {listaCarrito.map(carrito => (
+              <li className="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 className="my-0">{carrito.producto.name}</h6>
+                  <small className="text-muted">Stock : {carrito.producto.stock}</small>
+                </div>
+                <span className="text-muted">{carrito.producto.price}$</span>
+              </li>
+            ))}
+            < li className="list-group-item d-flex justify-content-between lh-condensed" >
+              <span>Total ($)</span>
+              <strong>por definir</strong>
+            </li>
+          </ul>
         </div>
-      </div>
-    ))}
+      </main>
+    </div>
   </div>
 )
+
