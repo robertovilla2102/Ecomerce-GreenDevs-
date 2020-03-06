@@ -7,6 +7,8 @@ const { Producto } = require("../models/index");
 router.get("/", (req, res, next) => {
   Producto.findAll()
     .then(productos => {
+      console.log(req.user);
+
       res.status(200).json(productos);
     })
     .catch(err => res.sendStatus(500, "Fallo busqueda"));
