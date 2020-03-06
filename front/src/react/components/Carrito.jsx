@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+let total = 0
+
 export default ({ listaCarrito }) => (
   <div className="container">
     <div>
@@ -11,18 +13,21 @@ export default ({ listaCarrito }) => (
             <span className="badge badge-secondary badge-pill">items</span>
           </h4>
           <ul className="list-group mb-3 z-depth-1">
-            {listaCarrito.map(carrito => (
-              <li className="list-group-item d-flex justify-content-between lh-condensed">
+            {listaCarrito.map((carrito, index) => {
+
+              total += carrito.producto.price * carrito.cantidad
+
+              return <li className="list-group-item d-flex justify-content-between lh-condensed" key={index}>
                 <div>
                   <h6 className="my-0">{carrito.producto.name}</h6>
-                  <small className="text-muted">Stock : {carrito.producto.stock}</small>
+                  <small className="text-muted">Cantidad : {carrito.cantidad}</small>
                 </div>
-                <span className="text-muted">{carrito.producto.price}$</span>
+                <span className="text-muted">{carrito.producto.price * carrito.cantidad}$</span>
               </li>
-            ))}
+            })}
             < li className="list-group-item d-flex justify-content-between lh-condensed" >
               <span>Total ($)</span>
-              <strong>por definir</strong>
+              <strong>{total}</strong>
             </li>
           </ul>
         </div>
