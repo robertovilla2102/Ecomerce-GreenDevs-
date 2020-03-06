@@ -24,3 +24,9 @@ export const loginUserFacebook = () => dispatch => {
     .then(user => dispatch(receivedUser(user)))
     .catch(err => err);
 };
+
+export const userLogout = () => dispatch => {
+  return axios
+    .get("http://localhost:3001/api/user/logout")
+    .then(() => dispatch(receivedUser({})));
+};
