@@ -24,7 +24,7 @@ export const styleP = {
 
 export const styleDivCAtegory = {
   width: "350px",
-  height: '550px',
+  height: '500px',
   margin: '15px',
   alignContent: 'center',
   backgroundColor: 'transparent'

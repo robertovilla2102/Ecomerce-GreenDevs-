@@ -13,30 +13,6 @@ export default () => {
         <div className="carousel-item active">
           <img className="d-block w-100" src="/imagenes/Header/1.png" alt="First slide" />
         </div>
-        <div className="carousel-item">
-          <img className="d-block w-100" src="/imagenes/Header/2.png" alt="Second slide" />
-        </div>
-        <div className="carousel-item">
-          <img className="d-block w-100" src="/imagenes/Header/3.png" alt="Third slide" />
-        </div>
-        <div className="carousel-item">
-          <img className="d-block w-100" src="/imagenes/Header/4.png" alt="Third slide" />
-        </div>
-        <div className="carousel-item">
-          <img className="d-block w-100" src="/imagenes/Header/5.png" alt="Third slide" />
-        </div>
-        <div className="carousel-item">
-          <img className="d-block w-100" src="/imagenes/Header/6.png" alt="Third slide" />
-        </div>
-        <div className="carousel-item">
-          <img className="d-block w-100" src="/imagenes/Header/7.png" alt="Third slide" />
-        </div>
-        <div className="carousel-item">
-          <img className="d-block w-100" src="/imagenes/Header/9.png" alt="Third slide" />
-        </div>
-        <div className="carousel-item">
-          <img className="d-block w-100" src="/imagenes/Header/11.png" alt="Third slide" />
-        </div>
       </div>
       <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
         <span className="carousel-control-prev-icon" aria-hidden="true"></span>

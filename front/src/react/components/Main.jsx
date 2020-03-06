@@ -27,11 +27,11 @@ class Main extends React.Component {
           <Route exact path="/register" component={RegisterContainer} />
 
           <Route exact path="/carrito" component={CarritoContainer} />
-                  <Route
-          exact
-          path="/products/product/:name"
-          component={ProductSearchContainer}
-        />
+          <Route
+            exact
+            path="/products/product/:name"
+            component={ProductSearchContainer}
+          />
 
           <Redirect from='/' to='/home' />
         </Switch>
