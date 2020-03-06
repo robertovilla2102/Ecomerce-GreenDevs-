@@ -1,45 +1,60 @@
-import React from "react";
-import { Link, Route, Redirect, Switch } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Route, Redirect, Switch } from "react-router-dom";
 import { connect } from "react-redux";
+import { userIsLogin } from "../../redux/action-creators/login";
 
-import ProductsContainer from '../containers/ProductsContainer'
-import Navbar from '../containers/NavbarContainer'
-import RegisterContainer from '../containers/RegisterContainer'
-import Footer from '../containers/FooterContainer'
-import ViewSingleContainer from '../containers/ViewSingleContainer'
-import Home from '../containers/Home'
-import CarritoContainer from '../containers/CarritoContainer'
+import ProductsContainer from "../containers/ProductsContainer";
+import Navbar from "../containers/NavbarContainer";
+import RegisterContainer from "../containers/RegisterContainer";
+import Footer from "../containers/FooterContainer";
+import ViewSingleContainer from "../containers/ViewSingleContainer";
+import Home from "../containers/Home";
+import CarritoContainer from "../containers/CarritoContainer";
 import ProductSearchContainer from "../containers/ProductSearchContainer";
 
-class Main extends React.Component {
-  render() {
-    return (
-      <React.Fragment>
-        <Navbar />
+const Main = ({ user, userLogin }) => {
+  useEffect(() => {
+    userLogin();
+  }, []);
 
-        <Switch>
-          <Route exact path="/home" component={Home} />
+  return (
+    <React.Fragment>
+      <Navbar user={user} />
 
-          <Route exact path="/products" component={ProductsContainer} />
+      <Switch>
+        <Route exact path="/home" component={Home} />
 
-          <Route exact path="/products/:id" component={ViewSingleContainer} />
+        <Route exact path="/products" component={ProductsContainer} />
 
-          <Route exact path="/register" component={RegisterContainer} />
+        <Route exact path="/products/:id" component={ViewSingleContainer} />
 
-          <Route exact path="/carrito" component={CarritoContainer} />
-          <Route
-            exact
-            path="/products/product/:name"
-            component={ProductSearchContainer}
-          />
+        <Route exact path="/register" component={RegisterContainer} />
 
-          <Redirect from='/' to='/home' />
-        </Switch>
+        <Route exact path="/carrito" component={CarritoContainer} />
+        <Route
+          exact
+          path="/products/product/:name"
+          component={ProductSearchContainer}
+        />
 
-        <Footer />
-      </React.Fragment>
-    );
-  }
-}
+        <Redirect from="/" to="/home" />
+      </Switch>
 
-export default connect(null, null)(Main);
+      <Footer />
+    </React.Fragment>
+  );
+};
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    user: state.login.userLogueado
+  };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    userLogin: () => dispatch(userIsLogin())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

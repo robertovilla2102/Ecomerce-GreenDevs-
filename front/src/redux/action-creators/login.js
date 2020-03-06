@@ -29,3 +29,9 @@ export const userLogout = () => dispatch => {
     .get("http://localhost:3001/api/user/logout")
     .then(() => dispatch(receivedUser({})));
 };
+
+export const userIsLogin = () => dispatch => {
+  axios
+    .get("http://localhost:3001/api/user/islogin")
+    .then(res => dispatch(receivedUser(res.data)));
+};
