@@ -9,6 +9,23 @@ router.get("/", (req, res) => {
   });
 });
 
+router.get("/islogin", (req, res, next) => {
+  console.log("ENTRA", req.user);
+
+  if (req.user) {
+    res.json({
+      userName: req.user.userName,
+      userEmail: req.user.userEmail,
+      birthDay: req.user.birthDay,
+      address: req.user.address,
+      imgProfile: req.user.imgProfile,
+      isAdmin: req.user.isAdmin
+    });
+  } else {
+    next();
+  }
+});
+
 router.post("/register", (req, res) => {
   const newUser = User.build(req.body);
   newUser.hashPassword(newUser.password);

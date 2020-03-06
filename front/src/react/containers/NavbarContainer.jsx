@@ -43,10 +43,9 @@ const NavbarContainer = ({
 
   const onSubmitForm = e => {
     e.preventDefault();
-    loginUser(inputEmail, inputPassword)
-      .then(() => {
-        history.push("/home");
-      });
+    loginUser(inputEmail, inputPassword).then(() => {
+      history.push("/home");
+    });
   };
   const onSubmitLogout = e => {
     e.preventDefault();
@@ -68,12 +67,6 @@ const NavbarContainer = ({
   );
 };
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    user: state.login.userLogueado
-  };
-};
-
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchProductsByName: name => dispatch(fetchProductsByName(name)),
@@ -82,6 +75,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(NavbarContainer)
-);
+export default withRouter(connect(null, mapDispatchToProps)(NavbarContainer));
