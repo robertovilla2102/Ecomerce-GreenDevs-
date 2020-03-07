@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Op = require("sequelize").Op;
 //importando Models
-const { Producto } = require("../models/index");
+const { Producto, Categoria } = require("../models/index");
 
 router.get("/", (req, res, next) => {
   Producto.findAll()

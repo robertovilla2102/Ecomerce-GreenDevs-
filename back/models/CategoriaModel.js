@@ -5,10 +5,12 @@ class Categoria extends S.Model {}
 
 Categoria.init(
   {
+    imgCategory: { type: S.TEXT, allowNull: false },
     name: {
       type: S.STRING,
       allowNull: false
-    }
+    },
+    categoryId: { type: S.INTEGER } //PROVISORIO
   },
   { sequelize: db, modelName: "categoria" }
 );
