@@ -16,7 +16,7 @@ export const loginUser = (email, password) => dispatch => {
       password: password
     })
     .then(res => dispatch(receivedUser(res.data)))
-    .catch(err => err);
+    .catch(err => err.response);
 };
 
 // login con facebook

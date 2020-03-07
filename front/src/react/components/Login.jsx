@@ -3,7 +3,8 @@ import { formLogin } from "../css/estilosComunes";
 import Button from "./Button";
 import {
   EMAIL_FORMAT_INCORRECT,
-  PASSWORD_FORMAT_INCORRECT
+  PASSWORD_FORMAT_INCORRECT,
+  INVALID_DATA
 } from "../../assets/errorsImputs";
 import AlertInput from "./AlertInput";
 
@@ -12,7 +13,8 @@ export default ({
   handleSubmit,
   emailError,
   passError,
-  buttonDisable
+  buttonDisable,
+  invalidData
 }) => {
   return (
     <div className="col-md-4 mx-auto" style={formLogin}>
@@ -39,6 +41,7 @@ export default ({
         </div>
         <Button name={"Sign In"} buttonDisable={buttonDisable} />
       </form>
+      {invalidData ? <AlertInput msg={INVALID_DATA} /> : null}
     </div>
   );
 };

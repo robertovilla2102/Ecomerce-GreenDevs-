@@ -12,6 +12,7 @@ const LoginContainer = ({ loginUser, history }) => {
   const [emailError, setEmailError] = useState(false);
   const [passError, setPassError] = useState(false);
   const [buttonDisable, setButtonDisable] = useState(true);
+  const [invalidData, setInvalidData] = useState(false);
 
   function handlerInput(e) {
     switch (e.target.name) {
@@ -40,8 +41,13 @@ const LoginContainer = ({ loginUser, history }) => {
     e.preventDefault();
     let email = e.target[0].value;
     let password = e.target[1].value;
-    loginUser(email, password).then(() => {
-      history.push("/home");
+    loginUser(email, password).then(res => {
+      if (res && res.status == 401) {
+        setInvalidData(true);
+      } else {
+        setInvalidData(false);
+        history.push("/home");
+      }
     });
   }
 
@@ -54,6 +60,7 @@ const LoginContainer = ({ loginUser, history }) => {
           emailError={emailError}
           passError={passError}
           buttonDisable={buttonDisable}
+          invalidData={invalidData}
         />
       </div>
     </div>
