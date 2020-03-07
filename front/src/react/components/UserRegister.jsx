@@ -7,40 +7,23 @@ export default ({ handlerInputForm, onSubmitForm }) => {
       <div className="btn-group dropleft">
         <button
           type="button"
-          className="btn btn-secondary dropdown-toggle btn-block"
+          className="btn btn-success dropdown-toggle btn-block"
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
         >
-          Enter your acount
+          Sign In
         </button>
         <div className="dropdown-menu">
-          <form className="px-1" >
-            <div className="form-group">
-              <input
-                type="email"
-                name="inputEmail"
-                onChange={handlerInputForm}
-                className="form-control"
-                placeholder="email@example.com"
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="password"
-                name="inputPassword"
-                onChange={handlerInputForm}
-                className="form-control"
-                placeholder="Password"
-              />
-            </div>
-            <button type="submit" className="btn btn-primary btn-block" onClick={onSubmitForm}>
-              Sign in
-            </button>
-          </form>
+          <Link to="/login" className="btn btn-info dropdown-item text-center">
+            <div>Login</div>
+          </Link>
           <div className="dropdown-divider"></div>
-          <Link to="/register" className="dropdown-item">
-            Nuevo? Registrate
+          <Link
+            to="/register"
+            className="btn btn-info dropdown-item text-center"
+          >
+            <div>Register</div>
           </Link>
         </div>
       </div>

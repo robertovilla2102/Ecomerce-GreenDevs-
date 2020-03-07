@@ -1,57 +1,78 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-
+import { withRouter } from "react-router";
 import { registerUser } from "../../redux/action-creators/register";
-
-//importando components
 import Register from "../components/Register";
+import {
+  isValidName,
+  isValidEmail,
+  isValidPassword
+} from "../../assets/validaciones-de-inputs";
 
-class RegisterContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    console.log(this.props);
+const RegisterContainer = ({ registerUser, history }) => {
+  const [nameError, setNameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [passError, setPassError] = useState(false);
+  const [buttonDisable, setButtonDisable] = useState(true);
 
-    this.state = {
-      userName: "",
-      userEmail: "",
-      password: "",
-      birthDay: "",
-      address: "",
-      imgProfile: "",
-      error: false
-    };
+  const handleInput = e => {
+    switch (e.target.name) {
+      case "name":
+        {
+          isValidName(e.target.value)
+            ? setNameError(true)
+            : setNameError(false);
+        }
+        break;
+      case "email":
+        {
+          isValidEmail(e.target.value)
+            ? setEmailError(true)
+            : setEmailError(false);
+        }
+        break;
+      case "password":
+        {
+          isValidPassword(e.target.value)
+            ? setPassError(true)
+            : setPassError(false);
+        }
+        break;
+    }
 
-    this.handleInput = this.handleInput.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+    !nameError && !emailError && !passError
+      ? setButtonDisable(false)
+      : setButtonDisable(true);
+  };
 
-  handleInput(e) {
-    const key = e.target.name
-    const value = e.target.value
-    this.setState({ [key]: value })
-  }
-
-  handleSubmit(e) {
+  const handleSubmit = e => {
     e.preventDefault();
-    this.props.registerUser(this.state).then(error => {
-      error
-        ? this.setState({ error: true })
-        : this.props.history.push("/product");
+    let data = {
+      userName: e.target[0].value,
+      userEmail: e.target[1].value,
+      birthDay: e.target[2].value,
+      password: e.target[3].value,
+      address: e.target[4].value,
+      imgProfile: e.target[5].value
+    };
+    registerUser(data).then(error => {
+      error ? null : history.push("/product");
     });
-  }
+  };
 
-  render() {
-    return (
-      <div className="row pt-5">
-        <Register
-          handleInput={this.handleInput}
-          handleSubmit={this.handleSubmit}
-          error={this.state.error}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="row pt-5">
+      <Register
+        handleInput={handleInput}
+        handleSubmit={handleSubmit}
+        nameError={nameError}
+        emailError={emailError}
+        passError={passError}
+        buttonDisable={buttonDisable}
+      />
+    </div>
+  );
+};
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -65,4 +86,6 @@ const mapDispathToProps = (dispatch, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispathToProps)(RegisterContainer);
+export default withRouter(
+  connect(mapStateToProps, mapDispathToProps)(RegisterContainer)
+);

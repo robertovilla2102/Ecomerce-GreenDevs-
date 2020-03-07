@@ -6,11 +6,11 @@ import { userIsLogin } from "../../redux/action-creators/login";
 import ProductsContainer from "../containers/ProductsContainer";
 import Navbar from "../containers/NavbarContainer";
 import RegisterContainer from "../containers/RegisterContainer";
-import Footer from "../containers/FooterContainer";
 import ViewSingleContainer from "../containers/ViewSingleContainer";
 import Home from "../containers/Home";
 import CarritoContainer from "../containers/CarritoContainer";
 import ProductSearchContainer from "../containers/ProductSearchContainer";
+import LoginContainer from "../containers/LoginContainer";
 
 const Main = ({ user, userLogin }) => {
   useEffect(() => {
@@ -28,6 +28,8 @@ const Main = ({ user, userLogin }) => {
 
         <Route exact path="/products/:id" component={ViewSingleContainer} />
 
+        <Route exact path="/login" component={LoginContainer} />
+
         <Route exact path="/register" component={RegisterContainer} />
 
         <Route exact path="/carrito" component={CarritoContainer} />
@@ -39,8 +41,6 @@ const Main = ({ user, userLogin }) => {
 
         <Redirect from="/" to="/home" />
       </Switch>
-
-      <Footer />
     </React.Fragment>
   );
 };

@@ -1,39 +1,52 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AlertInput from "./AlertInput";
+import Button from "./Button";
 
-//importando cs
+import {
+  EMAIL_FORMAT_INCORRECT,
+  PASSWORD_FORMAT_INCORRECT,
+  NAME_FORMAT_INCORRECT
+} from "../../assets/errorsImputs";
 
-export default ({ handleInput, handleSubmit, error }) => (
+export default ({
+  handleInput,
+  handleSubmit,
+  nameError,
+  emailError,
+  passError,
+  buttonDisable
+}) => (
   <div className="col-md-4 mx-auto">
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className="form-group">
         <input
           type="text"
           className="form-control"
-          name="userName"
-          placeholder="Ingresa Nombre"
-          onChange={handleInput}
+          name="name"
+          placeholder="Enter your Name"
+          onBlur={handleInput}
         />
+        {nameError ? <AlertInput msg={NAME_FORMAT_INCORRECT} /> : null}
       </div>
 
       <div className="form-group">
         <input
           type="email"
           className="form-control"
-          name="userEmail"
-          placeholder="Ingresa Email"
-          onChange={handleInput}
+          name="email"
+          placeholder="Enter your Email"
+          onBlur={handleInput}
         />
+        {emailError ? <AlertInput msg={EMAIL_FORMAT_INCORRECT} /> : null}
       </div>
 
       <div className="form-group">
         <input
-          type="text"
+          type="date"
           className="form-control"
-          placeholder="IngreseBirthday"
           name="birthDay"
-          required=""
-          onChange={handleInput}
+          onBlur={handleInput}
         />
       </div>
 
@@ -41,49 +54,36 @@ export default ({ handleInput, handleSubmit, error }) => (
         <input
           type="password"
           className="form-control"
-          placeholder="Ingresa password"
+          placeholder="Enter your Password"
           name="password"
-          onChange={handleInput}
+          onBlur={handleInput}
         />
+        {passError ? <AlertInput msg={PASSWORD_FORMAT_INCORRECT} /> : null}
       </div>
 
       <div className="form-group">
         <input
           type="text"
           className="form-control"
-          placeholder="Ingresa Adress"
+          placeholder="Enter your Address"
           name="address"
-          onChange={handleInput}
+          onBlur={handleInput}
         />
       </div>
 
       <div className="input-group mb-3">
         <select
           className="custom-select"
-          onChange={handleInput}
+          onBlur={handleInput}
           name="imgProfile"
         >
+          <option value="">Select an image</option>
           <option value="volvo">img 1</option>
           <option value="saab">img 2</option>
           <option value="mercedes">img 3</option>
         </select>
       </div>
-
-      <button
-        className="btn btn-lg btn-dark btn-block"
-        type="submit"
-        onClick={handleSubmit}
-      >
-        registarse
-      </button>
-
-      <hr />
-
-      {error ? (
-        <div className="alert alert-danger" role="alert">
-          Intenta nuevamente, alguno de los campos es incorrecto!!
-        </div>
-      ) : null}
+      <Button buttonDisable={buttonDisable} name={"Sign Up"} />
     </form>
   </div>
 );

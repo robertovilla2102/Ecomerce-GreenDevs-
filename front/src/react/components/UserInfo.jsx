@@ -5,7 +5,7 @@ export default ({ user, onSubmitLogout }) => {
   return (
     <div className="btn-group dropleft">
       <button
-        className="btn btn-secondary dropdown-toggle"
+        className="btn btn-primary dropdown-toggle"
         type="button"
         id="dropdownMenuButton"
         data-toggle="dropdown"
@@ -15,7 +15,7 @@ export default ({ user, onSubmitLogout }) => {
         {user.userName}
       </button>
       <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <Link to='/carrito' className="dropdown-item">
+        <Link to="/carrito" className="dropdown-item">
           Mi Carrito
         </Link>
         <a className="dropdown-item" href="#">
