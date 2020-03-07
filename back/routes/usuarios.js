@@ -3,15 +3,7 @@ const router = express.Router();
 const { User, Valoracion } = require("../models/index");
 const passport = require("passport");
 
-router.get("/", (req, res) => {
-  User.findAll().then(users => {
-    res.status(200).send(users);
-  });
-});
-
 router.get("/islogin", (req, res, next) => {
-  console.log("ENTRA", req.user);
-
   if (req.user) {
     res.json({
       userName: req.user.userName,

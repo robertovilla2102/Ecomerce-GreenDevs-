@@ -5,14 +5,17 @@ const receivedUser = user => ({
   type: LOGUEAR_USER,
   user
 });
+
 // verifica en la base de datos si el usuario existe y lo loguea
 export const loginUser = (email, password) => dispatch => {
+  console.log(email, password);
+
   return axios
     .post("http://localhost:3001/api/user/login", {
       userEmail: email,
       password: password
     })
-    .then(user => dispatch(receivedUser(user.data)))
+    .then(res => dispatch(receivedUser(res.data)))
     .catch(err => err);
 };
 
@@ -24,14 +27,15 @@ export const loginUserFacebook = () => dispatch => {
     .catch(err => err);
 };
 
-export const userLogout = () => dispatch => {
-  return axios
-    .get("http://localhost:3001/api/user/logout")
-    .then(() => dispatch(receivedUser({})));
-};
-
+//Mantiene viva la sesion del usuario por mas que refresque la pagina
 export const userIsLogin = () => dispatch => {
   axios
     .get("http://localhost:3001/api/user/islogin")
     .then(res => dispatch(receivedUser(res.data)));
+};
+
+export const userLogout = () => dispatch => {
+  return axios
+    .get("http://localhost:3001/api/user/logout")
+    .then(() => dispatch(receivedUser({})));
 };

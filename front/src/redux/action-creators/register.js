@@ -10,8 +10,8 @@ const createUser = user => ({
 export const registerUser = user => dispatch => {
   return axios
     .post("http://localhost:3001/api/user/register-local", { user })
-    .then(user => {
-      dispatch(createUser(user.data));
+    .then(res => {
+      dispatch(createUser(res.data));
     })
     .catch(err => err);
 };
