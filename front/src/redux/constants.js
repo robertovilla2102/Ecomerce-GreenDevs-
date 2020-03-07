@@ -17,3 +17,6 @@ export const LOGUEAR_USER = "LOGUEAR_USER";
 // para agregar al carrito y traer cosas del carrito
 export const ADD_CARRITO = "ADD_CARRITO";
 export const RECEIVE_CARRITO = "RECEIVE_CARRITO";
+
+// para eliminar producto del carrito 
+export const DELETE_PRODUCTO_DEL_CARRITO = "DELETE_PRODUCTO_DEL_CARRITO"
