@@ -11,6 +11,7 @@ import Home from "../containers/Home";
 import CarritoContainer from "../containers/CarritoContainer";
 import ProductSearchContainer from "../containers/ProductSearchContainer";
 import LoginContainer from "../containers/LoginContainer";
+import CateogryContainer from "../containers/CategoryContainer";
 
 const Main = ({ user, userLogin }) => {
   useEffect(() => {
@@ -27,6 +28,12 @@ const Main = ({ user, userLogin }) => {
         <Route exact path="/products" component={ProductsContainer} />
 
         <Route exact path="/products/:id" component={ViewSingleContainer} />
+
+        <Route
+          exact
+          path="/products/categories/:id"
+          component={CateogryContainer}
+        />
 
         <Route exact path="/login" component={LoginContainer} />
 

@@ -10,11 +10,12 @@ Valoracion.belongsTo(User);
 //La valoracion pertenece a un  usuario
 Valoracion.belongsTo(Producto);
 //Un producto tiene MUCHAS categorias
-Producto.belongsTo(Categoria);
+Producto.belongsTo(Categoria, { as: "category" });
+
 User.hasMany(Carrito);
 
-Producto.hasMany(Carrito)
-Carrito.belongsTo(Producto)
+Producto.hasMany(Carrito);
+Carrito.belongsTo(Producto);
 
 Carrito.belongsTo(Compra);
 
