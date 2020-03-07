@@ -5,6 +5,8 @@ import { fetchCarritos } from '../../redux/action-creators/carrito'
 import Carrito from '../components/Carrito'
 
 class CarritoContaienr extends React.Component {
+
+
   handleSubmitComprar(e) {
     e.preventDefault()
     //hace la logica de enviar a la ruta productos comprados y cargarlos en la base de dato como comprados y no como pending
@@ -14,11 +16,29 @@ class CarritoContaienr extends React.Component {
     this.props.fetchCarritos(this.props.user)
   }
 
+
+
   render() {
+    const {listaCarrito} = this.props
     return (
-      <Carrito
-        listaCarrito={this.props.listaCarrito}
-      />
+      <div className="container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Producto</th>
+              <th scope="col">pecio</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Total</th>
+              <th scope="col">Incluir</th>
+              <th scope="col">Eliminar</th>
+            </tr>
+          </thead>
+          <tbody>
+            {listaCarrito ? <Carrito listaCarrito={listaCarrito} /> : null}
+          </tbody>
+        </table>
+      </div>
     )
   }
 }
@@ -37,4 +57,4 @@ const mapDispathToProps = (dispatch, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispathToProps)(CarritoContaienr) 
+export default connect(mapStateToProps, mapDispathToProps)(CarritoContaienr)

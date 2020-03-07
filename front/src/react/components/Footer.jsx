@@ -53,7 +53,7 @@ export default () => {
         </div>
         <div className="row">
           <div className="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
-            <p><u><a href="https://www.nationaltransaction.com/">BotánicaBinaria</a></u> is a Registered MSP/ISO of GrenDevs</p>
+            <p><u><a href="#">BotánicaBinaria</a></u> is a Registered Brand of GrenDevs</p>
             <p className="h6">All right Reversed <a className="text-green ml-2" href="https://www.plataforma5.la" target="_blank">Plataforma5</a></p>
           </div>
         </div>

@@ -50,3 +50,8 @@ export const formLogin = {
   paddingTop: "80px",
   marginBottom: "80px"
 };
+
+export const imgCart = {
+  width: '50px',
+  height: "50px"
+}
