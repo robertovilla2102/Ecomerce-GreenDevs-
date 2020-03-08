@@ -2,17 +2,14 @@ const { Producto, Categoria } = require("./models/index");
 
 Categoria.bulkCreate([
   {
-    categoryId: 1,
     name: "Cactus",
     imgCategory: "/imagenes/Categoria/5.png"
   },
   {
-    categoryId: 2,
     name: "Suculenta",
     imgCategory: "/imagenes/Categoria/2.png"
   },
   {
-    categoryId: 3,
     name: "Bonsai",
     imgCategory: "/imagenes/Categoria/7.png"
   }

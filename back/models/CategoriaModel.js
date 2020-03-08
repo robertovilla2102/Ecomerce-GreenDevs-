@@ -9,8 +9,7 @@ Categoria.init(
     name: {
       type: S.STRING,
       allowNull: false
-    },
-    categoryId: { type: S.INTEGER } //PROVISORIO
+    }
   },
   { sequelize: db, modelName: "categoria" }
 );
