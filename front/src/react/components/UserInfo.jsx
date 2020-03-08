@@ -18,10 +18,10 @@ export default ({ user, onSubmitLogout }) => {
         <Link to="/carrito" className="dropdown-item">
           Mi Carrito
         </Link>
-        <a className="dropdown-item" href="#">
+        <Link to='/miPerfil'className="dropdown-item" >
           Mi Perfil
-        </a>
-        <a className="dropdown-item" href="#">
+        </Link>
+        <a className="dropdown-item">
           Mis Compras
         </a>
         <button onClick={onSubmitLogout} className="dropdown-item">
