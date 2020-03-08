@@ -1,26 +1,10 @@
 const router = require("express").Router();
-const { User } = require("../models/index");
+const AdminController = require("../controllers/AdminController");
 
-router.put("/add-admin", (req, res) => {
-  User.update({ isAdmin: true }, { returning: true, where: req.body }).then(
-    ([count, user]) => {
-      res.json(user);
-    }
-  );
-});
+router.put("/add-admin", AdminController.asignarAdministrador);
 
-router.put("/remove-admin", (req, res) => {
-  User.update({ isAdmin: false }, { returning: true, where: req.body }).then(
-    ([count, user]) => {
-      res.json(user);
-    }
-  );
-});
+router.put("/remove-admin", AdminController.quitarAdministrador);
 
-router.delete("/delete-user", (req, res) => {
-  User.findOne({ where: req.body }).then(() => {
-    res.send(`usuario ${req.body} eliminado`);
-  });
-});
+router.delete("/delete-user", AdminController.borrarUsuario);
 
 module.exports = router;
