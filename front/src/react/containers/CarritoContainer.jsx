@@ -1,11 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { fetchCarritos } from '../../redux/action-creators/carrito'
+import { fetchCarritos, carritoDelete } from '../../redux/action-creators/carrito'
 import Carrito from '../components/Carrito'
 
 class CarritoContaienr extends React.Component {
-
+  constructor(){
+    super()
+    this.deleteProducto = this.deleteProducto.bind(this)
+  }
 
   handleSubmitComprar(e) {
     e.preventDefault()
@@ -16,7 +19,9 @@ class CarritoContaienr extends React.Component {
     this.props.fetchCarritos(this.props.user)
   }
 
-
+  deleteProducto(id) {
+    this.props.carritoDelete(id)
+  }
 
   render() {
     const {listaCarrito} = this.props
@@ -34,9 +39,11 @@ class CarritoContaienr extends React.Component {
               <th scope="col">Eliminar</th>
             </tr>
           </thead>
+         
           <tbody>
-            {listaCarrito ? <Carrito listaCarrito={listaCarrito} /> : null}
+            {listaCarrito ? <Carrito deleteProducto={this.deleteProducto} listaCarrito={listaCarrito} /> : null}
           </tbody>
+          
         </table>
       </div>
     )
@@ -53,7 +60,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispathToProps = (dispatch, ownProps) => {
   return {
-    fetchCarritos: (id) => dispatch(fetchCarritos(id))
+    fetchCarritos: (id) => dispatch(fetchCarritos(id)),
+    carritoDelete: (id) => dispatch(carritoDelete(id))
   }
 }
 
