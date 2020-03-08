@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Perfil from '../components/Perfil'
 import EditarPerfil from '../components/EditarPerfil';
-import "../css/estilosPerfil.css"
 
 class PerfilUsuarioContainer extends React.Component {
     constructor(){
@@ -50,7 +49,15 @@ class PerfilUsuarioContainer extends React.Component {
         const {userLogueado} = this.props
         console.log('sdsfdsfdsfsd',userLogueado)
         return (
-                <Perfil userLogueado={userLogueado}/>
+            <div className="container">
+
+            <Perfil userLogueado={userLogueado}/>
+            <button onClick ={(e) => {e.preventDefault(), this.editPerfil()}} type="submit" className="btn btn-outline-primary">Edit Perfil</button>
+            <button onClick ={(e) => {e.preventDefault(), this.editPassword()}} type="submit" className="btn btn-outline-primary">Edit Password</button>
+            <button onClick ={(e) => {e.preventDefault(), this.miCarrito()}} type="submit" className="btn btn-outline-primary">Mi carrito</button>
+            <button onClick ={(e) => {e.preventDefault(), this.comprasPerfil()}}type="submit" className="btn btn-outline-primary">Compras</button>
+            {this.state.editP ? <EditarPerfil userLogueado={userLogueado}/> :null}
+            </div>
         )
     }
 }
