@@ -1,59 +1,14 @@
-const express = require("express");
-const router = express.Router();
-const { User, Valoracion } = require("../models/index");
+const router = require("express").Router();
+const UsuarioController = require("../controllers/UsuarioController");
 const passport = require("passport");
 
-router.get("/islogin", (req, res, next) => {
-  if (req.user) {
-    res.json({
-      userName: req.user.userName,
-      userEmail: req.user.userEmail,
-      birthDay: req.user.birthDay,
-      address: req.user.address,
-      imgProfile: req.user.imgProfile,
-      isAdmin: req.user.isAdmin
-    });
-  } else {
-    next();
-  }
-});
+router.post("/register-local", UsuarioController.crearUsuario);
 
-router.post("/register", (req, res) => {
-  const newUser = User.build(req.body);
-  newUser.hashPassword(newUser.password);
-  newUser.save();
-  res.json(newUser);
-});
+router.get("/islogin", UsuarioController.verificarLogin);
 
-router.post("/register-local", (req, res) => {
-  User.create(req.body.user)
-    .then(user => {
-      res.status(201).json({
-        userName: user.userName,
-        userEmail: user.userEmail,
-        userProfile: user.imgProfile,
-        userBirthDay: user.birthDay,
-        userAddress: user.address
-      });
-    })
-    .catch(error => res.status(402).send(error));
-});
+router.post("/login", passport.authenticate("local"), UsuarioController.login);
 
-router.post("/login", passport.authenticate("local"), (req, res) => {
-  res.status(200).json({
-    userName: req.user.userName,
-    userEmail: req.user.userEmail,
-    birthDay: req.user.birthDay,
-    address: req.user.address,
-    imgProfile: req.user.imgProfile,
-    isAdmin: req.user.isAdmin
-  });
-});
-
-router.get("/logout", function(req, res) {
-  req.logOut();
-  res.sendStatus(200);
-});
+router.get("/logout", UsuarioController.logout);
 
 router.post(":id/valoracion", function(req, res) {
   Valoracion.create({

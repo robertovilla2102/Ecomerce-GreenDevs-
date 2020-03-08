@@ -1,33 +1,10 @@
-const express = require("express");
-const router = express.Router();
-const Op = require("sequelize").Op;
-//importando Models
-const { Producto, Categoria } = require("../models/index");
+const router = require("express").Router();
+const ProductosControllers = require("../controllers/ProductosControllers");
 
-router.get("/", (req, res, next) => {
-  Producto.findAll()
-    .then(productos => {
-      res.status(200).json(productos);
-    })
-    .catch(err => res.sendStatus(500, "Fallo busqueda"));
-});
+router.get("/", ProductosControllers.buscarProductos);
 
-router.get("/:id", (req, res, next) => {
-  Producto.findByPk(req.params.id)
-    .then(producto => {
-      res.status(200).json(producto);
-    })
-    .catch(() => res.sendStatus(500, "Fallo busqueda"));
-});
+router.get("/:id", ProductosControllers.buscarUnProducto);
 
-router.get("/search/:name", (req, res) => {
-  Producto.findAll({
-    where: { name: { [Op.substring]: req.params.name } }
-  })
-    .then(productos => {
-      res.json(productos);
-    })
-    .catch(err => console.log(err));
-});
+router.get("/search/:name", ProductosControllers.buscarPorNombre);
 
 module.exports = router;

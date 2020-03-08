@@ -39,7 +39,7 @@ export default ({
           />
           {passError ? <AlertInput msg={PASSWORD_FORMAT_INCORRECT} /> : null}
         </div>
-        <Button name={"Sign In"} buttonDisable={buttonDisable} />
+        <Button options={"btn btn-block btn-secondary"} name={"Sign In"} buttonDisable={buttonDisable} />
       </form>
       {invalidData ? <AlertInput msg={INVALID_DATA} /> : null}
     </div>

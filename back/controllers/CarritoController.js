@@ -1,6 +1,5 @@
-const { Carrito, Producto } = require("../models/index");
-
 const CarritoController = {};
+const { Carrito, Producto } = require("../models/index");
 
 CarritoController.buscarCarritos = function(req, res) {
   !req.user
@@ -86,6 +85,18 @@ CarritoController.agregarProductoLogeado = function(req, res) {
       }
     })
     .catch(err => res.json(err));
+};
+
+CarritoController.editarCarrito = (req, res) => {
+  Carrito.update(req.body, { where: { id: req.params.id } })
+    .then(res.sendStatus(200))
+    .catch(err => res.send(err));
+};
+
+CarritoController.eliminarCarrito = (req, res) => {
+  Carrito.destroy({ where: { id: req.params.id } })
+    .then(res.sendStatus(200))
+    .catch(err => res.send(err));
 };
 
 CarritoController.verificarDuplicado = function(listaCarrito, productoId) {
