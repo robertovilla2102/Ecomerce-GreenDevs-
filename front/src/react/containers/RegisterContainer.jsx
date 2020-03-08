@@ -8,6 +8,7 @@ import {
   isValidEmail,
   isValidPassword
 } from "../../assets/validaciones-de-inputs";
+import { imgRegisterForm } from "../css/estilosComunes";
 
 const RegisterContainer = ({ registerUser, history }) => {
   const [nameError, setNameError] = useState(false);
@@ -56,12 +57,12 @@ const RegisterContainer = ({ registerUser, history }) => {
       imgProfile: e.target[5].value
     };
     registerUser(data).then(error => {
-      error ? null : history.push("/product");
+      error ? null : history.push("/login");
     });
   };
 
   return (
-    <div className="row pt-5">
+    <div className="">
       <Register
         handleInput={handleInput}
         handleSubmit={handleSubmit}

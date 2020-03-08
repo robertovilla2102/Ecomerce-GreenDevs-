@@ -52,6 +52,6 @@ export const formLogin = {
 };
 
 export const imgCart = {
-  width: '50px',
+  width: "50px",
   height: "50px"
-}
+};

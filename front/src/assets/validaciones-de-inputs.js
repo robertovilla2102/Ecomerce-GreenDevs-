@@ -1,5 +1,5 @@
 export const isValidName = name => {
-  return !/^[A-Z]+$/i.test(name);
+  return !/^[A-Z\s?]+$/i.test(name);
 };
 
 export const isValidEmail = email => {
