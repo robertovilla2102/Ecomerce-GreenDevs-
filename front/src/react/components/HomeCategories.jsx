@@ -17,7 +17,7 @@ export default ({ categories }) => {
             return (
               <div className="img-thumbnail" style={styleDivCAtegory}>
                 <Link
-                  to={`/products/categories/${cat.categoryId}`}
+                  to={`/products/categories/${cat.id}`}
                   className="col-xs-4"
                 >
                   <img

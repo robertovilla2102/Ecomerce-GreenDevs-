@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchCategory } from "../../redux/action-creators/categories";
 import Products from "../components/Products";
