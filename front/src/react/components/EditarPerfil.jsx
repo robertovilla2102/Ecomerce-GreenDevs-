@@ -9,7 +9,7 @@ export default ({userLogueado}) => {
       <input defaultValue={userLogueado.userEmail} type="email" className="form-control" id="inputEmail4"/>
     </div>
    <div className="form-group col-md-2">
-      <label for="inputZip">Name</label>
+      <label for="">Name</label>
       <input defaultValue={userLogueado.userName}type="text" className="form-control" id="inputZip"/>
     </div>
   <div className="form-group">

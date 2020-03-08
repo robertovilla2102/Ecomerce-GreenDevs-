@@ -24,11 +24,21 @@ class PerfilUsuarioContainer extends React.Component {
     }
     // me va a renderisar el componente para cambiar la contrasena, cuando le doy click al boton
     editPassword(){
-        this.state.editPass = true
+        this.setState({editP: true,  
+            editPass: false,
+            carrito: false,
+            comprasPerf: false,
+        
+        })
     }
     // me va a renderisar el componente de mi carrito, cuando le doy click al boton
     miCarrito(){
-        this.state.carrito = true
+        this.setState({editP: true,  
+            editPass: false,
+            carrito: false,
+            comprasPerf: false,
+        
+        })
     }
     // me va a renderisar el componente de mis compras, cuando le doy click al boton
     comprasPerfil(){

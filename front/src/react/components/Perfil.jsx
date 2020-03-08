@@ -16,6 +16,7 @@ export default ({userLogueado}) => {
         <p style={{fontFamily:"georgia",fontStyle:"italic", fontSize: "16px"}} className="card-text">Email : {userLogueado.userEmail}</p>
         {userLogueado.birthDay.length > 2 ? <p style={{fontFamily:"georgia",fontStyle:"italic", fontSize: "20px"}} className="card-text">{userLogueado.birthDay}</p> : null}
         <p className="card-text"><small className="text-muted">Usuario unido</small></p>
+        <p></p>
       </div>
     </div>
   </div>

@@ -19,7 +19,7 @@ export default ({ user, onSubmitLogout }) => {
           Mi Carrito
         </Link>
         <Link to='/miPerfil'className="dropdown-item" >
-          Mi Perfil
+          Mi Perfil.
         </Link>
         <a className="dropdown-item">
           Mis Compras
