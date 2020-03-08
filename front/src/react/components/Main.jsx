@@ -12,6 +12,8 @@ import CarritoContainer from "../containers/CarritoContainer";
 import ProductSearchContainer from "../containers/ProductSearchContainer";
 import LoginContainer from "../containers/LoginContainer";
 import CateogryContainer from "../containers/CategoryContainer";
+import PerfilUsuario from "../containers/PerfilUsuario"
+
 
 const Main = ({ user, userLogin }) => {
   useEffect(() => {
@@ -38,6 +40,7 @@ const Main = ({ user, userLogin }) => {
         <Route exact path="/login" component={LoginContainer} />
 
         <Route exact path="/register" component={RegisterContainer} />
+        <Route exact path="/miPerfil" component={PerfilUsuario} />
 
         <Route exact path="/carrito" component={CarritoContainer} />
         <Route
