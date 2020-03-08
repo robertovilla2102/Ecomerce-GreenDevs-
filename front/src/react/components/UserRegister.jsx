@@ -15,6 +15,13 @@ export default ({ handlerInputForm, onSubmitForm }) => {
           Sign In
         </button>
         <div className="dropdown-menu">
+          <Link
+            to="/carrito"
+            className="btn btn-info dropdown-item text-center"
+          >
+            <div>Carrito</div>
+          </Link>
+          <div className="dropdown-divider"></div>
           <Link to="/login" className="btn btn-info dropdown-item text-center">
             <div>Login</div>
           </Link>
