@@ -13,6 +13,7 @@ import ProductSearchContainer from "../containers/ProductSearchContainer";
 import LoginContainer from "../containers/LoginContainer";
 import CateogryContainer from "../containers/CategoryContainer";
 import PerfilUsuario from "../containers/PerfilUsuario"
+import EditPerfil from "../containers/ContainerEditPerfil"
 
 
 const Main = ({ user, userLogin }) => {
@@ -41,6 +42,7 @@ const Main = ({ user, userLogin }) => {
 
         <Route exact path="/register" component={RegisterContainer} />
         <Route exact path="/miPerfil" component={PerfilUsuario} />
+        <Route exact path="/editPerfil" component={EditPerfil} />
 
         <Route exact path="/carrito" component={CarritoContainer} />
         <Route
