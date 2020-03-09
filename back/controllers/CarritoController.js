@@ -7,7 +7,7 @@ CarritoController.buscarCarritos = function (req, res) {
     : CarritoController.carritoLogeado(req, res);
 };
 
-CarritoController.agregarProducto = function(req, res) {
+CarritoController.agregarProducto = function (req, res) {
   !req.user
     ? CarritoController.agregarProductoDeslogeado(req, res)
     : CarritoController.agregarProductoLogeado(req, res);
@@ -30,7 +30,7 @@ CarritoController.carritoLogeado = function (req, res) {
         model: Producto
       }
     ],
-    where: { userId: req.user.id }
+    where: { userId: req.user.id, estado: 'pending' }
   })
     .then(carritos => res.json(carritos))
     .catch(err => {

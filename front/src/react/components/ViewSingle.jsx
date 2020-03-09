@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default ({ product, onSubmitCarrito, cantidad, removeCantidad, addCantidad }) => (
+export default ({ product, onSubmitCarrito, cantidad, removeCantidad, addCantidad, onSubmitComprar }) => (
   <div className="container">
 
     <div
@@ -30,16 +30,15 @@ export default ({ product, onSubmitCarrito, cantidad, removeCantidad, addCantida
             </p>
             <h5>Precio: {product.price}</h5>
           </div>
-          <Link to={`/comprar/${product.id}`}>
-            <div
-              style={{ marginLeft: "20px" }}
-              className="btn btn-success"
-            >
-              Comprar
-          </div>
-          </Link>
 
-
+          <button
+            style={{ marginLeft: "20px" }}
+            className="btn btn-success"
+            type='submit'
+            onClick={onSubmitComprar}
+          >
+            Comprar
+          </button>
 
           <button
             style={{
