@@ -1,5 +1,5 @@
 const UsuarioController = {};
-const { User, Valoracion } = require("../models/index");
+const { User, Valoracion, Carrito } = require("../models/index");
 
 UsuarioController.verificarLogin = (req, res, next) => {
   if (req.user) {
@@ -31,17 +31,35 @@ UsuarioController.crearUsuario = (req, res) => {
 };
 
 UsuarioController.login = (req, res) => {
-  res
-    .status(200)
-    .json({
-      id: req.user.id,
-      userName: req.user.userName,
-      userEmail: req.user.userEmail,
-      birthDay: req.user.birthDay,
-      address: req.user.address,
-      imgProfile: req.user.imgProfile,
-      isAdmin: req.user.isAdmin
-    })
+  var listCarrito = req.session.carrito;
+  listCarrito.forEach(carrito => {
+    Carrito.findOne({
+      where: { userId: req.user.id, productoId: carrito.producto.id }
+    }).then(carritos => {
+      if (carritos) {
+        Carrito.update(
+          { cantidad: carritos.cantidad + carrito.cantidad },
+          { where: { id: carritos.id } }
+        );
+      } else {
+        Carrito.create({
+          estado: carrito.estado,
+          cantidad: carrito.cantidad,
+          userId: req.user.id,
+          productoId: carrito.producto.id
+        });
+      }
+    });
+  });
+  res.status(200).json({
+    id: req.user.id,
+    userName: req.user.userName,
+    userEmail: req.user.userEmail,
+    birthDay: req.user.birthDay,
+    address: req.user.address,
+    imgProfile: req.user.imgProfile,
+    isAdmin: req.user.isAdmin
+  });
 };
 
 UsuarioController.logout = (req, res) => {
