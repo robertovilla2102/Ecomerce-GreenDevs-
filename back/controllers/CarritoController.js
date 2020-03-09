@@ -1,7 +1,7 @@
 const CarritoController = {};
 const { Carrito, Producto } = require("../models/index");
 
-CarritoController.buscarCarritos = function(req, res) {
+CarritoController.buscarCarritos = function (req, res) {
   !req.user
     ? CarritoController.carritoDeslogeado(req, res)
     : CarritoController.carritoLogeado(req, res);
@@ -19,11 +19,11 @@ CarritoController.eliminarCarrito = (req, res) => {
     : CarritoController.eliminarCarritoLogeado(req, res);
 };
 
-CarritoController.carritoDeslogeado = async function(req, res) {
+CarritoController.carritoDeslogeado = async function (req, res) {
   req.session.carrito ? res.json(req.session.carrito) : res.json([]);
 };
 
-CarritoController.carritoLogeado = function(req, res) {
+CarritoController.carritoLogeado = function (req, res) {
   Carrito.findAll({
     include: [
       {
@@ -38,7 +38,7 @@ CarritoController.carritoLogeado = function(req, res) {
     });
 };
 
-CarritoController.agregarProductoDeslogeado = function(req, res) {
+CarritoController.agregarProductoDeslogeado = function (req, res) {
   let listaCarrito = req.session.carrito || [];
   let productoId = req.params.productId;
   let datos = req.body.body;
@@ -66,10 +66,11 @@ CarritoController.agregarProductoDeslogeado = function(req, res) {
   });
 };
 
-CarritoController.agregarProductoLogeado = function(req, res) {
+CarritoController.agregarProductoLogeado = function (req, res) {
   let user = req.user || null;
   let productoId = req.params.productId;
-  let datos = req.body.body;
+  let datos = req.body.body
+
   Carrito.findOne({
     where: { userId: user.id, productoId: productoId }
   })
@@ -114,7 +115,7 @@ CarritoController.eliminarCarritoLogeado = (req, res) => {
     .catch(err => res.send(err));
 };
 
-CarritoController.verificarDuplicado = function(listaCarrito, productoId) {
+CarritoController.verificarDuplicado = function (listaCarrito, productoId) {
   let posicion = -1;
   for (let i = 0; i < listaCarrito.length; i++) {
     if (listaCarrito[i].producto.id == productoId) {
