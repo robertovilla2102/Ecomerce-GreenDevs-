@@ -52,6 +52,7 @@ UsuarioController.login = (req, res) => {
     });
   });
   res.status(200).json({
+    id: req.user.id,
     userName: req.user.userName,
     userEmail: req.user.userEmail,
     birthDay: req.user.birthDay,
