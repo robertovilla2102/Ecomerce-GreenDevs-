@@ -14,14 +14,22 @@ export default ({userLogueado}) => {
                 <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
               </div>
               <div className="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" className="form-control" id="exampleInputPassword1"/>
+                <label for="exampleInputPassword1">Nombre</label>
+                <input type="string" className="form-control" id="exampleInputPassword1"/>
+              </div>
+              <div className="form-group">
+                <label for="exampleInputPassword1">Dirección</label>
+                <input type="string" className="form-control" id="exampleInputPassword1"/>
+              </div>
+              <div className="form-group">
+                <label for="exampleInputPassword1">Nacimiento</label>
+                <input type="date" className="form-control" id="exampleInputPassword1"/>
               </div>
               <div className="form-group form-check">
                 <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-                <label className="form-check-label" for="exampleCheck1">Check me out</label>
+                <label className="form-check-label" for="exampleCheck1">Autorizo la actualización de mi infomación personal</label>
               </div>
-              <button type="submit" className="btn btn-primary">Submit</button>
+              <button type="submit" className="btn btn-primary">Actualizar</button>
             </form>
       </div>
   );

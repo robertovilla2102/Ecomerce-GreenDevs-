@@ -13,8 +13,8 @@ export default ({
   onSubmitLogout
 }) => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <Link to="/home" className="navbar-brand" href="#">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light align-middle">
+      <Link to="/home" className="navbar-brand align-middle" href="#">
         <img src="/imagenes/Logo/logo.png" width="110" height="40" alt="" />
       </Link>
 

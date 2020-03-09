@@ -27,6 +27,11 @@ h1 a{color:#131313; font-weight:bold;}
     position:relative;
     padding-top: 5rem!important;
 }
+
+.profile-card-2 .card-body2{
+    position:relative;
+    padding-top: 7rem!important;
+}
 .profile-card-2 .profile {
   border-radius: 50%;
   position: absolute;
@@ -36,6 +41,10 @@ h1 a{color:#131313; font-weight:bold;}
   border: 3px solid rgba(255, 255, 255, 1);
   -webkit-transform: translate(-50%, 0%);
   transform: translate(-50%, 0%);
+}
+.profile-card-2 .profile-buy {
+  width: 70px;
+  height: 70px;
 }
 .profile-card-2 h5{
     font-weight:600;
