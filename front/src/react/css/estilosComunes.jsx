@@ -1,7 +1,6 @@
 export const styleImg = {
-  width: "220px",
-  height: "320px",
-  margin: "10px"
+  width: "90%",
+  height: "90%"
 };
 
 export const styleDivProduct = {
