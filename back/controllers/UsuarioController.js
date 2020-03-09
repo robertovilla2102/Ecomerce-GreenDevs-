@@ -1,7 +1,7 @@
 const UsuarioController = {};
 const { User, Valoracion } = require("../models/index");
 
-UsuarioController.verificarLogin = (req, res) => {
+UsuarioController.verificarLogin = (req, res, next) => {
   if (req.user) {
     res.json({
       userName: req.user.userName,
@@ -34,6 +34,7 @@ UsuarioController.login = (req, res) => {
   res
     .status(200)
     .json({
+      id: req.user.id,
       userName: req.user.userName,
       userEmail: req.user.userEmail,
       birthDay: req.user.birthDay,
@@ -41,7 +42,6 @@ UsuarioController.login = (req, res) => {
       imgProfile: req.user.imgProfile,
       isAdmin: req.user.isAdmin
     })
-    .catch(err => res.send(err));
 };
 
 UsuarioController.logout = (req, res) => {
