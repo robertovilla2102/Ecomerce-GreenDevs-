@@ -74,7 +74,8 @@ CarritoController.agregarProductoLogeado = function (req, res) {
         Carrito.update(
           { cantidad: carritos.cantidad + datos.cantidad },
           { where: { id: carritos.id } }
-        ).then(() => res.sendStatus(201));
+        )
+          .then(() => res.sendStatus(201));
       } else {
         Carrito.create({
           ...datos,
