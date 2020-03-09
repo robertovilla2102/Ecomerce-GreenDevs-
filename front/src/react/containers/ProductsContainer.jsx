@@ -1,37 +1,90 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
 
 //importando components
-import Products from '../components/Products'
+import Products from "../components/Products";
+import Pagination from "../components/Paginacion";
 
 //importando action-creators
-import { fetchProducts } from '../../redux/action-creators/productos'
+import { fetchProducts } from "../../redux/action-creators/productos";
+import { createCarrito } from "../../redux/action-creators/carrito";
 
-class ProductContainer extends React.Component {
-    componentDidMount() {
-        this.props.fetchProducts()
-    }
+const ProductContainer = ({
+  fetchProducts,
+  lista,
+  usuario,
+  createCarrito,
+  match,
+  history
+}) => {
+  const [posts, setPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(match.params.page || 1);
+  const [postsPerPage, setPostsPerPage] = useState(9);
 
-    render() {
-        return (
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirtsPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirtsPost, indexOfLastPost);
+
+  useEffect(() => {
+    fetchProducts().then(productos => setPosts(productos));
+  }, []);
+
+  const onSubmitCarrito = (e, id) => {
+    e.preventDefault();
+    createCarrito(id, {
+      cantidad: 1,
+      user: usuario
+    });
+  };
+
+  const onChangePage = (e, page) => {
+    e.preventDefault();
+    setCurrentPage(page);
+    history.push(`/products/page/${page}`);
+  };
+
+  return (
+    <div className="container">
+      {lista ? (
+        <div className="container">
+          <div className="row">
             <Products
-                productList={this.props.lista}
+              onSubmitCarrito={onSubmitCarrito}
+              productList={currentPosts}
             />
-        )
-    }
-}
+          </div>
+          <div className="container">
+            <div className="row">
+              <div className="col-md-3 mx-auto">
+                <Pagination
+                  postsPerPage={postsPerPage}
+                  totalPosts={posts.length}
+                  onChangePage={onChangePage}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+};
 
 const mapStateToProps = (state, ownProps) => {
-
-    return {
-        lista: state.productos.list
-    }
-}
+  return {
+    lista: state.productos.list,
+    usuario: state.login.userLogueado.id
+  };
+};
 
 const mapDispathToProps = (dispatch, ownProps) => {
-    return {
-        fetchProducts: () => dispatch(fetchProducts())
-    }
-}
+  return {
+    fetchProducts: () => dispatch(fetchProducts()),
+    createCarrito: (productID, body) => dispatch(createCarrito(productID, body))
+  };
+};
 
-export default connect(mapStateToProps, mapDispathToProps)(ProductContainer)
+export default withRouter(
+  connect(mapStateToProps, mapDispathToProps)(ProductContainer)
+);

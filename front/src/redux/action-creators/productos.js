@@ -22,10 +22,13 @@ const receivedProduct = product => ({
 
 //busca todos los productos en localhost:3001
 export const fetchProducts = () => dispatch => {
-  axios
+  return axios
     .get("http://localhost:3001/api/products")
     .then(products => products.data)
-    .then(productos => dispatch(receivedProducts(productos)))
+    .then(productos => {
+      dispatch(receivedProducts(productos));
+      return productos;
+    })
     .catch(err => console.error(err));
 };
 

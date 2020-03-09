@@ -1,37 +1,49 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
+import "../css/cardsCss.css";
 
-//importando css
-import { styleDivProduct, styleH, styleP, styleImg } from '../css/estilosComunes'
+export default ({ productList, onSubmitCarrito, productsLength }) => (
+  <div className="container">
+    <div className="row page-wrapper">
+      {productList.map((product, index) => (
+        <div class="page-inner">
+          <div class="row">
+            <div class="el-wrapper">
+              <div class="box-up">
+                <Link
+                  to={`/products/${product.id}`}
+                  key={index}
+                  className="col-xs-3"
+                >
+                  <img class="img" src={product.imgProfile} alt="" />
+                </Link>
+                <div class="img-info">
+                  <div class="info-inner">
+                    <p class="p-name">{product.name}</p>
+                  </div>
+                </div>
+              </div>
 
-export default ({ productList }) => (
-  <div style={{ marginTop: "10px" }}>
-    <div className="jumbotron jumbotron-fluid">
-      <div className="container">
-        <h1 className="display-4">Nuestras Plantas</h1>
-        <p className="lead">Conocé la selección de plantas que tenemos para vos. </p>
-      </div>
-    </div>
+              <div class="box-down">
+                <div class="h-bg">
+                  <div class="h-bg-inner"></div>
+                </div>
 
-    <div className="container">
-      <div className="row">
-        {productList.map((product, index) => (
-          <div className="img-thumbnail" style={styleDivProduct} key={index}>
-            <Link to={`/products/${product.id}`} key={index} className='col-xs-3'>
-              <img
-                src={product.imgProfile}
-                alt='img-planta'
-                style={styleImg}
-              />
-            </Link>
-            <div>
-              <h4 style={styleH}>{product.name}</h4>
-              <p style={styleP}>${product.price}.00</p>
+                <button
+                  type="submit"
+                  className="cart btn btn-outline-dark"
+                  onClick={e => onSubmitCarrito(e, product.id)}
+                >
+                  <span class="price">${product.price}.00</span>
+                  <span class="add-to-cart">
+                    <span class="txt">Add in cart</span>
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
-
   </div>
-)
+);
