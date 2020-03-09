@@ -12,7 +12,8 @@ class PerfilUsuarioContainer extends React.Component {
         const {userLogueado} = this.props
         console.log('sdsfdsfdsfsd',userLogueado)
         return (
-          <div className="container-fluid mt-3">
+          <div>
+          <div className="container-fluid mt-3 mb-3">
             <div className="card profile-card-2">
               <div className="card-img-block">
                   <img className="img-fluid" src="https://images.unsplash.com/photo-1506784693919-ef06d93c28d2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" alt="Card image cap"/>
@@ -21,8 +22,10 @@ class PerfilUsuarioContainer extends React.Component {
                 <div className="mt-4">
                 <IconProfile/>
                 </div>
-                <Footer/>
+
             </div>
+          </div>
+          <Footer/>
           </div>
         )
     }
