@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../css/cardsCss.css";
 
-export default ({ productList, onSubmitCarrito }) => (
+export default ({ productList, onSubmitCarrito, productsLength }) => (
   <div className="container">
     <div className="row page-wrapper">
       {productList.map((product, index) => (

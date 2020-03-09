@@ -1,16 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 
 //importando components
 import Products from "../components/Products";
+import Pagination from "../components/Paginacion";
 
 //importando action-creators
 import { fetchProducts } from "../../redux/action-creators/productos";
 import { createCarrito } from "../../redux/action-creators/carrito";
 
-const ProductContainer = ({ fetchProducts, lista, usuario, createCarrito }) => {
+const ProductContainer = ({
+  fetchProducts,
+  lista,
+  usuario,
+  createCarrito,
+  match,
+  history
+}) => {
+  const [posts, setPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(match.params.page || 1);
+  const [postsPerPage, setPostsPerPage] = useState(9);
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirtsPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirtsPost, indexOfLastPost);
+
   useEffect(() => {
-    fetchProducts();
+    fetchProducts().then(productos => setPosts(productos));
   }, []);
 
   const onSubmitCarrito = (e, id) => {
@@ -21,7 +38,37 @@ const ProductContainer = ({ fetchProducts, lista, usuario, createCarrito }) => {
     });
   };
 
-  return <Products onSubmitCarrito={onSubmitCarrito} productList={lista} />;
+  const onChangePage = (e, page) => {
+    e.preventDefault();
+    setCurrentPage(page);
+    history.push(`/products/page/${page}`);
+  };
+
+  return (
+    <div className="container">
+      {lista ? (
+        <div className="container">
+          <div className="row">
+            <Products
+              onSubmitCarrito={onSubmitCarrito}
+              productList={currentPosts}
+            />
+          </div>
+          <div className="container">
+            <div className="row">
+              <div className="col-md-3 mx-auto">
+                <Pagination
+                  postsPerPage={postsPerPage}
+                  totalPosts={posts.length}
+                  onChangePage={onChangePage}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -38,4 +85,6 @@ const mapDispathToProps = (dispatch, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispathToProps)(ProductContainer);
+export default withRouter(
+  connect(mapStateToProps, mapDispathToProps)(ProductContainer)
+);
