@@ -7,7 +7,7 @@ CarritoController.buscarCarritos = function (req, res) {
     : CarritoController.carritoLogeado(req, res);
 };
 
-CarritoController.agregarProducto = function(req, res) {
+CarritoController.agregarProducto = function (req, res) {
   !req.user
     ? CarritoController.agregarProductoDeslogeado(req, res)
     : CarritoController.agregarProductoLogeado(req, res);
@@ -30,7 +30,7 @@ CarritoController.carritoLogeado = function (req, res) {
         model: Producto
       }
     ],
-    where: { userId: req.user.id }
+    where: { userId: req.user.id, estado: 'pending' }
   })
     .then(carritos => res.json(carritos))
     .catch(err => {
@@ -42,28 +42,29 @@ CarritoController.agregarProductoDeslogeado = function (req, res) {
   let listaCarrito = req.session.carrito || [];
   let productoId = req.params.productId;
   let datos = req.body.body;
-  Producto.findOne({ where: { id: productoId } }).then(producto => {
-    if (listaCarrito) {
-      let posicion = CarritoController.verificarDuplicado(
-        listaCarrito,
-        productoId
-      );
-      if (posicion == -1) {
-        const nuevoCarrito = {
-          ...datos,
-          producto,
-          id: listaCarrito.length + 1
-        };
-        listaCarrito.push(nuevoCarrito);
-      } else {
-        let carritoActual = listaCarrito[posicion];
-        carritoActual.cantidad += datos.cantidad;
-        listaCarrito[posicion] = carritoActual;
+  Producto.findOne({ where: { id: productoId, estado: 'pending' } })
+    .then(producto => {
+      if (listaCarrito) {
+        let posicion = CarritoController.verificarDuplicado(
+          listaCarrito,
+          productoId
+        );
+        if (posicion == -1) {
+          const nuevoCarrito = {
+            ...datos,
+            producto,
+            id: listaCarrito.length + 1
+          };
+          listaCarrito.push(nuevoCarrito);
+        } else {
+          let carritoActual = listaCarrito[posicion];
+          carritoActual.cantidad += datos.cantidad;
+          listaCarrito[posicion] = carritoActual;
+        }
       }
-    }
-    req.session.carrito = listaCarrito;
-    res.status(200).json(req.session.carrito);
-  });
+      req.session.carrito = listaCarrito;
+      res.status(200).json(req.session.carrito);
+    });
 };
 
 CarritoController.agregarProductoLogeado = function (req, res) {
@@ -79,7 +80,8 @@ CarritoController.agregarProductoLogeado = function (req, res) {
         Carrito.update(
           { cantidad: carritos.cantidad + datos.cantidad },
           { where: { id: carritos.id } }
-        ).then(() => res.sendStatus(201));
+        )
+          .then(() => res.sendStatus(201));
       } else {
         Carrito.create({
           ...datos,

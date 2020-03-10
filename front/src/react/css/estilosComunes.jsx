@@ -54,3 +54,8 @@ export const imgCart = {
   width: "50px",
   height: "50px"
 };
+
+export const imgSingleView = {
+  width: "80%",
+  height: "100%"
+};

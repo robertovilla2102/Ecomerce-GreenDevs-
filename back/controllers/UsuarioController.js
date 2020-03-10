@@ -30,27 +30,33 @@ UsuarioController.crearUsuario = (req, res) => {
     .catch(error => res.send(error));
 };
 
-UsuarioController.login = (req, res) => {
+UsuarioController.login = async (req, res) => {
   var listCarrito = req.session.carrito;
-  listCarrito.forEach(carrito => {
-    Carrito.findOne({
-      where: { userId: req.user.id, productoId: carrito.producto.id }
-    }).then(carritos => {
-      if (carritos) {
-        Carrito.update(
-          { cantidad: carritos.cantidad + carrito.cantidad },
-          { where: { id: carritos.id } }
-        );
-      } else {
-        Carrito.create({
-          estado: carrito.estado,
-          cantidad: carrito.cantidad,
-          userId: req.user.id,
-          productoId: carrito.producto.id
+  if (listCarrito) {
+    await function generarCarrito() {
+      listCarrito.forEach(carrito => {
+        Carrito.findOne({
+          where: { userId: req.user.id, productoId: carrito.producto.id }
+        }).then(carritos => {
+          if (carritos) {
+            Carrito.update(
+              { cantidad: carritos.cantidad + carrito.cantidad },
+              { where: { id: carritos.id } }
+            );
+          } else {
+            Carrito.create({
+              estado: carrito.estado,
+              cantidad: carrito.cantidad,
+              userId: req.user.id,
+              productoId: carrito.producto.id
+            });
+          }
         });
-      }
-    });
-  });
+      });
+    };
+
+    generarCarrito();
+  }
   res.status(200).json({
     id: req.user.id,
     userName: req.user.userName,
