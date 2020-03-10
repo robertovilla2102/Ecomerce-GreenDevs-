@@ -9,8 +9,8 @@ const Pagination = ({ postsPerPage, totalPosts, onChangePage }) => {
   }
 
   return (
-    <nav aria-label="Page navigation example">
-      <ul className="pagination justify-content-center">
+    <nav aria-label="">
+      <ul className="pagination">
         {pageNumber.map(number => (
           <div key={number} className="p-1">
             <ButtonPagination

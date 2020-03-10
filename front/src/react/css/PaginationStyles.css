@@ -1,0 +1,13 @@
+.pagination-group button {
+    border-radius: 5px;
+    padding: 10px 15px;
+    background-color: #00867d;
+    color: #fff;
+    border: none
+}
+
+.pagination-group button:hover {
+    background-color: #67dabf;
+    color: #000;
+    font-weight: bold;
+}

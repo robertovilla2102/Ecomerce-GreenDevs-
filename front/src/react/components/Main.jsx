@@ -12,8 +12,8 @@ import CarritoContainer from "../containers/CarritoContainer";
 import ProductSearchContainer from "../containers/ProductSearchContainer";
 import LoginContainer from "../containers/LoginContainer";
 import CateogryContainer from "../containers/CategoryContainer";
-import PerfilUsuario from "../containers/PerfilUsuario"
-import EditPerfil from "../containers/ContainerEditPerfil"
+import PerfilUsuario from "../containers/PerfilUsuario";
+import EditPerfil from "../containers/ContainerEditPerfil";
 
 const Main = ({ user, userLogin }) => {
   useEffect(() => {
@@ -26,8 +26,6 @@ const Main = ({ user, userLogin }) => {
 
       <Switch>
         <Route exact path="/home" component={Home} />
-
-        <Route exact path="/products" component={ProductsContainer} />
 
         <Route
           exact
