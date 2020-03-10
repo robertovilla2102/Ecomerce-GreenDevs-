@@ -15,6 +15,7 @@ import CateogryContainer from "../containers/CategoryContainer";
 import PerfilUsuarioContainer from "../containers/PerfilUsuarioContainer"
 import EditPerfil from "../containers/ContainerEditPerfil"
 
+
 const Main = ({ user, userLogin }) => {
   useEffect(() => {
     userLogin();
@@ -26,8 +27,6 @@ const Main = ({ user, userLogin }) => {
 
       <Switch>
         <Route exact path="/home" component={Home} />
-
-        <Route exact path="/products" component={ProductsContainer} />
 
         <Route
           exact
