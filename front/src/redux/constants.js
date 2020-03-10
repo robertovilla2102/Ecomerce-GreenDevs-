@@ -29,4 +29,5 @@ export const EDIT_PERFIL = "EDIT_PERFIL";
 // comprar un producto
 export const ADD_COMPRA = ' ADD_COMPRA'
 export const RECEIVE_ALL_COMPRAS = 'RECEIVE_ALL_COMPRAS'
+export const ADD_VARIAS_COMPRAS = 'ADD_VARIAS_COMPRAS'
 

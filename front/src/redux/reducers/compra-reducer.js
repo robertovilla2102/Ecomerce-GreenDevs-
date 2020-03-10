@@ -2,7 +2,7 @@ import { ADD_COMPRA, RECEIVE_ALL_COMPRAS } from '../constants'
 
 const inicialState = {
   compraAgregada: {},
-  list: []
+  list: [],
 }
 
 export default (state = inicialState, action) => {

@@ -9,9 +9,8 @@ export default ({ compras }) => (
         <thead>
           <tr>
             <th scope="col"></th>
-            <th scope="col">Producto</th>
-            <th scope="col">pecio</th>
-            <th scope="col">Cantidad</th>
+            <th scope="col">ID Compra</th>
+            <th scope="col">Cantidad Productos</th>
             <th scope="col">Total</th>
             <th scope="col">Codigo Compra</th>
             <th scope="col">Fecha Compra</th>
@@ -27,9 +26,7 @@ export default ({ compras }) => (
                   height: '70px'
                 }} />
               </td>
-              <td className="align-middle">{compra.producto.name}</td>
-
-              <td className="align-middle">{compra.producto.price}</td>
+              <td className="align-middle">{compra.id}</td>
 
               <td className="align-middle">{compra.cantidad}</td>
 

@@ -128,4 +128,7 @@ CarritoController.verificarDuplicado = function (listaCarrito, productoId) {
   return posicion;
 };
 
+
+
+
 module.exports = CarritoController;
