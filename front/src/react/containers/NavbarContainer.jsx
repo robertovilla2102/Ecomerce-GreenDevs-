@@ -36,9 +36,13 @@ const NavbarContainer = ({
 
   const onSubmitSearch = e => {
     e.preventDefault();
-    fetchProductsByName(inputSearch).then(() => {
-      history.push(`/products/product/${inputSearch}`);
-    });
+    if (inputSearch.length >= 1) {
+      fetchProductsByName(inputSearch).then(() => {
+        history.push(`/products/product/${inputSearch}`);
+      });
+    } else {
+      alert("Tienes que escribir mas de una letra");
+    }
   };
 
   const onSubmitForm = e => {
