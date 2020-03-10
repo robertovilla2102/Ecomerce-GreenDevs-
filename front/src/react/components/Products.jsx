@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../css/cardsCss.css";
+import singleViewCard from "../css/singleViewCard.css";
 
 export default ({ productList, onSubmitCarrito, productsLength }) => (
   <div className="container">
@@ -29,16 +29,18 @@ export default ({ productList, onSubmitCarrito, productsLength }) => (
                   <div class="h-bg-inner"></div>
                 </div>
 
-                <button
-                  type="submit"
-                  className="cart btn btn-outline-dark"
-                  onClick={e => onSubmitCarrito(e, product.id)}
-                >
-                  <span class="price">${product.price}.00</span>
-                  <span class="add-to-cart">
-                    <span class="txt">Add in cart</span>
-                  </span>
-                </button>
+                <div className="btn-add-cart">
+                  <button
+                    type="submit"
+                    className="cart btn"
+                    onClick={e => onSubmitCarrito(e, product.id)}
+                  >
+                    <span class="price">${product.price}.00</span>
+                    <span class="add-to-cart">
+                      <span class="txt">Add in cart</span>
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>

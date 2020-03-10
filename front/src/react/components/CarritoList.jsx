@@ -26,13 +26,13 @@ export default ({ listaCarrito, handlerButtonDelete }) => {
           </tbody>
         </table>
       ) : (
-        <div className="col-md-6 mx-auto mt-5">
-          <Alert variant="info">
-            <Alert.Heading>Your shopping cart is empty!</Alert.Heading>
-            <p>Visit our catalog to add products to your cart!</p>
-          </Alert>
-        </div>
-      )}
+          <div className="col-md-6 mx-auto mt-5">
+            <Alert variant="info">
+              <Alert.Heading>Your shopping cart is empty!</Alert.Heading>
+              <p>Visit our catalog to add products to your cart!</p>
+            </Alert>
+          </div>
+        )}
     </div>
   );
 };

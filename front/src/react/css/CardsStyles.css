@@ -1,8 +1,3 @@
-body,
-html {
-    height: 100%;
-}
-
 .d-flex {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -23,10 +18,6 @@ html {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-}
-
-body {
-    background-color: #f7f7f7;
 }
 
 .page-wrapper {
@@ -84,7 +75,7 @@ body {
 }
 
 .el-wrapper:hover .img {
-    webkit-filter: blur(7px);
+    -webkit-filter: blur(7px);
     -o-filter: blur(7px);
     -ms-filter: blur(7px);
     filter: blur(7px);
@@ -107,6 +98,7 @@ body {
 .el-wrapper .box-down {
     width: 100%;
     height: 60px;
+    margin: 5px auto 0;
     position: relative;
     overflow: hidden;
 }
@@ -117,6 +109,9 @@ body {
     position: relative;
     overflow: hidden;
     text-align: center;
+    border-radius: 6px 6px 0 0;
+    background-color: #292929;
+    background: radial-gradient(#fdfdfd, #ebebeb);
 }
 
 .el-wrapper .img {
@@ -147,7 +142,7 @@ body {
     /* ease-out */
     width: 660px;
     height: 100%;
-    background-color: #44cd3f;
+    background-color: #82e9de;
     position: absolute;
     left: -659px;
 }
@@ -155,7 +150,7 @@ body {
 .h-bg .h-bg-inner {
     width: 50%;
     height: 100%;
-    background-color: hsla(125, 100%, 24%, 0.718);
+    background-color: #00867d;
 }
 
 .info-inner {
@@ -217,6 +212,7 @@ body {
 }
 
 .cart {
+    background-color: #4db6ac;
     display: block;
     position: absolute;
     width: 100%;
@@ -225,6 +221,10 @@ body {
     left: 0;
     font-family: 'Lato', sans-serif;
     font-weight: 700;
+}
+
+.cart:hover {
+    background-color: #0a726b;
 }
 
 .cart .price {
@@ -270,7 +270,7 @@ body {
     display: block;
     position: absolute;
     top: 50%;
-    left: 110%;
+    left: 120%;
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);

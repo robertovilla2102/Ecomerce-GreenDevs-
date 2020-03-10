@@ -8,6 +8,8 @@ import ViewSingle from "../components/ViewSingle";
 import { fetchProduct } from "../../redux/action-creators/productos";
 import { createCarrito } from '../../redux/action-creators/carrito'
 
+import { createCompra } from '../../redux/action-creators/compras'
+
 class ViewSingleContainer extends React.Component {
   constructor() {
     super()
@@ -18,6 +20,7 @@ class ViewSingleContainer extends React.Component {
     this.onSubmitCarrito = this.onSubmitCarrito.bind(this)
     this.addCantidad = this.addCantidad.bind(this)
     this.removeCantidad = this.removeCantidad.bind(this)
+    this.onSubmitComprar = this.onSubmitComprar.bind(this)
   }
 
   addCantidad(e) {
@@ -42,38 +45,43 @@ class ViewSingleContainer extends React.Component {
     })
   }
 
+  onSubmitComprar(e) {
+    e.preventDefault()
+    this.props.createCompra(this.props.producto.id, { estado: 'comprado', cantidad: this.state.cantidad })
+  }
+
   componentDidMount() {
     this.props.fetchProduct(this.props.match.params.id);
   }
 
   render() {
     return (
-      <div>
-        <ViewSingle
-          product={this.props.producto}
-          onSubmitCarrito={this.onSubmitCarrito}
-          addCantidad={this.addCantidad}
-          removeCantidad={this.removeCantidad}
-          cantidad={this.state.cantidad}
-        />
-      </div>
-    );
-
+      <ViewSingle
+        product={this.props.producto}
+        onSubmitCarrito={this.onSubmitCarrito}
+        addCantidad={this.addCantidad}
+        removeCantidad={this.removeCantidad}
+        cantidad={this.state.cantidad}
+        onSubmitComprar={this.onSubmitComprar}
+      />
+    )
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
     producto: state.productos.selectedProduct,
-    usuario: state.login.userLogueado.id
-  };
-};
+    usuario: state.login.userLogueado.id,
+    comprado: state.compras.compraAgregada
+  }
+}
 
 const mapDispathToProps = (dispatch, ownProps) => {
   return {
     fetchProduct: id => dispatch(fetchProduct(id)),
-    createCarrito: (productID, body) => dispatch(createCarrito(productID, body))
-  };
+    createCarrito: (productID, body) => dispatch(createCarrito(productID, body)),
+    createCompra: (productID, body) => dispatch(createCompra(productID, body))
+  }
 };
 
 export default connect(mapStateToProps, mapDispathToProps)(ViewSingleContainer);

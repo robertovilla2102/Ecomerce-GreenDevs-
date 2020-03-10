@@ -12,8 +12,12 @@ import CarritoContainer from "../containers/CarritoContainer";
 import ProductSearchContainer from "../containers/ProductSearchContainer";
 import LoginContainer from "../containers/LoginContainer";
 import CateogryContainer from "../containers/CategoryContainer";
-import PerfilUsuarioContainer from "../containers/PerfilUsuarioContainer"
-import EditPerfil from "../containers/ContainerEditPerfil"
+import PerfilUsuarioContainer from "../containers/PerfilUsuarioContainer";
+import EditPerfil from "../containers/ContainerEditPerfil";
+import UserListaContainer from "../containers/UserListaContainer";
+import CompraContainer from '../containers/CompraContainer'
+
+
 
 const Main = ({ user, userLogin }) => {
   useEffect(() => {
@@ -27,15 +31,17 @@ const Main = ({ user, userLogin }) => {
       <Switch>
         <Route exact path="/home" component={Home} />
 
-        <Route exact path="/products" component={ProductsContainer} />
-
         <Route
           exact
           path="/products/page/:page"
           component={ProductsContainer}
         />
 
-        <Route exact path="/products/:id" component={ViewSingleContainer} />
+        <Route
+          exact
+          path="/products/:id"
+          component={ViewSingleContainer}
+        />
 
         <Route
           exact
@@ -43,17 +49,44 @@ const Main = ({ user, userLogin }) => {
           component={CateogryContainer}
         />
 
-        <Route exact path="/login" component={LoginContainer} />
+        <Route
+          exact
+          path="/login"
+          component={LoginContainer}
+        />
 
-        <Route exact path="/register" component={RegisterContainer} />
-        <Route exact path="/miPerfil" component={PerfilUsuarioContainer} />
-        <Route exact path="/editPerfil" component={EditPerfil} />
+        <Route
+          exact
+          path="/register"
+          component={RegisterContainer}
+        />
+
+        <Route
+          exact
+          path="/miPerfil"
+          component={PerfilUsuarioContainer}
+        />
+
+        <Route
+          exact
+          path="/editPerfil"
+          component={EditPerfil}
+        />
+
+        <Route exact path="/userList" component={UserListaContainer} />
 
         <Route exact path="/carrito" component={CarritoContainer} />
+
         <Route
           exact
           path="/products/product/:name"
           component={ProductSearchContainer}
+        />
+
+        <Route
+          exact
+          path='/miPerfil/compras'
+          component={CompraContainer}
         />
 
         <Redirect from="/" to="/home" />

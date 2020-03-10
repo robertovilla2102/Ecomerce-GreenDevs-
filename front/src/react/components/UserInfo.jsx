@@ -15,18 +15,26 @@ export default ({ user, onSubmitLogout }) => {
         {user.userName}
       </button>
       <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
         <Link to="/carrito" className="dropdown-item">
           Mi Carrito
         </Link>
-        <Link to='/miPerfil'className="dropdown-item" >
+
+        <Link
+          to='/miPerfil'
+          className="dropdown-item" >
           Mi Perfil.
         </Link>
-        <a className="dropdown-item">
+
+        <Link
+          to='/miPerfil/compras' className="dropdown-item">
           Mis Compras
-        </a>
+        </Link>
+
         <button onClick={onSubmitLogout} className="dropdown-item">
           Log Out
         </button>
+
       </div>
     </div>
   );
