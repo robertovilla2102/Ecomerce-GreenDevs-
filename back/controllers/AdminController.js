@@ -25,4 +25,12 @@ AdminController.borrarUsuario = (req, res) => {
     .catch(err => res.send(err));
 };
 
+AdminController.buscarUsuarios = (req, res) => {
+  User.findAll()
+    .then(user => {
+      res.status(200).json(user);
+    })
+    .catch(err => res.send(err));
+};
+
 module.exports = AdminController;

@@ -7,6 +7,7 @@ import login from "./login-reducer";
 import carrito from "./carrito-reducer";
 import categories from "./categories-reducer";
 import compras from './compra-reducer'
+import usuarios from './allusers-reducer'
 
 export default combineReducers({
   productos,
@@ -14,5 +15,6 @@ export default combineReducers({
   login,
   carrito,
   categories,
-  compras
+  compras,
+  usuarios
 });
