@@ -111,7 +111,7 @@
     transition: all 0.5s;
 }
 
-/* 
-.buy--btn ::active {
+
+.buy--btn:active {
     transform: scale(0.97);
-} */
+}

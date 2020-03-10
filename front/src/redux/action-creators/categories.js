@@ -12,15 +12,15 @@ const setCategory = category => ({
 });
 
 export const fetchCategories = () => dispatch => {
-  Axios.get(`http://localhost:3001/api/categories`)
-    .then(res =>
-      dispatch(setCategories(res.data))
-    );
+  return Axios.get(`http://localhost:3001/api/categories`).then(res => {
+    dispatch(setCategories(res.data));
+    return res;
+  });
 };
 
 export const fetchCategory = id => dispatch => {
-  Axios.get(`http://localhost:3001/api/categories/${id}`)
-    .then(res =>
-      dispatch(setCategory(res.data))
-    );
+  return Axios.get(`http://localhost:3001/api/categories/${id}`).then(res => {
+    dispatch(setCategory(res.data));
+    return res;
+  });
 };

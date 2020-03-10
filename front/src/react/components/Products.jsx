@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import singleViewCard from "../css/singleViewCard.css";
 
-export default ({ productList, onSubmitCarrito, productsLength }) => (
+export default ({ productList, onSubmitCarrito }) => (
   <div className="container">
     <div className="row page-wrapper">
       {productList.map((product, index) => (
