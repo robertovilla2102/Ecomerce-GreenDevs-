@@ -42,28 +42,29 @@ CarritoController.agregarProductoDeslogeado = function (req, res) {
   let listaCarrito = req.session.carrito || [];
   let productoId = req.params.productId;
   let datos = req.body.body;
-  Producto.findOne({ where: { id: productoId } }).then(producto => {
-    if (listaCarrito) {
-      let posicion = CarritoController.verificarDuplicado(
-        listaCarrito,
-        productoId
-      );
-      if (posicion == -1) {
-        const nuevoCarrito = {
-          ...datos,
-          producto,
-          id: listaCarrito.length + 1
-        };
-        listaCarrito.push(nuevoCarrito);
-      } else {
-        let carritoActual = listaCarrito[posicion];
-        carritoActual.cantidad += datos.cantidad;
-        listaCarrito[posicion] = carritoActual;
+  Producto.findOne({ where: { id: productoId, estado: 'pending' } })
+    .then(producto => {
+      if (listaCarrito) {
+        let posicion = CarritoController.verificarDuplicado(
+          listaCarrito,
+          productoId
+        );
+        if (posicion == -1) {
+          const nuevoCarrito = {
+            ...datos,
+            producto,
+            id: listaCarrito.length + 1
+          };
+          listaCarrito.push(nuevoCarrito);
+        } else {
+          let carritoActual = listaCarrito[posicion];
+          carritoActual.cantidad += datos.cantidad;
+          listaCarrito[posicion] = carritoActual;
+        }
       }
-    }
-    req.session.carrito = listaCarrito;
-    res.status(200).json(req.session.carrito);
-  });
+      req.session.carrito = listaCarrito;
+      res.status(200).json(req.session.carrito);
+    });
 };
 
 CarritoController.agregarProductoLogeado = function (req, res) {
@@ -126,5 +127,8 @@ CarritoController.verificarDuplicado = function (listaCarrito, productoId) {
   }
   return posicion;
 };
+
+
+
 
 module.exports = CarritoController;

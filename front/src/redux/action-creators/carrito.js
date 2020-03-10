@@ -10,7 +10,7 @@ const addCarrito = carrito => ({
   carrito
 });
 
-const receiveCarrito = carritos => ({
+export const receiveCarrito = carritos => ({
   type: RECEIVE_CARRITO,
   carritos
 });

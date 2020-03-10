@@ -10,6 +10,8 @@ export const RECIVE_PRODUCTS_SEARCH = "RECIVE_PRODUCTS_SEARCH";
 
 // registar usuarios
 export const CREATE_USER = "CREATE_USER";
+//buscar todos los usuarios
+export const SEARCH_USERS = "SEARCH_USERS";
 
 //loguearse
 export const LOGUEAR_USER = "LOGUEAR_USER";
@@ -18,9 +20,14 @@ export const LOGUEAR_USER = "LOGUEAR_USER";
 export const ADD_CARRITO = "ADD_CARRITO";
 export const RECEIVE_CARRITO = "RECEIVE_CARRITO";
 
-// para eliminar producto del carrito 
-export const DELETE_PRODUCTO_DEL_CARRITO = "DELETE_PRODUCTO_DEL_CARRITO"
+// para eliminar producto del carrito
+export const DELETE_PRODUCTO_DEL_CARRITO = "DELETE_PRODUCTO_DEL_CARRITO";
+
+// edita mi perfil
+export const EDIT_PERFIL = "EDIT_PERFIL";
 
 // comprar un producto
 export const ADD_COMPRA = ' ADD_COMPRA'
 export const RECEIVE_ALL_COMPRAS = 'RECEIVE_ALL_COMPRAS'
+export const ADD_VARIAS_COMPRAS = 'ADD_VARIAS_COMPRAS'
+

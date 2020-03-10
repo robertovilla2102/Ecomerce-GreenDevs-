@@ -23,4 +23,6 @@ router.put(":id/add-review", function(req, res) {
   Valoracion.update(req.body, { where: { id: req.params.id } });
 });
 
+router.post("/editPerfil", UsuarioController.edit);
+
 module.exports = router;
