@@ -30,6 +30,22 @@ UsuarioController.crearUsuario = (req, res) => {
     .catch(error => res.send(error));
 };
 
+UsuarioController.edit = (req, res) => {
+  User.update(req.body.user, { where: { id: req.user.id } })
+    .then(() => {
+      return User.findOne({ where: { id: req.user.id } });
+    })
+    .then(user => {
+      res.status(201).json({
+        userName: user.userName,
+        userEmail: user.userEmail,
+        userProfile: user.imgProfile,
+        userBirthDay: user.birthDay,
+        userAddress: user.address
+      });
+    });
+};
+
 UsuarioController.login = async (req, res) => {
   var listCarrito = req.session.carrito;
   if (listCarrito) {
