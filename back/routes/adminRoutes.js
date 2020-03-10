@@ -7,4 +7,6 @@ router.put("/remove-admin", AdminController.quitarAdministrador);
 
 router.delete("/delete-user", AdminController.borrarUsuario);
 
+router.get("/see-users", AdminController.buscarUsuarios);
+
 module.exports = router;

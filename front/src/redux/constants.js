@@ -10,6 +10,8 @@ export const RECIVE_PRODUCTS_SEARCH = "RECIVE_PRODUCTS_SEARCH";
 
 // registar usuarios
 export const CREATE_USER = "CREATE_USER";
+//buscar todos los usuarios
+export const SEARCH_USERS = "SEARCH_USERS";
 
 //loguearse
 export const LOGUEAR_USER = "LOGUEAR_USER";

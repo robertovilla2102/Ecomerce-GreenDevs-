@@ -12,9 +12,11 @@ import CarritoContainer from "../containers/CarritoContainer";
 import ProductSearchContainer from "../containers/ProductSearchContainer";
 import LoginContainer from "../containers/LoginContainer";
 import CateogryContainer from "../containers/CategoryContainer";
-import PerfilUsuarioContainer from "../containers/PerfilUsuarioContainer"
-import EditPerfil from "../containers/ContainerEditPerfil"
+import PerfilUsuarioContainer from "../containers/PerfilUsuarioContainer";
+import EditPerfil from "../containers/ContainerEditPerfil";
+import UserListaContainer from "../containers/UserListaContainer";
 import CompraContainer from '../containers/CompraContainer'
+
 
 
 const Main = ({ user, userLogin }) => {
@@ -70,6 +72,8 @@ const Main = ({ user, userLogin }) => {
           path="/editPerfil"
           component={EditPerfil}
         />
+
+        <Route exact path="/userList" component={UserListaContainer} />
 
         <Route exact path="/carrito" component={CarritoContainer} />
 
