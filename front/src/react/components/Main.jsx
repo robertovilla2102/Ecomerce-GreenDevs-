@@ -14,9 +14,10 @@ import LoginContainer from "../containers/LoginContainer";
 import CateogryContainer from "../containers/CategoryContainer";
 import PerfilUsuarioContainer from "../containers/PerfilUsuarioContainer";
 import EditPerfil from "../containers/ContainerEditPerfil";
+import ProductsSearchByPriceContainer from "../containers/ProductsSearchByPriceContainer";
+import ProductsSearchByAlfabetContainer from "../containers/ProductsSearchByAlfabetContainer";
 import UserListaContainer from "../containers/UserListaContainer";
 import CompraContainer from '../containers/CompraContainer'
-
 
 
 const Main = ({ user, userLogin }) => {
@@ -41,6 +42,18 @@ const Main = ({ user, userLogin }) => {
           exact
           path="/products/:id"
           component={ViewSingleContainer}
+        />
+
+        <Route
+          exact
+          path="/products/filter/alfabet/:alfabet/:page"
+          component={ProductsSearchByAlfabetContainer}
+        />
+
+        <Route
+          exact
+          path="/products/filter/price/:price/:page"
+          component={ProductsSearchByPriceContainer}
         />
 
         <Route
