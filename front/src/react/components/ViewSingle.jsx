@@ -8,7 +8,8 @@ export default ({
   onSubmitCarrito,
   cantidad,
   removeCantidad,
-  addCantidad
+  addCantidad,
+  onSubmitComprar
 }) => (
   <div className="container">
     <div className="row mx-auto">
@@ -61,16 +62,17 @@ export default ({
               onClick={onSubmitCarrito}
             >
               ADD TO CART
-            </button>
-            <Link
-              style={{
+            </button>  
+            <button
+               style={{
                 marginLeft: "10px"
               }}
               class="add--btn"
-              to={`/comprar/${product.id}`}
-            >
-              BUY NOW
-            </Link>
+            type='submit'
+            onClick={onSubmitComprar}
+          >
+            Comprar
+          </button>
           </div>
         </div>
       </section>

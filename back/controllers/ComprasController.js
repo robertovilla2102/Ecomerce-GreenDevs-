@@ -10,10 +10,14 @@ ComprasController.buscarCompras = (req, res) => {
     ],
     where: {
       userId: req.user.id,
-      estado: 'comprado'
+      estado: 'completo'
     }
+
   })
-    .then(carritos => res.json(carritos))
+    .then(carritos => {
+      console.log(req.user.dataValues.id)
+      res.json(carritos)
+    })
     .catch(err => {
       res.status(500).send(err)
     })
@@ -22,12 +26,15 @@ ComprasController.buscarCompras = (req, res) => {
 ComprasController.addCompra = (req, res) => {
   let productoId = req.params.productId
   let user = req.user
+  let datos = req.body.body
 
   Compra.create({
     dateCompra: 123,
     salt: `${Math.round(Math.random() * 12345)}`
   })
-    .then(compra => {
+    .then(compraRealizada => {
+      const compramePorfa = compraRealizada.id
+
       Carrito.findOne({
         where: {
           userId: user.id,
@@ -35,17 +42,69 @@ ComprasController.addCompra = (req, res) => {
         }
       })
         .then(carrito => {
-          Carrito.update(
-            { estado: 'comprado', compraId: compra.id }, {
-            returning: true,
-            where: {
-              id: carrito.id,
-            }
-          })
-            .then(([rowsUpdate, [updateCarrito]]) => {
-              console.log('la compra se ha realizad0');
-              res.status(200).json(updateCarrito)
+          if (carrito) {
+            Carrito.update(
+              { estado: 'comprado', compraId: compraRealizada.id }, {
+              returning: true,
+              where: {
+                id: carrito.id,
+              }
             })
+              .then(([rowsUpdate, [updateCarrito]]) => {
+                console.log('la compra se ha realizad0');
+
+                Producto.findOne({
+                  where: {
+                    id: productoId
+                  }
+                })
+                  .then(producto => {
+                    producto.update({ stock: producto.stock - updateCarrito.cantidad },
+                      {
+                        returning: true,
+                        where: {
+                          id: producto.id
+                        }
+                      })
+                      .then(([rowsUpdate, [updateProducto]]) => {
+                        res.status(200).json({ updateProducto, carrito })
+                      })
+                      .catch(err => res.json(err))
+                  })
+              })
+          }
+          else {
+
+            Carrito.create({
+              ...datos,
+              userId: user.id,
+              productoId: productoId,
+              compraId: compramePorfa
+            })
+              .then(updateCarrito => {
+                console.log('la compra se ha realizad0')
+                console.log(updateCarrito)
+
+                Producto.findOne({
+                  where: {
+                    id: productoId
+                  }
+                })
+                  .then(producto => {
+                    producto.update({ stock: producto.stock - updateCarrito.cantidad },
+                      {
+                        returning: true,
+                        where: {
+                          id: producto.id
+                        }
+                      })
+                      .then(([rowsUpdate, [updateProducto]]) => {
+                        res.status(200).json({ updateProducto, carrito })
+                      })
+                      .catch(err => res.json(err))
+                  })
+              })
+          }
         })
     })
     .catch(err => res.json(err))
@@ -67,6 +126,5 @@ ComprasController.eliminarCompra = (req, res) => {
         .catch(err => res.send(err))
     })
 }
-
 
 module.exports = ComprasController;
