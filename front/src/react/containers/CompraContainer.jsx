@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { fetchCompras, createCompra } from '../../redux/action-creators/compras'
+import CompraView from '../components/CompraView'
 
-import ViewSingle from '../components/ViewSingle'
-
-const CompraContainer = ({ fetchCompras }) => {
+const CompraContainer = ({ fetchCompras, compras, compraAgregada }) => {
 
   useEffect(() => {
     fetchCompras()
   }, [])
 
   return (
-    <p>Hola pepe</p>
+    <CompraView
+      compras={compras}
+    />
   )
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
     compras: state.compras.list,
-    compraAgregada: state.compra.compraAgregada,
+    compraAgregada: state.compras.compraAgregada,
   };
 };
 

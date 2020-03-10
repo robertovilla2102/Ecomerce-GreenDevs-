@@ -6,16 +6,19 @@ ComprasController.buscarCompras = (req, res) => {
     include: [
       {
         model: Producto
+      },
+      {
+        model: Compra
       }
     ],
+
     where: {
       userId: req.user.id,
-      estado: 'completo'
+      estado: 'comprado'
     }
 
   })
     .then(carritos => {
-      console.log(req.user.dataValues.id)
       res.json(carritos)
     })
     .catch(err => {
@@ -26,7 +29,6 @@ ComprasController.buscarCompras = (req, res) => {
 ComprasController.addCompra = (req, res) => {
   let productoId = req.params.productId
   let user = req.user
-  let datos = req.body.body
 
   Compra.create({
     dateCompra: 123,
@@ -37,7 +39,7 @@ ComprasController.addCompra = (req, res) => {
 
       Carrito.findOne({
         where: {
-          userId: user.id,
+          userId: req.user.id,
           productoId: productoId
         }
       })
@@ -51,8 +53,6 @@ ComprasController.addCompra = (req, res) => {
               }
             })
               .then(([rowsUpdate, [updateCarrito]]) => {
-                console.log('la compra se ha realizad0');
-
                 Producto.findOne({
                   where: {
                     id: productoId
@@ -76,15 +76,13 @@ ComprasController.addCompra = (req, res) => {
           else {
 
             Carrito.create({
-              ...datos,
+              estado: req.body.body.estado,
+              cantidad: req.body.body.cantidad,
               userId: user.id,
               productoId: productoId,
               compraId: compramePorfa
             })
               .then(updateCarrito => {
-                console.log('la compra se ha realizad0')
-                console.log(updateCarrito)
-
                 Producto.findOne({
                   where: {
                     id: productoId

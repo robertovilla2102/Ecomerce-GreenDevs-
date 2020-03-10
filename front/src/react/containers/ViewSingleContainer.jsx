@@ -47,7 +47,7 @@ class ViewSingleContainer extends React.Component {
 
   onSubmitComprar(e) {
     e.preventDefault()
-    this.props.createCompra(this.props.producto.id, { estado: 'completo', cantidad: this.state.cantidad })
+    this.props.createCompra(this.props.producto.id, { estado: 'comprado', cantidad: this.state.cantidad })
   }
 
   componentDidMount() {
