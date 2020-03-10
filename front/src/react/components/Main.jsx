@@ -15,6 +15,8 @@ import CateogryContainer from "../containers/CategoryContainer";
 import PerfilUsuarioContainer from "../containers/PerfilUsuarioContainer";
 import EditPerfil from "../containers/ContainerEditPerfil";
 import UserListaContainer from "../containers/UserListaContainer";
+import CompraContainer from '../containers/CompraContainer'
+
 
 
 const Main = ({ user, userLogin }) => {
@@ -35,7 +37,11 @@ const Main = ({ user, userLogin }) => {
           component={ProductsContainer}
         />
 
-        <Route exact path="/products/:id" component={ViewSingleContainer} />
+        <Route
+          exact
+          path="/products/:id"
+          component={ViewSingleContainer}
+        />
 
         <Route
           exact
@@ -43,19 +49,44 @@ const Main = ({ user, userLogin }) => {
           component={CateogryContainer}
         />
 
-        <Route exact path="/login" component={LoginContainer} />
+        <Route
+          exact
+          path="/login"
+          component={LoginContainer}
+        />
 
-        <Route exact path="/register" component={RegisterContainer} />
-        <Route exact path="/miPerfil" component={PerfilUsuarioContainer} />
-        <Route exact path="/editPerfil" component={EditPerfil} />
+        <Route
+          exact
+          path="/register"
+          component={RegisterContainer}
+        />
+
+        <Route
+          exact
+          path="/miPerfil"
+          component={PerfilUsuarioContainer}
+        />
+
+        <Route
+          exact
+          path="/editPerfil"
+          component={EditPerfil}
+        />
 
         <Route exact path="/userList" component={UserListaContainer} />
 
         <Route exact path="/carrito" component={CarritoContainer} />
+
         <Route
           exact
           path="/products/product/:name"
           component={ProductSearchContainer}
+        />
+
+        <Route
+          exact
+          path='/miPerfil/compras'
+          component={CompraContainer}
         />
 
         <Redirect from="/" to="/home" />

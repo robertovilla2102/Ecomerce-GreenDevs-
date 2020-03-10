@@ -1,38 +1,80 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import Perfil from '../components/Perfil'
-import IconProfile from '../components/IconProfile'
-import PerfilEdit from '../components/PerfilEdit';
+import React from "react";
+import { connect } from "react-redux";
+
+import IconProfile from "../components/IconProfile";
+import PerfilEdit from "../components/PerfilEdit";
 import Footer from "../containers/FooterContainer";
-import "../css/estilosPerfil.css"
+import "../css/estilosPerfil.css";
+import { editPerfil } from "../../redux/action-creators/editarUsuario";
 
 class PerfilUsuarioContainer extends React.Component {
-    render() {
+  constructor({ userLogueado }) {
+    super();
+    this.state = {
+      userEmail: userLogueado.userEmail,
+      userName: userLogueado.userName,
+      address: userLogueado.address,
+      birthDay: userLogueado.birthDay
+    };
+    this.onChange = this.onChange.bind(this);
+    this.mandarFormulario = this.mandarFormulario.bind(this);
+  }
 
-        const {userLogueado} = this.props
-        console.log('sdsfdsfdsfsd',userLogueado)
-        return (
-          <div>
-          <div className="container-fluid mt-3 mb-3">
-            <div className="card profile-card-2">
-              <div className="card-img-block">
-                  <img className="img-fluid" src="https://images.unsplash.com/photo-1506784693919-ef06d93c28d2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" alt="Card image cap"/>
-              </div>
-                <PerfilEdit/>
-                <IconProfile/>
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+  mandarFormulario(e) {
+    e.preventDefault();
+    let user = {
+      userName: this.state.userName,
+      userEmail: this.state.userEmail,
+      birthDay: this.state.birthDay,
+      address: this.state.address
+    };
+    this.props.editPerfil(user).then(res => this.props.history.push("/home"));
+  }
 
+  render() {
+    return (
+      <div>
+        <div className="container-fluid mt-3 mb-3">
+          <div className="card profile-card-2">
+            <div className="card-img-block">
+              <img
+                className="img-fluid"
+                src="https://images.unsplash.com/photo-1506784693919-ef06d93c28d2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"
+                alt="Card image cap"
+              />
             </div>
+            <PerfilEdit
+              onChange={this.onChange}
+              userEmail={this.state.userEmail}
+              userName={this.state.userName}
+              birthDay={this.state.birthDay}
+              address={this.state.address}
+              mandarFormulario={this.mandarFormulario}
+            />
+            <IconProfile />
           </div>
-          <Footer/>
-          </div>
-
-        )
-    }
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 }
 const mapStateToProps = (state, ownProps) => {
-    return {
-        userLogueado: state.login.userLogueado
-    };
+  return {
+    userLogueado: state.login.userLogueado
   };
+};
 
-  export default connect(mapStateToProps, null)(PerfilUsuarioContainer);
+const mapDispathToProps = (dispatch, ownProps) => {
+  return {
+    editPerfil: user => dispatch(editPerfil(user))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispathToProps
+)(PerfilUsuarioContainer);

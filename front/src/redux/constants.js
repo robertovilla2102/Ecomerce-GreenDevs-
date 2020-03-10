@@ -21,8 +21,12 @@ export const ADD_CARRITO = "ADD_CARRITO";
 export const RECEIVE_CARRITO = "RECEIVE_CARRITO";
 
 // para eliminar producto del carrito
-export const DELETE_PRODUCTO_DEL_CARRITO = "DELETE_PRODUCTO_DEL_CARRITO"
+export const DELETE_PRODUCTO_DEL_CARRITO = "DELETE_PRODUCTO_DEL_CARRITO";
+
+// edita mi perfil
+export const EDIT_PERFIL = "EDIT_PERFIL";
 
 // comprar un producto
 export const ADD_COMPRA = ' ADD_COMPRA'
 export const RECEIVE_ALL_COMPRAS = 'RECEIVE_ALL_COMPRAS'
+
