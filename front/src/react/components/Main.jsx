@@ -22,8 +22,8 @@ import CompraContainer from '../containers/CompraContainer'
 import AddProductoContainer from "../containers/AddProductoContainer";
 import AdminContainer from "../containers/AdminContainer";
 import EditProductContainer from "../containers/EditProductContainer";
-
 import EditProductFormContainer from '../containers/EditProductFormContainer'
+import CategoriesAdminContainer from '../containers/CategoriesAdminContainer'
 
 
 const Main = ({ user, userLogin }) => {
@@ -130,6 +130,12 @@ const Main = ({ user, userLogin }) => {
           exact
           path='/posta/:id'
           component={EditProductFormContainer}
+        />
+
+        <Route
+          exact
+          path='/admin/listCategories'
+          component={CategoriesAdminContainer}
         />
 
 

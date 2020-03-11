@@ -6,7 +6,7 @@ CategoriasController.buscarCategorias = (req, res) => {
     .then(categoria => {
       res.json(categoria);
     })
-    .catch(err => res.send(err));
+    .catch(err => res.status(500).send(err));
 };
 
 CategoriasController.buscarProductosDeUnaCategoria = (req, res) => {
@@ -31,7 +31,10 @@ CategoriasController.agregarUnaCategoria = (req, res) => {
 CategoriasController.eliminarUnaCategoria = (req, res) => {
   Categoria.destroy({ where: { id: req.params.id } })
     .then(() => {
-      res.sendStatus(202);
+      Categoria.findAll()
+        .then(categories => {
+          res.status(201).json(categories)
+        })
     })
     .catch(err => res.send(err));
 };
