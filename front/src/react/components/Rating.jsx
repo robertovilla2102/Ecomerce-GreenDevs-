@@ -6,8 +6,7 @@ export default ({ setHover, setRating, hover, rating }) => {
   return (
     <div>
       {[...Array(5)].map((star, index) => {
-        const ratingValue = index + 1;
-
+        const ratingValue = index + 1
         return (
           <label key={index}>
             <input
