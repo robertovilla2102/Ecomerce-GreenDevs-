@@ -7,4 +7,6 @@ router.get("/:id", ProductosControllers.buscarUnProducto);
 
 router.get("/search/:name", ProductosControllers.buscarPorNombre);
 
+router.post('/add', ProductosControllers.addProducto)
+
 module.exports = router;
