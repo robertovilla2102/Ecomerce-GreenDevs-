@@ -62,17 +62,17 @@ export default ({
               onClick={onSubmitCarrito}
             >
               ADD TO CART
-            </button>  
+            </button>
             <button
-               style={{
+              style={{
                 marginLeft: "10px"
               }}
               class="add--btn"
-            type='submit'
-            onClick={onSubmitComprar}
-          >
-            Comprar
-          </button>
+              type="submit"
+              onClick={onSubmitComprar}
+            >
+              Comprar
+            </button>
           </div>
         </div>
       </section>

@@ -44,9 +44,7 @@ export default ({
             </Link>
           </li>
 
-          <li className="nav-item">
-            <p className="nav-link">About Us</p>
-          </li>
+          <li className="nav-item"></li>
 
           <li className="nav-item">
             <p className="nav-link">Contacto</p>
