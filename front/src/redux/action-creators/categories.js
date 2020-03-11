@@ -24,3 +24,11 @@ export const fetchCategory = id => dispatch => {
     return res;
   });
 };
+
+export const deleteCategories = (id) => {
+  return Axios
+    .delete(`http://localhost:3001/api/categories/delete/${id}`)
+    .then(res => {
+      dispatch(setCategories(res))
+    })
+}
