@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import "../css/estilosPerfil.css"
 
@@ -8,10 +8,13 @@ import { createVariasCompras } from '../../redux/action-creators/compras'
 import CarritoList from "../components/CarritoList";
 import Footer from "../components/Footer";
 
+
 const CarritoContaienr = ({ deleteCart, fetchCarritos, listaCarrito, createVariasCompras }) => {
+  const [esVisible, setEsVisible] = useState(false)
+
   useEffect(() => {
     fetchCarritos();
-  }, []);
+  }, [])
 
   const handlerButtonDelete = id => {
     deleteCart(id);
@@ -23,6 +26,11 @@ const CarritoContaienr = ({ deleteCart, fetchCarritos, listaCarrito, createVaria
       .then((algo) => console.log('todo bien'))
   }
 
+  const mostrarDetalle = (e) => {
+    e.preventDefault()
+    setEsVisible(!esVisible)
+  }
+
   return (
     <div>
       <div className="container-fluid mt-3 mb-3">
@@ -32,11 +40,15 @@ const CarritoContaienr = ({ deleteCart, fetchCarritos, listaCarrito, createVaria
           </div>
           <div className="card-body2">
             <img src="https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes/128/shopping-circle-blue-512.png" alt="shop-image" className="profile" />
+
             <CarritoList
               handlerButtonDelete={handlerButtonDelete}
               listaCarrito={listaCarrito}
               handleButtonComprar={handleButtonComprar}
+              mostrarDetalle={mostrarDetalle}
+              esVisible={esVisible}
             />
+
           </div>
         </div>
       </div>
