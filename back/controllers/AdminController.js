@@ -1,8 +1,9 @@
 const AdminController = {};
 const { User } = require("../models/index");
 
+
 AdminController.asignarAdministrador = (req, res) => {
-  User.update({ isAdmin: true }, { where: req.body })
+  User.update({ isAdmin: true }, {where:{id:req.params.userId}})
     .then(() => {
       res.sendStatus(200);
     })
@@ -10,7 +11,7 @@ AdminController.asignarAdministrador = (req, res) => {
 };
 
 AdminController.quitarAdministrador = (req, res) => {
-  User.update({ isAdmin: false }, { where: req.body })
+  User.update({ isAdmin: false }, {where:{id:req.params.userId}})
     .then(() => {
       res.sendStatus(200);
     })
@@ -18,7 +19,7 @@ AdminController.quitarAdministrador = (req, res) => {
 };
 
 AdminController.borrarUsuario = (req, res) => {
-  User.findOne({ where: req.body })
+  User.destroy({ where: {id:req.params.userId} })
     .then(() => {
       res.sendStatus(200);
     })
