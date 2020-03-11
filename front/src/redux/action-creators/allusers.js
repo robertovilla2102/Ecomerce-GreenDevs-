@@ -22,3 +22,23 @@ export const fetchUsers= () => dispatch => {
   })
   .catch(err => console.err(err));
 };
+
+export const deleteUsers= (userId) => dispatch => {
+  return axios
+  .delete(`http://localhost:3001/api/admin/delete-user/${userId}`)
+  .then(users=>users.data)
+  .then(users => dispatch(fetchUsers()))
+  .catch(err => console.err(err));
+};
+
+export const quitarAdministrador= (userId) => dispatch => {
+  return axios
+  .update(`http://localhost:3001/api/admin/remove-admin/${userId}`)
+  .catch(err => console.err(err));
+};
+
+export const asignarAdministrador= (userId) => dispatch => {
+  return axios
+  .update(`http://localhost:3001/api/admin/add-admin/${userId}`)
+  .catch(err => console.err(err));
+};
