@@ -16,7 +16,9 @@ const Home = ({ categories, fetchCategories }) => {
   return (
     <React.Fragment>
       <Header />
-      {categories ? <HomeCategories categories={categories} /> : null}
+      <div style={{ marginTop: "7%", marginBottom: "5%" }}>
+        {categories ? <HomeCategories categories={categories} /> : null}
+      </div>
       <AboutUs />
       <Footer />
     </React.Fragment>

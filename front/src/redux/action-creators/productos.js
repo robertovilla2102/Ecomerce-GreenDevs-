@@ -22,15 +22,41 @@ const receivedProduct = product => ({
 })
 
 //busca todos los productos en localhost:3001
-export const fetchProducts = () => dispatch => {
-  return axios
-    .get("http://localhost:3001/api/products")
-    .then(products => products.data)
-    .then(productos => {
-      dispatch(receivedProducts(productos));
-      return productos;
-    })
-    .catch(err => console.error(err));
+export const fetchProducts = queries => dispatch => {
+  if (queries) {
+    if (queries.min && queries.max) {
+      return axios
+        .get(
+          `http://localhost:3001/api/products/?min=${queries.min}&max=${queries.max}`
+        )
+        .then(products => products.data)
+        .then(productos => {
+          dispatch(receivedProducts(productos));
+          return productos;
+        })
+        .catch(err => console.error(err));
+    } else if (queries.alfabet) {
+      return axios
+        .get(
+          `http://localhost:3001/api/products/?alfabetico=${queries.alfabet}`
+        )
+        .then(products => products.data)
+        .then(productos => {
+          dispatch(receivedProducts(productos));
+          return productos;
+        })
+        .catch(err => console.error(err));
+    }
+  } else {
+    return axios
+      .get("http://localhost:3001/api/products")
+      .then(products => products.data)
+      .then(productos => {
+        dispatch(receivedProducts(productos));
+        return productos;
+      })
+      .catch(err => console.error(err));
+  }
 };
 
 //busca un producto por id en localhost:3001

@@ -3,11 +3,27 @@ const { Producto, Categoria } = require("../models/index");
 const Op = require("sequelize").Op;
 
 ProductoController.buscarProductos = (req, res) => {
-  Producto.findAll()
-    .then(productos => {
-      res.status(200).json(productos);
-    })
-    .catch(err => res.send(err));
+  if (Object.keys(req.query).length != 0) {
+    if (req.query.min && req.query.max) {
+      Producto.findAll({
+        where: { price: { [Op.gt]: req.query.min, [Op.lte]: req.query.max } }
+      }).then(productos => {
+        res.send(productos);
+      });
+    } else if (req.query.alfabetico) {
+      Producto.findAll({
+        order: [["name", req.query.alfabetico]]
+      }).then(productos => {
+        res.send(productos);
+      });
+    }
+  } else {
+    Producto.findAll()
+      .then(productos => {
+        res.status(200).json(productos);
+      })
+      .catch(err => res.send(err));
+  }
 };
 
 ProductoController.buscarUnProducto = (req, res) => {

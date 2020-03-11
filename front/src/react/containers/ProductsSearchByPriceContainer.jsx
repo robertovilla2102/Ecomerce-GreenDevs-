@@ -1,24 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-
-//importando components
 import Products from "../components/Products";
 import Pagination from "../components/Paginacion";
 import FiltroContainer from "./FiltroContainer";
 
-//importando action-creators
-import { fetchProducts } from "../../redux/action-creators/productos";
-import { createCarrito } from "../../redux/action-creators/carrito";
-
-const ProductContainer = ({
-  fetchProducts,
-  lista,
-  usuario,
-  createCarrito,
-  match,
-  history
-}) => {
+const ProductsSearchByPriceContainer = ({ lista, match, history }) => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(match.params.page || 1);
   const [postsPerPage, setPostsPerPage] = useState(9);
@@ -28,8 +15,8 @@ const ProductContainer = ({
   const currentPosts = posts.slice(indexOfFirtsPost, indexOfLastPost);
 
   useEffect(() => {
-    fetchProducts().then(productos => setPosts(productos));
-  }, []);
+    setPosts(lista);
+  }, [lista]);
 
   const onSubmitCarrito = (e, id) => {
     e.preventDefault();
@@ -42,7 +29,7 @@ const ProductContainer = ({
   const onChangePage = (e, page) => {
     e.preventDefault();
     setCurrentPage(page);
-    history.push(`/products/page/${page}`);
+    history.push(`/products/filter/${match.params.price}/${page}`);
   };
 
   return (
@@ -56,8 +43,8 @@ const ProductContainer = ({
             <div className="container">
               <div className="row">
                 <Products
-                  onSubmitCarrito={onSubmitCarrito}
                   productList={currentPosts}
+                  onSubmitCarrito={onSubmitCarrito}
                 />
               </div>
               <div className="container">
@@ -81,18 +68,16 @@ const ProductContainer = ({
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    lista: state.productos.list,
-    usuario: state.login.userLogueado.id
+    lista: state.productos.list
   };
 };
 
 const mapDispathToProps = (dispatch, ownProps) => {
   return {
-    fetchProducts: () => dispatch(fetchProducts()),
     createCarrito: (productID, body) => dispatch(createCarrito(productID, body))
   };
 };
 
 export default withRouter(
-  connect(mapStateToProps, mapDispathToProps)(ProductContainer)
+  connect(mapStateToProps, mapDispathToProps)(ProductsSearchByPriceContainer)
 );
