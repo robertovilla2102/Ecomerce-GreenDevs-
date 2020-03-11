@@ -1,10 +1,10 @@
 import React from "react";
 import FilterStyles from '../css/FilterStyles.css'
 
-export default ({ handleSubmit, InputChangue }) => {
+export default ({ submitEdit }) => {
   return (
     <div className="container">
-      <form onSubmit={handleSubmit} >
+      <form onSubmit={submitEdit} >
 
         <div className="input-filter range-price ">
 
@@ -14,7 +14,6 @@ export default ({ handleSubmit, InputChangue }) => {
               type="text"
               name="name"
               placeholder="name"
-              onChange={InputChangue}
             />
           </div>
 
@@ -24,8 +23,6 @@ export default ({ handleSubmit, InputChangue }) => {
               type="text"
               name="price"
               placeholder="price"
-              onChange={InputChangue}
-
             />
           </div>
 
@@ -35,8 +32,6 @@ export default ({ handleSubmit, InputChangue }) => {
               type="text"
               name="imgProfile"
               placeholder="url de imagen"
-              onChange={InputChangue}
-
             />
           </div>
 
@@ -46,8 +41,6 @@ export default ({ handleSubmit, InputChangue }) => {
               type="text"
               name="stock"
               placeholder="stock"
-              onChange={InputChangue}
-
             />
           </div>
 
@@ -57,7 +50,6 @@ export default ({ handleSubmit, InputChangue }) => {
               type="text"
               name="description"
               placeholder="descrition"
-              onChange={InputChangue}
             />
           </div>
 
@@ -66,7 +58,6 @@ export default ({ handleSubmit, InputChangue }) => {
 
             <select
               className="custom-select"
-              onBlur={InputChangue}
               name="categoryId"
             >
               <option value="">Categoria</option>
@@ -81,11 +72,11 @@ export default ({ handleSubmit, InputChangue }) => {
             className='btn btn-success'
             type='submit'
           >
-            Agregar Producto
+            Confirmar
       </button>
         </div >
       </form>
-    </div>
+    </div >
 
   );
 };

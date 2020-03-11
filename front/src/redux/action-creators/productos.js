@@ -84,3 +84,19 @@ export const addProducto = (body) => dispatch => {
     )
 }
 
+export const editProduct = (id, body) => dispatch => {
+  return axios
+    .put(`http://localhost:3001/api/products/edit/${id}`, { body })
+    .then(data => console.log(data)
+    )
+}
+
+
+export const deletProduct = (id) => dispatch => {
+  return axios
+    .delete(`http://localhost:3001/api/products/delete/${id}`)
+    .then(data => {
+      console.log(data)
+      dispatch(receivedProducts(data.data))
+    })
+}

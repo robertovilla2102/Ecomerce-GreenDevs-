@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AdminContainer from '../containers/AdminContainer'
 
 export default ({ user, onSubmitLogout }) => {
   return (
@@ -32,8 +33,8 @@ export default ({ user, onSubmitLogout }) => {
         </Link>
 
         <Link
-          to='/miPerfil/addProduct' className="dropdown-item">
-          Agregar Producto
+          to='/admin' className="dropdown-item">
+          Admin Config.
         </Link>
 
         <button onClick={onSubmitLogout} className="dropdown-item">

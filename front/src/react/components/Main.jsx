@@ -20,6 +20,10 @@ import UserListaContainer from "../containers/UserListaContainer";
 import CompraContainer from '../containers/CompraContainer'
 
 import AddProductoContainer from "../containers/AddProductoContainer";
+import AdminContainer from "../containers/AdminContainer";
+import EditProductContainer from "../containers/EditProductContainer";
+
+import EditProductFormContainer from '../containers/EditProductFormContainer'
 
 
 const Main = ({ user, userLogin }) => {
@@ -106,9 +110,28 @@ const Main = ({ user, userLogin }) => {
 
         <Route
           exact
-          path='/miPerfil/addProduct'
+          path='/admin/addProduct'
           component={AddProductoContainer}
         />
+
+        <Route
+          exact
+          path='/admin'
+          component={AdminContainer}
+        />
+
+        <Route
+          exact
+          path='/admin/editProduct'
+          component={EditProductContainer}
+        />
+
+        <Route
+          exact
+          path='/posta/:id'
+          component={EditProductFormContainer}
+        />
+
 
         <Redirect from="/" to="/home" />
       </Switch>

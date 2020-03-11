@@ -30,8 +30,10 @@ class PerfilUsuarioContainer extends React.Component {
       userEmail: this.state.userEmail,
       birthDay: this.state.birthDay,
       address: this.state.address
-    };
-    this.props.editPerfil(user).then(res => this.props.history.push("/home"));
+    }
+
+    this.props.editPerfil(user)
+      .then(res => this.props.history.push("/home"));
   }
 
   render() {
