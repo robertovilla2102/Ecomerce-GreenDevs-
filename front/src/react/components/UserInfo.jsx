@@ -31,6 +31,11 @@ export default ({ user, onSubmitLogout }) => {
           Mis Compras
         </Link>
 
+        <Link
+          to='/miPerfil/addProduct' className="dropdown-item">
+          Agregar Producto
+        </Link>
+
         <button onClick={onSubmitLogout} className="dropdown-item">
           Log Out
         </button>

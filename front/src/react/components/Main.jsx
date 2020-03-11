@@ -17,6 +17,8 @@ import EditPerfil from "../containers/ContainerEditPerfil";
 import UserListaContainer from "../containers/UserListaContainer";
 import CompraContainer from '../containers/CompraContainer'
 
+import AddProductoContainer from "../containers/AddProductoContainer";
+
 
 
 const Main = ({ user, userLogin }) => {
@@ -87,6 +89,12 @@ const Main = ({ user, userLogin }) => {
           exact
           path='/miPerfil/compras'
           component={CompraContainer}
+        />
+
+        <Route
+          exact
+          path='/miPerfil/addProduct'
+          component={AddProductoContainer}
         />
 
         <Redirect from="/" to="/home" />

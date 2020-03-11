@@ -31,3 +31,6 @@ export const ADD_COMPRA = ' ADD_COMPRA'
 export const RECEIVE_ALL_COMPRAS = 'RECEIVE_ALL_COMPRAS'
 export const ADD_VARIAS_COMPRAS = 'ADD_VARIAS_COMPRAS'
 
+
+//agregar porductos como admin
+export const ADD_PRODUCTO = 'ADD_PRODUCTO'
