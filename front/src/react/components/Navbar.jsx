@@ -32,26 +32,23 @@ export default ({
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto pt-3">
-          <li className="nav-item active" style={{fontWeight:"300",fontSize:"18px"}}>
+          <li
+            className="nav-item active"
+            style={{ fontWeight: "300", fontSize: "18px" }}
+          >
             <Link to="/home" className="nav-link" href="#">
               HOME <span className="sr-only">(current)</span>
             </Link>
           </li>
 
-          <li className="nav-item" style={{fontWeight:"300",fontSize:"18px"}}>
+          <li
+            className="nav-item"
+            style={{ fontWeight: "300", fontSize: "18px" }}
+          >
             <Link to="/products/page/1" className="nav-link">
               PRODUCTOS
             </Link>
           </li>
-          
-          <li className="nav-item" style={{fontWeight:"300",fontSize:"18px"}}>
-            <p className="nav-link">ABOUT US</p>
-          </li>
-          
-          <li className="nav-item" style={{fontWeight:"300",fontSize:"18px"}}>
-            <p className="nav-link">CONTACTO</p>
-          </li>
-          
         </ul>
 
         <form className="form-inline my-2 my-lg-0" onSubmit={onSubmitSearch}>
@@ -66,7 +63,7 @@ export default ({
           />
           <button
             className="btn btn-outline-success my-2 my-sm-0"
-            style={{color:"#1c4c50", borderColor: "#1c4c50"}}
+            style={{ color: "#1c4c50", borderColor: "#1c4c50" }}
             type="submit"
           >
             Search
@@ -79,7 +76,7 @@ export default ({
           <UserInfo user={user} onSubmitLogout={onSubmitLogout} />
         </div>
       ) : (
-        <div className="row ml-1" >
+        <div className="row ml-1">
           <UserRegister
             onSubmitForm={onSubmitForm}
             handlerInputForm={handlerInputForm}

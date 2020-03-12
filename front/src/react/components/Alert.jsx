@@ -6,8 +6,7 @@ import { Link } from "react-router-dom";
 export default ({ pedorro, cambio }) => {
   const [show, setShow] = useState(true);
 
-  const handleClose = () => setShow(false);
-  console.log(cambio, "kajsndkjansdkjasdnkj");
+  //const handleClose = () => setShow(false);
 
   return (
     <Modal show={show}>

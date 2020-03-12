@@ -18,12 +18,13 @@ import ProductsSearchByPriceContainer from "../containers/ProductsSearchByPriceC
 import ProductsSearchByAlfabetContainer from "../containers/ProductsSearchByAlfabetContainer";
 import UserListaContainer from "../containers/UserListaContainer";
 import CompraContainer from "../containers/CompraContainer";
-import RatingContainer from "../containers/RatingContainer";
 import AddProductoContainer from "../containers/AddProductoContainer";
 import AdminContainer from "../containers/AdminContainer";
 import EditProductContainer from "../containers/EditProductContainer";
-import EditProductFormContainer from '../containers/EditProductFormContainer'
-import CategoriesAdminContainer from '../containers/CategoriesAdminContainer'
+import EditProductFormContainer from "../containers/EditProductFormContainer";
+import CategoriesAdminContainer from "../containers/CategoriesAdminContainer";
+import FormPasswordContainer from "../containers/FormPasswordContainer";
+import RatingContainer from "../containers/RatingContainer";
 import AddCategoriesContainer from '../containers/AddCategoriesContainer'
 import EditCategoryContainer from '../containers/EditCategoryContainer'
 
@@ -85,6 +86,7 @@ const Main = ({ user, userLogin }) => {
 
         <Route exact path="/miPerfil/compras" component={CompraContainer} />
 
+
         <Route
           exact
           path="/miPerfil/compras/:compraId/valorar/:productoId"
@@ -93,33 +95,26 @@ const Main = ({ user, userLogin }) => {
 
         <Route
           exact
-          path='/admin/addProduct'
+          path="/admin/addProduct"
           component={AddProductoContainer}
         />
 
-        <Route
-          exact
-          path='/admin'
-          component={AdminContainer}
-        />
+        <Route exact path="/admin" component={AdminContainer} />
 
         <Route
           exact
-          path='/admin/editProduct'
+          path="/admin/editProduct"
           component={EditProductContainer}
         />
 
-        <Route
-          exact
-          path='/posta/:id'
-          component={EditProductFormContainer}
-        />
+        <Route exact path="/posta/:id" component={EditProductFormContainer} />
 
         <Route
           exact
-          path='/admin/listCategories'
+          path="/admin/listCategories"
           component={CategoriesAdminContainer}
         />
+
 
         <Route
           exact
@@ -132,7 +127,6 @@ const Main = ({ user, userLogin }) => {
           path='/admin/editCategory/:id'
           component={EditCategoryContainer}
         />
-
 
         <Redirect from="/" to="/home" />
       </Switch>
