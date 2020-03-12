@@ -17,7 +17,8 @@ export default ({
   invalidData
 }) => {
   return (
-    <div className="card container" style={{ backgroundColor: "#172b3a" }}>
+    <div className="card" style={{backgroundColor:"#172b3a",position:"fixed"}}>
+
       <div style={{
         backgroundColor: "#172b3a",
         height: "100vh",
