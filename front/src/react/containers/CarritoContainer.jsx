@@ -1,18 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import {fetchCarritos,carritoDelete } from "../../redux/action-creators/carrito";
+import {
+  fetchCarritos,
+  carritoDelete
+} from "../../redux/action-creators/carrito";
 import "../css/estilosPerfil.css";
 import { createVariasCompras } from "../../redux/action-creators/compras";
 
 import CarritoList from "../components/CarritoList";
 import Footer from "../components/Footer";
+import Loading from "../components/Loading";
 
-const CarritoContaienr = ({ deleteCart, fetchCarritos, listaCarrito, createVariasCompras }) => {
-  const [esVisible, setEsVisible] = useState(false)
+const CarritoContaienr = ({
+  deleteCart,
+  fetchCarritos,
+  createVariasCompras,
+  listaCarritos
+}) => {
+  const [esVisible, setEsVisible] = useState(false);
 
   useEffect(() => {
     fetchCarritos();
-  }, [])
+  }, []);
 
   const handlerButtonDelete = id => {
     deleteCart(id);
@@ -20,21 +29,24 @@ const CarritoContaienr = ({ deleteCart, fetchCarritos, listaCarrito, createVaria
 
   const handleButtonComprar = e => {
     e.preventDefault();
-    createVariasCompras()
-      .then(algo => console.log("todo bien"));
+    createVariasCompras();
   };
 
-  const mostrarDetalle = (e) => {
-    e.preventDefault()
-    setEsVisible(!esVisible)
-  }
+  const mostrarDetalle = e => {
+    e.preventDefault();
+    setEsVisible(!esVisible);
+  };
 
   return (
     <div>
       <div className="container-fluid mt-3 mb-3">
         <div className="card profile-card-2">
           <div className="card-img-block">
-            <img className="img-fluid" src="/imagenes/Fondos/fondofranja.png" alt="Card image cap" />
+            <img
+              className="img-fluid"
+              src="/imagenes/Fondos/fondofranja.png"
+              alt="Card image cap"
+            />
           </div>
           <div className="card-body2">
             <img
@@ -42,14 +54,17 @@ const CarritoContaienr = ({ deleteCart, fetchCarritos, listaCarrito, createVaria
               alt="shop-image"
               className="profile"
             />
-            <CarritoList
-              handlerButtonDelete={handlerButtonDelete}
-              listaCarrito={listaCarrito}
-              handleButtonComprar={handleButtonComprar}
-              mostrarDetalle={mostrarDetalle}
-              esVisible={esVisible}
-            />
-
+            {listaCarritos ? (
+              <CarritoList
+                mostrarDetalle={mostrarDetalle}
+                handlerButtonDelete={handlerButtonDelete}
+                listaCarrito={listaCarritos}
+                handleButtonComprar={handleButtonComprar}
+                esVisible={esVisible}
+              />
+            ) : (
+              <Loading />
+            )}
           </div>
         </div>
       </div>
@@ -60,14 +75,14 @@ const CarritoContaienr = ({ deleteCart, fetchCarritos, listaCarrito, createVaria
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    listaCarrito: state.carrito.listaCarrito,
-    user: state.login.userLogueado.id
+    user: state.login.userLogueado.id,
+    listaCarritos: state.carrito.listaCarrito
   };
 };
 
 const mapDispathToProps = (dispatch, ownProps) => {
   return {
-    fetchCarritos: id => dispatch(fetchCarritos(id)),
+    fetchCarritos: () => dispatch(fetchCarritos()),
     deleteCart: id => dispatch(carritoDelete(id)),
     createVariasCompras: () => dispatch(createVariasCompras())
   };

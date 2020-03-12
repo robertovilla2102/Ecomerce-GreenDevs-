@@ -7,8 +7,9 @@ const Carrito = db.define("carrito", {
   estado: {
     //pending , comprado
     type: S.STRING,
-    defaultValue: 'pending'
-  }
-})
+    defaultValue: "pending"
+  },
+  valorado: { type: S.BOOLEAN, defaultValue: false }
+});
 
 module.exports = Carrito;

@@ -5,6 +5,8 @@ export const RECEIVE_ONE_PRODUCT = "RECEIVE_ONE_PRODUCT";
 // trae TODOS los productos de una categoria
 export const RECEIVE_ALL_CATEGORIES = "RECIVE_ALL_CATEGORIES";
 export const RECEIVE_ONE_CATEGORY = "RECEIVE_ONE_CATEGORY";
+export const RECEIVE_CATEGOTY_POSTA = 'RECEIVE_CATEGOTY_POSTA'
+
 
 export const RECIVE_PRODUCTS_SEARCH = "RECIVE_PRODUCTS_SEARCH";
 
@@ -30,6 +32,7 @@ export const EDIT_PERFIL = "EDIT_PERFIL";
 export const ADD_COMPRA = " ADD_COMPRA";
 export const RECEIVE_ALL_COMPRAS = "RECEIVE_ALL_COMPRAS";
 export const ADD_VARIAS_COMPRAS = "ADD_VARIAS_COMPRAS";
+export const RECEIVE_COMPRA = "RECEIVE_COMPRA";
 
 //agregar porductos como admin
 export const ADD_PRODUCTO = 'ADD_PRODUCTO'

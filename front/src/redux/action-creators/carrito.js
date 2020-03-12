@@ -26,10 +26,12 @@ export const createCarrito = (productID, body) => dispatch => {
 
 //buscar todos los carritos relacionados con un UserID
 export const fetchCarritos = () => dispatch => {
-  axios
+  return axios
     .get(`http://localhost:3001/api/carrito/`)
-    .then(carritos => carritos.data)
-    .then(encontrados => dispatch(receiveCarrito(encontrados)))
+    .then(carritos => {
+      dispatch(receiveCarrito(carritos.data));
+      return carritos.data;
+    })
     .catch(err => console.error(err));
 };
 

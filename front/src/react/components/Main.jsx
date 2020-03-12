@@ -18,14 +18,15 @@ import ProductsSearchByPriceContainer from "../containers/ProductsSearchByPriceC
 import ProductsSearchByAlfabetContainer from "../containers/ProductsSearchByAlfabetContainer";
 import UserListaContainer from "../containers/UserListaContainer";
 import CompraContainer from "../containers/CompraContainer";
-
 import AddProductoContainer from "../containers/AddProductoContainer";
 import AdminContainer from "../containers/AdminContainer";
 import EditProductContainer from "../containers/EditProductContainer";
 import EditProductFormContainer from "../containers/EditProductFormContainer";
 import CategoriesAdminContainer from "../containers/CategoriesAdminContainer";
-
 import FormPasswordContainer from "../containers/FormPasswordContainer";
+import RatingContainer from "../containers/RatingContainer";
+import AddCategoriesContainer from '../containers/AddCategoriesContainer'
+import EditCategoryContainer from '../containers/EditCategoryContainer'
 
 const Main = ({ user, userLogin }) => {
   useEffect(() => {
@@ -71,7 +72,6 @@ const Main = ({ user, userLogin }) => {
 
         <Route exact path="/miPerfil" component={PerfilUsuarioContainer} />
 
-        <Route exact path="/editPassword" component={FormPasswordContainer} />
         <Route exact path="/editPerfil" component={EditPerfil} />
 
         <Route exact path="/userList" component={UserListaContainer} />
@@ -85,6 +85,13 @@ const Main = ({ user, userLogin }) => {
         />
 
         <Route exact path="/miPerfil/compras" component={CompraContainer} />
+
+
+        <Route
+          exact
+          path="/miPerfil/compras/:compraId/valorar/:productoId"
+          component={RatingContainer}
+        />
 
         <Route
           exact
@@ -106,6 +113,19 @@ const Main = ({ user, userLogin }) => {
           exact
           path="/admin/listCategories"
           component={CategoriesAdminContainer}
+        />
+
+
+        <Route
+          exact
+          path='/admin/addCategory'
+          component={AddCategoriesContainer}
+        />
+
+        <Route
+          exact
+          path='/admin/editCategory/:id'
+          component={EditCategoryContainer}
         />
 
         <Redirect from="/" to="/home" />

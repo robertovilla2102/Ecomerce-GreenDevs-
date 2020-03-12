@@ -39,11 +39,8 @@ const ProductContainer = ({
     e.preventDefault();
     createCarrito(id, {
       cantidad: 1,
-      user: usuario
-    }).then(() => console.log("entre"), setBooleanCarrito(true));
-  };
-  const cambio = () => {
-    setBooleanCarrito(false);
+      userId: usuario
+    });
   };
 
   const onChangePage = (e, page) => {

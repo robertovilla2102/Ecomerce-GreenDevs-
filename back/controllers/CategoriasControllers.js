@@ -21,9 +21,17 @@ CategoriasController.buscarProductosDeUnaCategoria = (req, res) => {
 };
 
 CategoriasController.agregarUnaCategoria = (req, res) => {
-  Categoria.create(req.body)
+  console.log(req.body)
+
+  Categoria.create({
+    name: req.body.body.name,
+    imgCategory: req.body.body.imgCategory
+  })
     .then(() => {
-      res.sendStatus(201);
+      Categoria.findAll()
+        .then(categorias => {
+          res.status(201).json(categorias)
+        })
     })
     .catch(err => res.send(err));
 };
@@ -37,6 +45,34 @@ CategoriasController.eliminarUnaCategoria = (req, res) => {
         })
     })
     .catch(err => res.send(err));
-};
+}
+
+CategoriasController.updateCategory = (req, res) => {
+  console.log(req.body)
+
+  Categoria.update({
+    name: req.body.body.name,
+    imgCategory: req.body.body.imgCategory
+  }, {
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(() => {
+      Categoria.findAll()
+        .then(categorias => {
+          res.status(201).json(categorias)
+        })
+    })
+    .catch(err => res.send(err));
+}
+
+CategoriasController.traerUno = (req, res) => {
+  Categoria.findByPk(req.params.id)
+    .then(categorias => {
+      res.status(201).json(categorias)
+    })
+    .catch(err => res.send(err));
+}
 
 module.exports = CategoriasController;

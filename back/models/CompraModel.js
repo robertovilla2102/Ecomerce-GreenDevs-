@@ -1,7 +1,7 @@
 const db = require("../config/db");
 const S = require("sequelize");
 
-class Compra extends S.Model { }
+class Compra extends S.Model {}
 
 Compra.init(
   {
