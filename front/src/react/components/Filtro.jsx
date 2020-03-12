@@ -29,7 +29,7 @@ export default ({
     			  <input type="text" name="maxPrice" className="form-control" placeholder="$1,0000" onChange={onChange}/>
     			</div>
   			</div>
-      <button onClick={filterByPrice} className="btn-block btn-info">Filtrar</button>
+      <button onClick={filterByPrice} className="btn-block btn-info" style={{backgroundColor:"#3e808e", border:"#3e808e"}}> Filtrar</button>
 			</div>
 		</div>
 	</article>
@@ -63,8 +63,8 @@ export default ({
       <h6 className="title" style={{marginBottom:"0rem", fontWeight:"500",fontSize:"17px"}}>Ordenar A-Z </h6>
     </header>
   <div className="ml-3 mr-3 mt-3 mb-3">
-      <button className= "btn-info btn-block" style={{marginTop:"3px",marginBottom:"8px"}} onClick={e => filterByAlfabet(e, "asc")}>Ascendente</button>
-      <button className= "btn-info btn-block" style={{marginTop:"8px",marginBottom:"3px"}} onClick={e => filterByAlfabet(e, "desc")}>Descendente</button>
+      <button className= "btn-info btn-block" style={{marginTop:"3px",marginBottom:"8px",backgroundColor:"#3e808e", border:"#3e808e"}} onClick={e => filterByAlfabet(e, "asc")}>Ascendente</button>
+      <button className= "btn-info btn-block" style={{marginTop:"8px",marginBottom:"3px",backgroundColor:"#3e808e", border:"#3e808e"}} onClick={e => filterByAlfabet(e, "desc")}>Descendente</button>
   </div>
   </article>
 </div>
