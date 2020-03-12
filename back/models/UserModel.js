@@ -15,7 +15,10 @@ User.init(
       unique: true,
       validate: { isEmail: true, notEmpty: true }
     },
-    password: { type: S.STRING, allowNull: false },
+    password: {
+      type: S.STRING,
+      allowNull: false
+    },
     birthDay: { type: S.STRING, allowNull: false },
     address: { type: S.STRING, allowNull: false },
     salt: { type: S.STRING },

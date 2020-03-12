@@ -18,7 +18,7 @@ ProductoController.buscarProductos = (req, res) => {
       });
     }
   } else {
-    Producto.findAll()
+    Producto.findAll({ where: { id: { [Op.gt]: 0 } } })
       .then(productos => {
         res.status(200).json(productos);
       })
@@ -54,44 +54,44 @@ ProductoController.addProducto = (req, res) => {
     categoryId: req.body.body.categoryId
   })
     .then(producto => {
-      res.status(201).json(producto)
+      res.status(201).json(producto);
     })
-    .catch(err => res.send(err))
-}
+    .catch(err => res.send(err));
+};
 
 ProductoController.modificarProducto = (req, res) => {
-  Producto.update({
-    name: req.body.body.name,
-    price: req.body.body.price,
-    imgProfile: req.body.body.imgProfile,
-    stock: req.body.body.stock,
-    description: req.body.body.description,
-    categoryId: req.body.body.categoryId
-  }, {
-    returning: true,
-    where: {
-      id: req.params.id
+  Producto.update(
+    {
+      name: req.body.body.name,
+      price: req.body.body.price,
+      imgProfile: req.body.body.imgProfile,
+      stock: req.body.body.stock,
+      description: req.body.body.description,
+      categoryId: req.body.body.categoryId
+    },
+    {
+      returning: true,
+      where: {
+        id: req.params.id
+      }
     }
-  })
+  )
     .then(([updated, [producto]]) => {
-      res.status(201).json(producto)
+      res.status(201).json(producto);
     })
-    .catch(err => res.send(err))
-}
+    .catch(err => res.send(err));
+};
 
 ProductoController.deleteProduct = (req, res) => {
   Producto.destroy({
     where: {
       id: req.params.id
     }
-  })
-    .then(product => {
-      Producto.findAll()
-        .then(productos => {
-          res.status(200).json(productos)
-        })
-    })
-}
-
+  }).then(product => {
+    Producto.findAll().then(productos => {
+      res.status(200).json(productos);
+    });
+  });
+};
 
 module.exports = ProductoController;
