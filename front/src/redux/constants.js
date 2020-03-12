@@ -32,6 +32,9 @@ export const RECEIVE_ALL_COMPRAS = "RECEIVE_ALL_COMPRAS";
 export const ADD_VARIAS_COMPRAS = "ADD_VARIAS_COMPRAS";
 export const RECEIVE_COMPRA = "RECEIVE_COMPRA";
 
+//agregar porductos como admin
+export const ADD_PRODUCTO = 'ADD_PRODUCTO'
+
 //Ratings
 
 export const ADD_RATING = "ADD_RATING";

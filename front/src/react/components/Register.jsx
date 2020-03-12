@@ -16,14 +16,22 @@ export default ({
   passError,
   buttonDisable
 }) => (
-  <div className="card ">
+
+  <div className="card" style={{backgroundColor:"#172b3a"}}>
+    <div style={{
+      backgroundColor: "#172b3a",
+      height: "100vh",
+      width: "102vw",
+      left: "-2px",
+      position: "fixed",
+      zIndex: "-1",
+      }}></div>
     <img
-      src="https://cdn.euroinnova.edu.es/img/subidasEditor/cursos-de-botanica-1571737005.webp"
-      class="card-img"
+      src="/imagenes/Fondos/imgcentrog.png"
       alt="Responsive image"
     />
     <div className="card-img-overlay text-white mt-5">
-      <div className="col-md-4 mx-auto p-5 bg-success">
+      <div className="col-md-4 mx-auto p-5" style={{backgroundColor:"#172b3ab8"}}>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <CustomInput
@@ -34,7 +42,8 @@ export default ({
               placeholderInput={"Enter your name"}
             />
             <div className="container">
-              {nameError ? <AlertInput msg={NAME_FORMAT_INCORRECT} /> : null}
+              {nameError ? <AlertInput msg={NAME_FORMAT_INCORRECT}
+              style={{backgroundColor:"#F27830"}}/> : null}
             </div>
           </div>
 
@@ -47,7 +56,7 @@ export default ({
               placeholderInput={"Enter your email"}
             />
             <div className="container">
-              {emailError ? <AlertInput msg={EMAIL_FORMAT_INCORRECT} /> : null}
+              {emailError ? <AlertInput msg={EMAIL_FORMAT_INCORRECT}/> : null}
             </div>
           </div>
 

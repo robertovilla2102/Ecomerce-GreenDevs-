@@ -36,6 +36,11 @@ export default ({ compras }) => {
                 </td>
                 <td className="align-middle">{compra.id}</td>
 
+              <td className="align-middle">{compra.cantidad}</td>
+
+              <td className="align-middle">{compra.cantidad * compra.producto.price}</td>
+
+
                 <td className="align-middle">{compra.cantidad}</td>
 
                 <td className="align-middle">

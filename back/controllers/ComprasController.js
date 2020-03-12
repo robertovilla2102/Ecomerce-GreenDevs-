@@ -1,5 +1,5 @@
-const ComprasController = {};
-const { Carrito, Compra, Producto } = require("../models/index");
+const ComprasController = {}
+const { Carrito, Compra, Producto } = require("../models/index")
 
 ComprasController.buscarCompras = (req, res) => {
   Carrito.findAll({
@@ -232,7 +232,7 @@ ComprasController.addMultiples2 = async (req, res, next) => {
         }
       }
     );
-  });
+  })
 
   return console.log(arrCarritosUpdateados);
 };

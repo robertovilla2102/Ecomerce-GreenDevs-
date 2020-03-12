@@ -72,6 +72,7 @@ export default ({
               onClick={onSubmitComprar}
             >
               BUY NOW
+              
             </button>
           </div>
         </div>

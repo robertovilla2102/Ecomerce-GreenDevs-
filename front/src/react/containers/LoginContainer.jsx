@@ -7,13 +7,15 @@ import {
   isValidEmail,
   isValidPassword
 } from "../../assets/validaciones-de-inputs";
+import Alert from "../components/Alert";
+import { LOGEASTE_ALERT } from "../../assets/mensajesAlert";
 
 const LoginContainer = ({ loginUser, history }) => {
   const [emailError, setEmailError] = useState(false);
   const [passError, setPassError] = useState(false);
   const [buttonDisable, setButtonDisable] = useState(true);
   const [invalidData, setInvalidData] = useState(false);
-
+  const [alertBoolean, setAlertBoolean] = useState(false);
   function handlerInput(e) {
     switch (e.target.name) {
       case "email":
@@ -45,8 +47,9 @@ const LoginContainer = ({ loginUser, history }) => {
       if (res && res.status == 401) {
         setInvalidData(true);
       } else {
+        console.log("entre2");
         setInvalidData(false);
-        history.push("/home");
+        setAlertBoolean(true);
       }
     });
   }
@@ -54,6 +57,7 @@ const LoginContainer = ({ loginUser, history }) => {
   return (
     <div className="container">
       <div className="row">
+        {alertBoolean ? <Alert pedorro={LOGEASTE_ALERT} /> : null}
         <Login
           handlerInput={handlerInput}
           handleSubmit={handleSubmit}

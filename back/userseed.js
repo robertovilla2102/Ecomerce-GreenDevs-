@@ -1,4 +1,4 @@
-const { Producto, Categoria } = require("./models/index");
+const { Producto, Categoria, User } = require("./models/index");
 
 Categoria.bulkCreate([
   {

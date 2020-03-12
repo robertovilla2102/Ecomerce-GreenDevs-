@@ -30,8 +30,10 @@ class PerfilUsuarioContainer extends React.Component {
       userEmail: this.state.userEmail,
       birthDay: this.state.birthDay,
       address: this.state.address
-    };
-    this.props.editPerfil(user).then(res => this.props.history.push("/home"));
+    }
+
+    this.props.editPerfil(user)
+      .then(res => this.props.history.push("/home"));
   }
 
   render() {
@@ -42,7 +44,7 @@ class PerfilUsuarioContainer extends React.Component {
             <div className="card-img-block">
               <img
                 className="img-fluid"
-                src="https://images.unsplash.com/photo-1506784693919-ef06d93c28d2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"
+                src="/imagenes/Fondos/fondofranja.png"
                 alt="Card image cap"
               />
             </div>

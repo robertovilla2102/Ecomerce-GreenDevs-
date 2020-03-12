@@ -33,6 +33,7 @@ export default ({ productList, onSubmitCarrito }) => (
                   <button
                     type="submit"
                     className="cart btn"
+                    style={{backgroundColor:"#3e808e"}}
                     onClick={e => onSubmitCarrito(e, product.id)}
                   >
                     <span className="price">${product.price}.00</span>

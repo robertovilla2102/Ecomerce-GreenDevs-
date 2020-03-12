@@ -3,7 +3,9 @@ import Carrito from "./Carrito";
 import ErrorDetected from "./ErrorDetected";
 import { CARRITO_VACIO } from "../../assets/ErrorsMsg";
 
-export default ({ listaCarrito, handlerButtonDelete, handleButtonComprar }) => {
+import VistaConfirmacion from './VistaConfirmacion'
+
+export default ({ listaCarrito, handlerButtonDelete, handleButtonComprar, mostrarDetalle, esVisible }) => {
   return (
     <div className="container">
       {listaCarrito.length > 0 ? (
@@ -29,18 +31,29 @@ export default ({ listaCarrito, handlerButtonDelete, handleButtonComprar }) => {
           </table>
 
           <button
-            className="btn btn-success"
-            type="submit"
-            onClick={handleButtonComprar}
+            className='btn btn-success'
+            type='submit'
+            onClick={mostrarDetalle}
           >
             COMPRAR
-          </button>
+            </button>
+
+          {esVisible ?
+            <VistaConfirmacion
+              mostrarDetalle={mostrarDetalle}
+              listaCarrito={listaCarrito}
+              handleButtonComprar={handleButtonComprar}
+            />
+            : null
+          }
         </div>
-      ) : (
-        <div className="col-md-8 mx-auto">
+
+      )
+        : (
+         <div className="col-md-8 mx-auto">
           <ErrorDetected msg={CARRITO_VACIO} />
         </div>
-      )}
+        )}
     </div>
   );
 };

@@ -59,3 +59,27 @@ export const imgSingleView = {
   width: "80%",
   height: "100%"
 };
+
+export const popUp = {
+  position: 'fixed',
+  width: '100%',
+  height: '100%',
+  top: '0',
+  left: '0',
+  right: '0',
+  bottom: '0',
+  margin: 'auto',
+  backgroundColor: 'rgba(0, 0, 0, 0.5)  '
+}
+
+export const popUpInner = {
+  position: 'absolute',
+  left: '10%',
+  right: '10%',
+  top: '5%',
+  bottom: '5%',
+  margin: 'auto',
+  borderRadius: '20px',
+  background: 'white',
+  padding: '30px',
+}

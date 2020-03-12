@@ -3,23 +3,21 @@ const { User } = require("../models/index");
 
 
 AdminController.asignarAdministrador = (req, res) => {
-  User.update({ isAdmin: true }, {where:{id:req.params.userId}})
-    .then(() => {
-      res.sendStatus(200);
-    })
-    .catch(err => res.send(err));
-};
-
-AdminController.quitarAdministrador = (req, res) => {
-  User.update({ isAdmin: false }, {where:{id:req.params.userId}})
-    .then(() => {
-      res.sendStatus(200);
+  User.findOne(req.params.id)
+    .then(user => {
+      user.update({ isAdmin: !user.isAdmin }, { where: { id: req.params.userId } })
+        .then(() => {
+          User.findAll()
+            .then(users => {
+              res.status(200).json(users)
+            })
+        })
     })
     .catch(err => res.send(err));
 };
 
 AdminController.borrarUsuario = (req, res) => {
-  User.destroy({ where: {id:req.params.userId} })
+  User.destroy({ where: { id: req.params.userId } })
     .then(() => {
       res.sendStatus(200);
     })
