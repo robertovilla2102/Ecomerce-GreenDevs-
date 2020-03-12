@@ -15,7 +15,7 @@ export default ({
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light align-middle">
       <Link to="/home" className="navbar-brand align-middle" href="#">
-        <img src="/imagenes/Logo/logo.png" width="110" height="40" alt="" />
+        <img src="/imagenes/Logo/logo2.png" width="110" height="auto" alt="" />
       </Link>
 
       <button
@@ -31,24 +31,27 @@ export default ({
       </button>
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="navbar-nav mr-auto">
-          <li className="nav-item active">
+        <ul className="navbar-nav mr-auto pt-3">
+          <li className="nav-item active" style={{fontWeight:"300",fontSize:"18px"}}>
             <Link to="/home" className="nav-link" href="#">
-              Home <span className="sr-only">(current)</span>
+              HOME <span className="sr-only">(current)</span>
             </Link>
           </li>
 
-          <li className="nav-item">
+          <li className="nav-item" style={{fontWeight:"300",fontSize:"18px"}}>
             <Link to="/products/page/1" className="nav-link">
-              Products
+              PRODUCTOS
             </Link>
           </li>
-
-          <li className="nav-item"></li>
-
-          <li className="nav-item">
-            <p className="nav-link">Contacto</p>
+          
+          <li className="nav-item" style={{fontWeight:"300",fontSize:"18px"}}>
+            <p className="nav-link">ABOUT US</p>
           </li>
+          
+          <li className="nav-item" style={{fontWeight:"300",fontSize:"18px"}}>
+            <p className="nav-link">CONTACTO</p>
+          </li>
+          
         </ul>
 
         <form className="form-inline my-2 my-lg-0" onSubmit={onSubmitSearch}>
@@ -63,6 +66,7 @@ export default ({
           />
           <button
             className="btn btn-outline-success my-2 my-sm-0"
+            style={{color:"#1c4c50", borderColor: "#1c4c50"}}
             type="submit"
           >
             Search
@@ -75,13 +79,13 @@ export default ({
           <UserInfo user={user} onSubmitLogout={onSubmitLogout} />
         </div>
       ) : (
-          <div className="row ml-1">
-            <UserRegister
-              onSubmitForm={onSubmitForm}
-              handlerInputForm={handlerInputForm}
-            />
-          </div>
-        )}
+        <div className="row ml-1" >
+          <UserRegister
+            onSubmitForm={onSubmitForm}
+            handlerInputForm={handlerInputForm}
+          />
+        </div>
+      )}
     </nav>
   );
 };

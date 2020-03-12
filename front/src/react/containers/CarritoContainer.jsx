@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import {
-  fetchCarritos,
-  carritoDelete
-} from "../../redux/action-creators/carrito";
+import {fetchCarritos,carritoDelete } from "../../redux/action-creators/carrito";
 import "../css/estilosPerfil.css";
 import { createVariasCompras } from "../../redux/action-creators/compras";
 
@@ -12,7 +9,6 @@ import Footer from "../components/Footer";
 
 const CarritoContaienr = ({ deleteCart, fetchCarritos, listaCarrito, createVariasCompras }) => {
   const [esVisible, setEsVisible] = useState(false)
-
 
   useEffect(() => {
     fetchCarritos();
@@ -38,11 +34,7 @@ const CarritoContaienr = ({ deleteCart, fetchCarritos, listaCarrito, createVaria
       <div className="container-fluid mt-3 mb-3">
         <div className="card profile-card-2">
           <div className="card-img-block">
-            <img
-              className="img-fluid"
-              src="https://images.unsplash.com/photo-1506784693919-ef06d93c28d2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"
-              alt="Card image cap"
-            />
+            <img className="img-fluid" src="/imagenes/Fondos/fondofranja.png" alt="Card image cap" />
           </div>
           <div className="card-body2">
             <img
