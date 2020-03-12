@@ -1,9 +1,7 @@
 const router = require("express").Router();
 const RatingsControllers = require("../controllers/RatingsControllers");
 
-router.get("/valoracion/:id", RatingsControllers.buscarValoracionPorId);
-
-router.get("/all-ratings", RatingsControllers.buscarValoraciones);
+router.get("/all-ratings/:id", RatingsControllers.buscarValoraciones);
 
 router.post("/add-rating/:id", RatingsControllers.agregarValoracion);
 

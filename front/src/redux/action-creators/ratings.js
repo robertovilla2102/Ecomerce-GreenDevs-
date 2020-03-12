@@ -1,4 +1,4 @@
-import { ADD_RATING, RECEIVE_RATINGS } from "../constants";
+import { ADD_RATING, RECEIVE_RATINGS, RECEIVE_RATING } from "../constants";
 import Axios from "axios";
 
 const setRating = rating => ({
@@ -11,11 +11,22 @@ const receiveRatings = ratings => ({
   ratings
 });
 
+const ratingGeneral = rating => ({
+  type: RECEIVE_RATING,
+  rating
+});
+
+export const fetchRatingById = id => dispatch => {
+  Axios.get(`/api/rating/all-ratings/${id}`)
+    .then(res => dispatch(ratingGeneral(res.data)))
+    .catch(err => err);
+};
+
 export const fetchAllRatings = dispatch => {
-  return Axios.get("/api/rating/ratings/all-ratings")
+  return Axios.get("/api/ratings/all-ratings")
     .then(res => {
       dispatch(receiveRatings(res.data));
-      return ratings;
+      return res;
     })
     .catch(err => err);
 };

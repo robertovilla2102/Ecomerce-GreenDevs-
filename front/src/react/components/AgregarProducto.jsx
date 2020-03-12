@@ -15,6 +15,7 @@ InputChangue
         </h1>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
+
             <input
               optionsClass={"d-flex"}
               onChange={InputChangue}
@@ -69,27 +70,31 @@ InputChangue
             />
           </div>
             <div className="col-md-8 p-0">
-              <select
-                className="custom-select"
-                onBlur={InputChangue}
-                name="imgProfile"
-                style={{width:"100%"}}
-              >
-                <option value="">Selecciona una categoría</option>
-                <option value="1">Cactus</option>
-                <option value="2">Suculentas</option>
-                <option value="3">Bonsais</option>
-              </select>
+              <div>
+            <label>Categoria</label>
+
+            <select
+              className="custom-select"
+              onBlur={InputChangue}
+              name="categoryId"
+            >
+              <option value="">Categoria</option>
+              {categorias.map(categoria => (
+                <option value={categoria.id} key={categoria.id}>{categoria.name}</option>
+              ))}
+            </select>
+          </div>
             </div>
             <button
+              type='submit'
               className={"btn btn-md btn-outline-light mt-3 btn-block"}>
               Agregar producto
             </button>
         </form>
       </div>
-
   <div>
     <img src={"/imagenes/Fondos/imgcentrog.png"} />
   </div>
 </div>
 );
+

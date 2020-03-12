@@ -74,7 +74,7 @@ CarritoController.agregarProductoLogeado = function(req, res) {
   let datos = req.body.body;
 
   Carrito.findOne({
-    where: { userId: user.id, productoId: productoId }
+    where: { userId: user.id, productoId: productoId, estado: "pending" }
   })
     .then(carrito => {
       if (carrito) {
@@ -82,8 +82,6 @@ CarritoController.agregarProductoLogeado = function(req, res) {
           { cantidad: carrito.cantidad + datos.cantidad },
           { returning: true, where: { id: carrito.id } }
         ).then(([count, car]) => {
-          console.log("SUMADO", car);
-
           res.sendStatus(200);
         });
       } else {
@@ -92,8 +90,6 @@ CarritoController.agregarProductoLogeado = function(req, res) {
           userId: user.id,
           productoId: productoId
         }).then(car => {
-          console.log("CREADO", car);
-
           res.sendStatus(200);
         });
       }

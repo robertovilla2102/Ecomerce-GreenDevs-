@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import Categories from '../components/Categories'
 import { connect } from 'react-redux'
 
 //importandoaction-reducer
 import { fetchCategories, deleteCategories } from '../../redux/action-creators/categories'
 
-import Categories from '../components/Categories'
-
-const CategoriesAdminContainer = ({
-  fetchCategories,
-  categorias, deleteCategories
-}) => {
-
+const CategoriesAdminContainer = ({ fetchCategories, categorias, deleteCategories }) => {
   useEffect(() => {
     fetchCategories()
   }, [])
@@ -41,7 +36,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispathToProps = (dispatch, ownProps) => {
   return {
     fetchCategories: () => dispatch(fetchCategories()),
-    deleteCategories: id => dispatch(deleteCategories(id))
+    deleteCategories: id => dispatch(deleteCategories(id)),
   };
 };
 

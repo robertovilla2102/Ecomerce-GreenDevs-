@@ -1,5 +1,6 @@
-const ComprasController = {}
-const { Carrito, Compra, Producto } = require("../models/index")
+const ComprasController = {};
+const { Carrito, Compra, Producto } = require("../models/index");
+
 
 ComprasController.buscarCompras = (req, res) => {
   Carrito.findAll({
@@ -53,6 +54,36 @@ ComprasController.addCompra = (req, res) => {
   let productoId = req.params.productId;
   let user = req.user;
 
+
+  const email = (email, content) => {
+    const nodemailer = require('nodemailer');
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'robertvlopez27@gmail.com',
+        pass: 'elgatomu'
+      },
+    });
+
+    const mailOptions = {
+      from: 'robertvlopez27@gmail.com',
+      to: `${email}`,
+      subject: 'Sending Email using Node.js',
+      text: `That was easy! Has comprado ${content} en nuestra web BotanicaBinaria`
+    };
+
+    console.log("sending email", mailOptions);
+    transporter.sendMail(mailOptions, function (error, info) {
+      console.log("senMail returned!");
+      if (error) {
+        console.log("ERROR!!!!!!", error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
+  }
+
+
   Compra.create({
     dateCompra: 123,
     salt: `${Math.round(Math.random() * 12345)}`
@@ -63,7 +94,8 @@ ComprasController.addCompra = (req, res) => {
       Carrito.findOne({
         where: {
           userId: req.user.id,
-          productoId: productoId
+          productoId: productoId,
+          estado: "pending"
         }
       }).then(carrito => {
         if (carrito) {
@@ -92,7 +124,9 @@ ComprasController.addCompra = (req, res) => {
                   }
                 )
                 .then(([rowsUpdate, [updateProducto]]) => {
-                  res.status(200).json({ updateProducto, carrito });
+                  console.log('se ha anadidocon exito')
+                  email(req.user.userEmail, updateCarrito.cantidad)
+                  res.status(200).json({ updateProducto, carrito })
                 })
                 .catch(err => res.json(err));
             });
@@ -121,6 +155,7 @@ ComprasController.addCompra = (req, res) => {
                   }
                 )
                 .then(([rowsUpdate, [updateProducto]]) => {
+                  email(req.user.userEmail, updateCarrito.cantidad)
                   res.status(200).json({ updateProducto, carrito });
                 })
                 .catch(err => res.json(err));
@@ -154,16 +189,12 @@ ComprasController.addMultiples = (req, res) => {
     dateCompra: 123,
     salt: `${Math.round(Math.random() * 12345)}`
   }).then(compra => {
-    console.log("se creo correctamente laorden de compre");
-
     Carrito.findAll({
       where: {
         userId: req.user.id,
         estado: "pending"
       }
     }).then(carritos => {
-      console.log("estos son los carritos");
-
       return Promise.all(
         carritos.map(carrito => {
           return carrito.update(
@@ -232,7 +263,7 @@ ComprasController.addMultiples2 = async (req, res, next) => {
         }
       }
     );
-  })
+  });
 
   return console.log(arrCarritosUpdateados);
 };

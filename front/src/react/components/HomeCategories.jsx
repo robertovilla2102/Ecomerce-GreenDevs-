@@ -10,7 +10,7 @@ import {
 
 export default ({ categories }) => {
   return (
-    <div style={{ marginBottom: "0" }}>
+    <div style={{ marginTop: "5%", marginBottom: "5%" }}>
       <div className="container-fluid">
         <div className="row d-flex justify-content-center">
           {categories.map(cat => {

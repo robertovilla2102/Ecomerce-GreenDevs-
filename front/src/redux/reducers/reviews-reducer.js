@@ -1,8 +1,9 @@
-import { ADD_RATING, RECEIVE_RATINGS } from "../constants";
+import { ADD_RATING, RECEIVE_RATINGS, RECEIVE_RATING } from "../constants";
 
 const initialize = {
   ratings: [],
-  newRating: {}
+  newRating: {},
+  ratingGeneral: null
 };
 
 export default (state = initialize, action) => {
@@ -13,6 +14,10 @@ export default (state = initialize, action) => {
 
     case ADD_RATING: {
       return { ...state, newRating: action.rating };
+    }
+
+    case RECEIVE_RATING: {
+      return { ...state, ratingGeneral: action.rating };
     }
 
     default:
