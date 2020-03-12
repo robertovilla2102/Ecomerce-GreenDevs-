@@ -29,7 +29,7 @@ RatingsController.agregarValoracion = (req, res) => {
           }
         }
       ).then(() => {
-        res.status(201);
+        res.sendStatus(201);
       });
     })
     .catch(err => res.send(err));

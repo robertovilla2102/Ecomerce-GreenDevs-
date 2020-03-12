@@ -34,7 +34,11 @@ const RatingContainer = ({
     e.preventDefault();
     let review = { rating: rating, review: comment, productoId: product.id };
     let carritoId = carrito.id;
-    addNewReview(review, carritoId).then(res => history.push("/home"));
+    addNewReview(review, carritoId).then(res => {
+      console.log("VUELVE");
+
+      history.push("/home");
+    });
   };
 
   return (
