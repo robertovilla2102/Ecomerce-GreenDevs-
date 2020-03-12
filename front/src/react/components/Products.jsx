@@ -3,17 +3,17 @@ import { Link } from "react-router-dom";
 import singleViewCard from "../css/singleViewCard.css";
 
 export default ({ productList, onSubmitCarrito }) => (
-  <div className="container">
+
     <div className="row page-wrapper">
       {productList.map((product, index) => (
-        <div key={product.id} className="page-inner">
-          <div className="row">
-            <div className="el-wrapper">
-              <div className="box-up">
+        <div key={product.id} className="page-inner col-lg-3" >
+          <div className="row" >
+            <div className="el-wrapper "  >
+              <div className="box-up ">
                 <Link
                   to={`/products/${product.id}`}
                   key={index}
-                  className="col-xs-3"
+
                 >
                   <img className="img" src={product.imgProfile} alt="" />
                 </Link>
@@ -48,5 +48,4 @@ export default ({ productList, onSubmitCarrito }) => (
         </div>
       ))}
     </div>
-  </div>
 );

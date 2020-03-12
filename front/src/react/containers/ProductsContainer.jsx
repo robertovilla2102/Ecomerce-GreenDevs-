@@ -21,7 +21,7 @@ const ProductContainer = ({
 }) => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(match.params.page || 1);
-  const [postsPerPage, setPostsPerPage] = useState(9);
+  const [postsPerPage, setPostsPerPage] = useState(8);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirtsPost = indexOfLastPost - postsPerPage;
@@ -51,15 +51,15 @@ const ProductContainer = ({
         <div className="col-md-3">
           <FiltroContainer />
         </div>
-        <div className="col-md-9">
+        <div className="col-md-9" >
           {lista ? (
-            <div className="container">
-              <div className="row">
+            <div>
+
                 <Products
                   onSubmitCarrito={onSubmitCarrito}
                   productList={currentPosts}
                 />
-              </div>
+
               <div className="container">
                 <div className="row">
                   <div className="col-md-3 mx-auto">

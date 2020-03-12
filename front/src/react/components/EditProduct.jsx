@@ -12,8 +12,10 @@ export default ({ productList, submitDelete }) => (
           <th scope="col"></th>
           <th scope="col">ID</th>
           <th scope="col">Producto</th>
-          <th scope="col">pecio</th>
+          <th scope="col">Precio</th>
           <th scope="col">Stock</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Eliminar</th>
         </tr>
 
       </thead>
@@ -33,13 +35,19 @@ export default ({ productList, submitDelete }) => (
 
             <td className="align-middle">
               <Link to={`/posta/${producto.id}`} key={i}>
-                <p>editar</p>
+                <button
+                  className="btn btn-info btn-block"
+                  style={{backgroundColor:"#1c4b50", border:"#1c4b50"}}
+                >
+                  Editar
+                </button>
               </Link>
             </td>
 
             <td className="align-middle">
               <button
-                className="btn btn-danger"
+                className="btn btn-danger btn-block"
+                style={{backgroundColor:"#F27830", border:"#F27830" }}
                 type="submit"
                 onClick={(e) => submitDelete(e, producto.id)}
               >

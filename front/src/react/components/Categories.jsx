@@ -5,7 +5,7 @@ export default ({ categorias, handlerSubmitDelete }) => (
     <table className="table text-center">
       <thead>
         <tr>
-          <th scope="col"></th>
+          <th scope="col" style={{width:"15%"}}></th>
           <th scope="col">ID</th>
           <th scope="col">Categoria</th>
           <th scope="col">Editar</th>
@@ -18,9 +18,9 @@ export default ({ categorias, handlerSubmitDelete }) => (
           return (
             <tr className="text-center" key={index}>
               <td>
-                <img className="profile-buy rounded-circle" src={categoria.imgCategory} style={{
-                  width: '70px',
-                  height: '70px'
+                <img className="profile-buy rounded-circle" src={"/imagenes/Categoria/cat2.png"} style={{
+                  width: '100px',
+                  height: 'auto'
                 }} />
               </td>
               <td className="align-middle">{categoria.id}</td>

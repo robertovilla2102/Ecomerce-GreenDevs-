@@ -8,7 +8,7 @@ import FiltroContainer from "./FiltroContainer";
 const ProductsSearchByPriceContainer = ({ lista, match, history }) => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(match.params.page || 1);
-  const [postsPerPage, setPostsPerPage] = useState(9);
+  const [postsPerPage, setPostsPerPage] = useState(8);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirtsPost = indexOfLastPost - postsPerPage;
