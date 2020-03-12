@@ -72,9 +72,7 @@ class ViewSingleContainer extends React.Component {
     });
   }
   cambio() {
-    console.log("entreee");
     this.setState({ boolean: false });
-
   }
 
   componentDidMount() {
@@ -94,20 +92,20 @@ class ViewSingleContainer extends React.Component {
           cantidad={this.state.cantidad}
           onSubmitComprar={this.onSubmitComprar}
         />
-
       </div>
     ) : (
-      <ViewSingle
-        product={this.props.producto}
-        onSubmitCarrito={this.onSubmitCarrito}
-        addCantidad={this.addCantidad}
-        removeCantidad={this.removeCantidad}
-        cantidad={this.state.cantidad}
-        onSubmitComprar={this.onSubmitComprar}
-      />
+      <div>
+        <ViewSingle
+          product={this.props.producto}
+          onSubmitCarrito={this.onSubmitCarrito}
+          addCantidad={this.addCantidad}
+          removeCantidad={this.removeCantidad}
+          cantidad={this.state.cantidad}
+          onSubmitComprar={this.onSubmitComprar}
+        />
         <RatingContainer />
       </div>
-    )
+    );
   }
 }
 
