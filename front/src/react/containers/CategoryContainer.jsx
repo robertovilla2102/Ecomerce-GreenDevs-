@@ -6,7 +6,7 @@ import FiltroContainer from "./FiltroContainer";
 
 const CategoryContainer = ({ productos, fetchCategory, match }) => {
   useEffect(() => {
-    fetchCategory(match.params.id || 1);
+    fetchCategory(match.params.id || 1).then(res => console.log(res));
   }, []);
 
   return (
@@ -16,7 +16,7 @@ const CategoryContainer = ({ productos, fetchCategory, match }) => {
           <FiltroContainer />
         </div>
         <div className="col-md-9">
-          <Products productList={productos} />
+          {productos.length > 0 ? <Products productList={productos} /> : null}
         </div>
       </div>
     </div>

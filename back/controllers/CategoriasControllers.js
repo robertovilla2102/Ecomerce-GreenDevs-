@@ -3,10 +3,18 @@ const { Producto, Categoria } = require("../models/index");
 
 CategoriasController.buscarCategorias = (req, res) => {
   Categoria.findAll()
-    .then(categoria => {
-      res.json(categoria);
+    .then(categorias => {
+      res.send(categorias);
     })
     .catch(err => res.status(500).send(err));
+};
+
+CategoriasController.traerUno = (req, res) => {
+  Categoria.findByPk(req.params.id)
+    .then(categoria => {
+      res.status(201).send(categoria);
+    })
+    .catch(err => res.send(err));
 };
 
 CategoriasController.buscarProductosDeUnaCategoria = (req, res) => {
@@ -15,23 +23,20 @@ CategoriasController.buscarProductosDeUnaCategoria = (req, res) => {
     include: [{ model: Categoria, as: "category" }]
   })
     .then(products => {
-      res.json(products);
+      res.send(products);
     })
     .catch(err => res.send(err));
 };
 
 CategoriasController.agregarUnaCategoria = (req, res) => {
-  console.log(req.body)
-
   Categoria.create({
     name: req.body.body.name,
     imgCategory: req.body.body.imgCategory
   })
     .then(() => {
-      Categoria.findAll()
-        .then(categorias => {
-          res.status(201).json(categorias)
-        })
+      Categoria.findAll().then(categorias => {
+        res.status(201).json(categorias);
+      });
     })
     .catch(err => res.send(err));
 };
@@ -39,40 +44,31 @@ CategoriasController.agregarUnaCategoria = (req, res) => {
 CategoriasController.eliminarUnaCategoria = (req, res) => {
   Categoria.destroy({ where: { id: req.params.id } })
     .then(() => {
-      Categoria.findAll()
-        .then(categories => {
-          res.status(201).json(categories)
-        })
+      Categoria.findAll().then(categories => {
+        res.status(201).json(categories);
+      });
     })
     .catch(err => res.send(err));
-}
+};
 
 CategoriasController.updateCategory = (req, res) => {
-  console.log(req.body)
-
-  Categoria.update({
-    name: req.body.body.name,
-    imgCategory: req.body.body.imgCategory
-  }, {
-    where: {
-      id: req.params.id
+  Categoria.update(
+    {
+      name: req.body.body.name,
+      imgCategory: req.body.body.imgCategory
+    },
+    {
+      where: {
+        id: req.params.id
+      }
     }
-  })
+  )
     .then(() => {
-      Categoria.findAll()
-        .then(categorias => {
-          res.status(201).json(categorias)
-        })
+      Categoria.findAll().then(categorias => {
+        res.status(201).json(categorias);
+      });
     })
     .catch(err => res.send(err));
-}
-
-CategoriasController.traerUno = (req, res) => {
-  Categoria.findByPk(req.params.id)
-    .then(categorias => {
-      res.status(201).json(categorias)
-    })
-    .catch(err => res.send(err));
-}
+};
 
 module.exports = CategoriasController;
