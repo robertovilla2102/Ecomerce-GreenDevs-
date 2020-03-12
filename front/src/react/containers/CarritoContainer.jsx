@@ -14,10 +14,14 @@ import Loading from "../components/Loading";
 const CarritoContaienr = ({
   deleteCart,
   fetchCarritos,
+  listaCarrito,
+  createVariasCompras,
   createVariasCompras,
   listaCarritos
 }) => {
-  const [esVisible, setEsVisible] = useState(false);
+   const [boolean, setBoolean] = useState(false);
+   const [esVisible, setEsVisible] = useState(false);
+
 
   useEffect(() => {
     fetchCarritos();
@@ -29,12 +33,17 @@ const CarritoContaienr = ({
 
   const handleButtonComprar = e => {
     e.preventDefault();
+
     createVariasCompras();
+
   };
 
   const mostrarDetalle = e => {
     e.preventDefault();
     setEsVisible(!esVisible);
+  };
+  const cambio = () => {
+    setBoolean(true);
   };
 
   return (
@@ -56,6 +65,7 @@ const CarritoContaienr = ({
             />
             {listaCarritos ? (
               <CarritoList
+                cambio={cambio}
                 mostrarDetalle={mostrarDetalle}
                 handlerButtonDelete={handlerButtonDelete}
                 listaCarrito={listaCarritos}

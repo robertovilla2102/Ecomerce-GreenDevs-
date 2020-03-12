@@ -1,11 +1,18 @@
 import React from "react";
 import Carrito from "./Carrito";
-import ErrorDetected from "./ErrorDetected";
-import { CARRITO_VACIO } from "../../assets/ErrorsMsg";
+import Alert from "react-bootstrap/Alert";
+import Alert1 from "../components/Alert";
+import VistaConfirmacion from "./VistaConfirmacion";
+import { NO_HAY_CARRITO } from "../../assets/mensajesAlert";
 
-import VistaConfirmacion from './VistaConfirmacion'
-
-export default ({ listaCarrito, handlerButtonDelete, handleButtonComprar, mostrarDetalle, esVisible }) => {
+export default ({
+  listaCarrito,
+  handlerButtonDelete,
+  handleButtonComprar,
+  mostrarDetalle,
+  esVisible,
+  cambio
+}) => {
   return (
     <div className="container">
       {listaCarrito.length > 0 ? (
@@ -31,29 +38,30 @@ export default ({ listaCarrito, handlerButtonDelete, handleButtonComprar, mostra
           </table>
 
           <button
-            className='btn btn-success'
-            type='submit'
+            className="btn btn-success"
+            type="submit"
             onClick={mostrarDetalle}
           >
             COMPRAR
-            </button>
+          </button>
 
-          {esVisible ?
+          {esVisible ? (
             <VistaConfirmacion
               mostrarDetalle={mostrarDetalle}
               listaCarrito={listaCarrito}
               handleButtonComprar={handleButtonComprar}
             />
-            : null
-          }
+          ) : null}
         </div>
-
-      )
-        : (
-         <div className="col-md-8 mx-auto">
-          <ErrorDetected msg={CARRITO_VACIO} />
+      ) : (
+        <div className="col-md-6 mx-auto mt-5">
+          <Alert variant="info">
+            <Alert.Heading>Your shopping cart is empty!</Alert.Heading>
+            <p>Visit our catalog to add products to your cart!</p>
+          </Alert>
+          <Alert1 pedorro={NO_HAY_CARRITO} cambio={cambio} />
         </div>
-        )}
+      )}
     </div>
   );
 };
