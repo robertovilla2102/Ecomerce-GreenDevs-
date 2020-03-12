@@ -6,12 +6,16 @@ import { withRouter } from "react-router";
 import Products from "../components/Products";
 import Pagination from "../components/Paginacion";
 import FiltroContainer from "./FiltroContainer";
+
 import { COMPRA_ALERT } from "../../assets/mensajesAlert";
+
 import Alert from "../components/Alert";
 
 //importando action-creators
 import { fetchProducts } from "../../redux/action-creators/productos";
 import { createCarrito } from "../../redux/action-creators/carrito";
+
+import { CARRITO_ALERT } from "../../assets/mensajesAlert";
 
 const ProductContainer = ({
   fetchProducts,
@@ -25,6 +29,8 @@ const ProductContainer = ({
   const [currentPage, setCurrentPage] = useState(match.params.page || 1);
   const [postsPerPage, setPostsPerPage] = useState(9);
   const [boolean, setBoolean] = useState(false);
+  const [booleanCarrito, setBooleanCarrito] = useState(false);
+
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirtsPost = indexOfLastPost - postsPerPage;
@@ -53,6 +59,10 @@ const ProductContainer = ({
 
   return boolean ? (
     <Alert pedorro={COMPRA_ALERT} cambio={cambio} />
+
+  return booleanCarrito ? (
+    <Alert cambio={cambio} pedorro={CARRITO_ALERT} />
+
   ) : (
     <div className="container-fluid">
       <div className="row">

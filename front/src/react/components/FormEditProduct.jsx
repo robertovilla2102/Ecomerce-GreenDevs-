@@ -1,7 +1,7 @@
 import React from "react";
 import FilterStyles from '../css/FilterStyles.css'
 
-export default ({ submitEdit }) => {
+export default ({ submitEdit, producto }) => {
   return (
     <div className="container">
       <form onSubmit={submitEdit} >
@@ -14,6 +14,7 @@ export default ({ submitEdit }) => {
               type="text"
               name="name"
               placeholder="name"
+              defaultValue={producto.name}
             />
           </div>
 
@@ -23,6 +24,7 @@ export default ({ submitEdit }) => {
               type="text"
               name="price"
               placeholder="price"
+              defaultValue={producto.price}
             />
           </div>
 
@@ -32,6 +34,7 @@ export default ({ submitEdit }) => {
               type="text"
               name="imgProfile"
               placeholder="url de imagen"
+              defaultValue={producto.imgProfile}
             />
           </div>
 
@@ -41,15 +44,17 @@ export default ({ submitEdit }) => {
               type="text"
               name="stock"
               placeholder="stock"
+              defaultValue={producto.stock}
             />
           </div>
 
           <div>
             <label>Descripcion</label>
-            <input
+            <textarea
               type="text"
               name="description"
               placeholder="descrition"
+              defaultValue={producto.description}
             />
           </div>
 

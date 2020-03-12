@@ -1,13 +1,13 @@
 const CarritoController = {};
-const { Carrito, Producto } = require("../models/index");
+const { Carrito, Producto, Compra } = require("../models/index");
 
-CarritoController.buscarCarritos = function (req, res) {
+CarritoController.buscarCarritos = function(req, res) {
   !req.user
     ? CarritoController.carritoDeslogeado(req, res)
     : CarritoController.carritoLogeado(req, res);
 };
 
-CarritoController.agregarProducto = function (req, res) {
+CarritoController.agregarProducto = function(req, res) {
   !req.user
     ? CarritoController.agregarProductoDeslogeado(req, res)
     : CarritoController.agregarProductoLogeado(req, res);
@@ -19,75 +19,77 @@ CarritoController.eliminarCarrito = (req, res) => {
     : CarritoController.eliminarCarritoLogeado(req, res);
 };
 
-CarritoController.carritoDeslogeado = async function (req, res) {
+CarritoController.carritoDeslogeado = async function(req, res) {
   req.session.carrito ? res.json(req.session.carrito) : res.json([]);
 };
 
-CarritoController.carritoLogeado = function (req, res) {
+CarritoController.carritoLogeado = function(req, res) {
   Carrito.findAll({
+    where: { userId: req.user.id, estado: "pending" },
     include: [
       {
         model: Producto
       }
-    ],
-    where: { userId: req.user.id, estado: 'pending' }
+    ]
   })
-    .then(carritos => res.json(carritos))
+    .then(carritos => {
+      res.status(200).send(carritos);
+    })
     .catch(err => {
       res.status(500).send(err);
     });
 };
 
-CarritoController.agregarProductoDeslogeado = function (req, res) {
+CarritoController.agregarProductoDeslogeado = function(req, res) {
   let listaCarrito = req.session.carrito || [];
   let productoId = req.params.productId;
   let datos = req.body.body;
-  Producto.findOne({ where: { id: productoId, estado: 'pending' } })
-    .then(producto => {
-      if (listaCarrito) {
-        let posicion = CarritoController.verificarDuplicado(
-          listaCarrito,
-          productoId
-        );
-        if (posicion == -1) {
-          const nuevoCarrito = {
-            ...datos,
-            producto,
-            id: listaCarrito.length + 1
-          };
-          listaCarrito.push(nuevoCarrito);
-        } else {
-          let carritoActual = listaCarrito[posicion];
-          carritoActual.cantidad += datos.cantidad;
-          listaCarrito[posicion] = carritoActual;
-        }
+  Producto.findOne({ where: { id: productoId } }).then(producto => {
+    if (listaCarrito) {
+      let posicion = CarritoController.verificarDuplicado(
+        listaCarrito,
+        productoId
+      );
+      if (posicion == -1) {
+        const nuevoCarrito = {
+          ...datos,
+          producto,
+          id: listaCarrito.length + 1
+        };
+        listaCarrito.push(nuevoCarrito);
+      } else {
+        let carritoActual = listaCarrito[posicion];
+        carritoActual.cantidad += datos.cantidad;
+        listaCarrito[posicion] = carritoActual;
       }
-      req.session.carrito = listaCarrito;
-      res.status(200).json(req.session.carrito);
-    });
+    }
+    req.session.carrito = listaCarrito;
+    res.status(200).json(req.session.carrito);
+  });
 };
 
-CarritoController.agregarProductoLogeado = function (req, res) {
+CarritoController.agregarProductoLogeado = function(req, res) {
   let user = req.user || null;
   let productoId = req.params.productId;
-  let datos = req.body.body
+  let datos = req.body.body;
 
   Carrito.findOne({
-    where: { userId: user.id, productoId: productoId }
+    where: { userId: user.id, productoId: productoId, estado: "pending" }
   })
-    .then(carritos => {
-      if (carritos) {
+    .then(carrito => {
+      if (carrito) {
         Carrito.update(
-          { cantidad: carritos.cantidad + datos.cantidad },
-          { where: { id: carritos.id } }
-        )
-          .then(() => res.sendStatus(201));
+          { cantidad: carrito.cantidad + datos.cantidad },
+          { returning: true, where: { id: carrito.id } }
+        ).then(([count, car]) => {
+          res.sendStatus(200);
+        });
       } else {
         Carrito.create({
-          ...datos,
+          cantidad: datos.cantidad,
           userId: user.id,
           productoId: productoId
-        }).then(() => {
+        }).then(car => {
           res.sendStatus(200);
         });
       }
@@ -96,8 +98,8 @@ CarritoController.agregarProductoLogeado = function (req, res) {
 };
 
 CarritoController.editarCarrito = (req, res) => {
-  Carrito.update(req.body, { where: { id: req.params.id } })
-    .then(res.sendStatus(200))
+  Carrito.update(req.body, { returning: true, where: { id: req.params.id } })
+    .then(res.send(res))
     .catch(err => res.send(err));
 };
 
@@ -117,7 +119,7 @@ CarritoController.eliminarCarritoLogeado = (req, res) => {
     .catch(err => res.send(err));
 };
 
-CarritoController.verificarDuplicado = function (listaCarrito, productoId) {
+CarritoController.verificarDuplicado = function(listaCarrito, productoId) {
   let posicion = -1;
   for (let i = 0; i < listaCarrito.length; i++) {
     if (listaCarrito[i].producto.id == productoId) {
@@ -127,8 +129,5 @@ CarritoController.verificarDuplicado = function (listaCarrito, productoId) {
   }
   return posicion;
 };
-
-
-
 
 module.exports = CarritoController;

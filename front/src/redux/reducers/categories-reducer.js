@@ -1,8 +1,9 @@
-import { RECEIVE_ALL_CATEGORIES, RECEIVE_ONE_CATEGORY } from "../constants";
+import { RECEIVE_ALL_CATEGORIES, RECEIVE_ONE_CATEGORY, RECEIVE_CATEGOTY_POSTA } from "../constants";
 
 const inicialState = {
   list: [],
-  selectedCategory: []
+  selectedCategory: [],
+  categoria: {}
 };
 
 export default (state = inicialState, action) => {
@@ -13,6 +14,8 @@ export default (state = inicialState, action) => {
     case RECEIVE_ONE_CATEGORY:
       return { ...state, selectedCategory: action.category };
 
+    case RECEIVE_CATEGOTY_POSTA:
+      return { ...state, categoria: action.categoriaPosta };
     default:
       return state;
   }

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { imgSingleView } from "../css/estilosComunes";
 import CardsStyles from "../css/CardsStyles.css";
+import RatingGeneral from "./RatingGeneral";
 
 export default ({
   product,
@@ -21,7 +22,9 @@ export default ({
             </div>
           </div>
         </div>
+
         <div class="product__info">
+          <RatingGeneral size={40} ratingValue={product.valoracionGeneral} />
           <div class="title">
             <h1>{product.name}</h1>
             <span>COD: {product.id}</span>
@@ -72,7 +75,6 @@ export default ({
               onClick={onSubmitComprar}
             >
               BUY NOW
-              
             </button>
           </div>
         </div>

@@ -2,7 +2,6 @@ import React from "react";
 import Carrito from "./Carrito";
 import Alert from "react-bootstrap/Alert";
 import Alert1 from "../components/Alert";
-
 import VistaConfirmacion from "./VistaConfirmacion";
 import { NO_HAY_CARRITO } from "../../assets/mensajesAlert";
 
@@ -15,7 +14,7 @@ export default ({
   cambio
 }) => {
   return (
-    <div>
+    <div className="container">
       {listaCarrito.length > 0 ? (
         <div>
           <table class="table text-center">
@@ -60,7 +59,6 @@ export default ({
             <Alert.Heading>Your shopping cart is empty!</Alert.Heading>
             <p>Visit our catalog to add products to your cart!</p>
           </Alert>
-
           <Alert1 pedorro={NO_HAY_CARRITO} cambio={cambio} />
         </div>
       )}

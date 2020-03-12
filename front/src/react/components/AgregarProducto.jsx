@@ -1,7 +1,7 @@
 import React from "react";
 import FilterStyles from '../css/FilterStyles.css'
 
-export default ({ handleSubmit, InputChangue }) => {
+export default ({ handleSubmit, InputChangue, categorias }) => {
   return (
     <div className="container">
       <form onSubmit={handleSubmit} >
@@ -70,9 +70,9 @@ export default ({ handleSubmit, InputChangue }) => {
               name="categoryId"
             >
               <option value="">Categoria</option>
-              <option value="1">Cactus</option>
-              <option value="2">Suculentas</option>
-              <option value="3">Bonsais</option>
+              {categorias.map(categoria => (
+                <option value={categoria.id} key={categoria.id}>{categoria.name}</option>
+              ))}
             </select>
           </div>
 

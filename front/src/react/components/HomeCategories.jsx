@@ -10,12 +10,16 @@ import {
 
 export default ({ categories }) => {
   return (
-    <div style={{ marginBottom: "0" }}>
+    <div style={{ marginTop: "5%", marginBottom: "5%" }}>
       <div className="container-fluid">
         <div className="row d-flex justify-content-center">
           {categories.map(cat => {
             return (
-              <div className="img-thumbnail" style={styleDivCAtegory}>
+              <div
+                key={cat.id}
+                className="img-thumbnail"
+                style={styleDivCAtegory}
+              >
                 <Link
                   to={`/products/categories/${cat.id}`}
                   className="col-xs-4"

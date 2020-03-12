@@ -10,3 +10,8 @@ input[type="radio"] {
 .comments {
     margin-top: 40px;
 }
+
+.review-btn {
+    display: flex;
+    justify-content: space-around;
+}

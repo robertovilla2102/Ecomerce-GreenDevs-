@@ -1,120 +1,92 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
 //importando components
 import ViewSingle from "../components/ViewSingle";
 import Alert from "../components/Alert";
-import RatingContainer from "./RatingContainer";
 
 //importando action-creators
 import { fetchProduct } from "../../redux/action-creators/productos";
 import { createCarrito } from "../../redux/action-creators/carrito";
 import { createCompra } from "../../redux/action-creators/compras";
+import { fetchRatingById } from "../../redux/action-creators/ratings";
 import { CARRITO_ALERT, COMPRA_ALERT } from "../../assets/mensajesAlert";
 
-class ViewSingleContainer extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      cantidad: 1,
-      mensaje: {},
-      boolean: false
-    };
+const ViewSingleContainer = ({
+  createCarrito,
+  fetchProduct,
+  match,
+  usuario,
+  createCompra,
+  fetchRatingById,
+  producto
+}) => {
+  const [cantidad, setCantidad] = useState(1);
+  const [mensaje, setMensaje] = useState({});
+  const [boolean, setBoolean] = useState(false);
 
-    this.onSubmitCarrito = this.onSubmitCarrito.bind(this);
-    this.addCantidad = this.addCantidad.bind(this);
-    this.removeCantidad = this.removeCantidad.bind(this);
-    this.onSubmitComprar = this.onSubmitComprar.bind(this);
-    this.cambio = this.cambio.bind(this);
-  }
+  useEffect(() => {
+    fetchProduct(match.params.id);
+    fetchRatingById(match.params.id);
+  }, []);
 
-  addCantidad(e) {
+  const addCantidad = e => {
     e.preventDefault();
-    this.setState({
-      cantidad:
-        this.props.producto.stock > this.state.cantidad
-          ? this.state.cantidad + 1
-          : this.state.cantidad
-    });
-  }
+    producto.stock > cantidad
+      ? setCantidad(value => value + 1)
+      : setCantidad(value => value);
+  };
 
-  removeCantidad(e) {
+  const removeCantidad = e => {
     e.preventDefault();
-    this.setState({
-      cantidad:
-        this.state.cantidad > 1 ? this.state.cantidad - 1 : this.state.cantidad
-    });
-  }
+    cantidad > 1
+      ? setCantidad(value => value - 1)
+      : setCantidad(value => value);
+  };
 
-  onSubmitCarrito(e) {
+  const onSubmitCarrito = e => {
     e.preventDefault();
-    this.props.createCarrito(this.props.match.params.id, {
-      cantidad: this.state.cantidad,
-      user: this.props.usuario
+    createCarrito(match.params.id, {
+      cantidad: cantidad,
+      userId: usuario
     });
+    setMensaje(CARRITO_ALERT);
+    setBoolean(true);
+  };
 
-    this.setState({
-      mensaje: CARRITO_ALERT,
-      boolean: true
-    });
-  }
-
-  onSubmitComprar(e) {
+  const onSubmitComprar = e => {
     e.preventDefault();
-    this.props.createCompra(this.props.producto.id, {
+    createCompra(producto.id, {
       estado: "comprado",
-      cantidad: this.state.cantidad
+      cantidad: cantidad
     });
-
-    this.setState({
-      mensaje: COMPRA_ALERT,
-      boolean: true
-    });
-  }
-  cambio() {
-    console.log("entreee");
-    this.setState({ boolean: false });
-  }
-
-  componentDidMount() {
-    this.props.fetchProduct(this.props.match.params.id);
-  }
-
-  render() {
-    return this.state.boolean ? (
-      <div>
-        <Alert cambio={this.cambio} pedorro={this.state.mensaje} />
-
-        <ViewSingle
-          product={this.props.producto}
-          onSubmitCarrito={this.onSubmitCarrito}
-          addCantidad={this.addCantidad}
-          removeCantidad={this.removeCantidad}
-          cantidad={this.state.cantidad}
-          onSubmitComprar={this.onSubmitComprar}
-        />
-      </div>
-    ) : (
-      <div>
-        <ViewSingle
-          product={this.props.producto}
-          onSubmitCarrito={this.onSubmitCarrito}
-          addCantidad={this.addCantidad}
-          removeCantidad={this.removeCantidad}
-          cantidad={this.state.cantidad}
-          onSubmitComprar={this.onSubmitComprar}
-        />
-        <RatingContainer />
-      </div>
-    );
-  }
-}
+    setMensaje(COMPRA_ALERT);
+    setBoolean(true);
+  };
+  const cambio = () => {
+    setBoolean(false);
+  };
+  
+  return (
+    <div>
+      {boolean ? <Alert cambio={cambio} pedorro={mensaje} /> : null}
+      <ViewSingle
+        product={producto}
+        onSubmitCarrito={onSubmitCarrito}
+        addCantidad={addCantidad}
+        removeCantidad={removeCantidad}
+        cantidad={cantidad}
+        onSubmitComprar={onSubmitComprar}
+      />
+    </div>
+  );
 
 const mapStateToProps = (state, ownProps) => {
   return {
     producto: state.productos.selectedProduct,
     usuario: state.login.userLogueado.id,
-    comprado: state.compras.compraAgregada
+    comprado: state.compras.compraAgregada,
+    rating: state.reviews.rating
   };
 };
 
@@ -123,7 +95,8 @@ const mapDispathToProps = (dispatch, ownProps) => {
     fetchProduct: id => dispatch(fetchProduct(id)),
     createCarrito: (productID, body) =>
       dispatch(createCarrito(productID, body)),
-    createCompra: (productID, body) => dispatch(createCompra(productID, body))
+    createCompra: (productID, body) => dispatch(createCompra(productID, body)),
+    fetchRatingById: id => dispatch(fetchRatingById(id))
   };
 };
 

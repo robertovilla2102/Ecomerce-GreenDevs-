@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import {
@@ -22,12 +23,14 @@ const CompraContainer = ({ fetchCompras, compras, compraAgregada }) => {
   ) : (
     <Alert pedorro={NO_HAY_COMPRAS} cambio={cambio} />
   );
+
 };
 
 const mapStateToProps = (state, ownProps) => {
   return {
     compras: state.compras.list,
     compraAgregada: state.compras.compraAgregada
+
   };
 };
 

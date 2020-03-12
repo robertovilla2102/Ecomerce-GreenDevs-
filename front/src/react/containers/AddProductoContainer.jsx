@@ -1,17 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import { addProducto } from '../../redux/action-creators/productos'
+import { fetchCategories } from '../../redux/action-creators/categories'
 
 import AgregarProducto from '../components/AgregarProducto'
 
-const AddProductoContainer = ({ addProducto }) => {
+const AddProductoContainer = ({ addProducto, fetchCategories, categorias }) => {
   const [name, setName] = useState('')
   const [price, setPrice] = useState(0)
   const [imgProfile, setImgProfile] = useState('')
   const [stock, setStock] = useState(0)
   const [description, setDescription] = useState('')
   const [categoryId, setcategoryId] = useState(0)
+
+  useEffect(() => {
+    fetchCategories()
+  }, [])
 
   const InputChangue = () => {
     switch (e.target.name) {
@@ -69,20 +74,22 @@ const AddProductoContainer = ({ addProducto }) => {
     <AgregarProducto
       handleSubmit={handleSubmit}
       InputChangue={InputChangue}
+      categorias={categorias}
     />
   )
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
-
+    categorias: state.categories.list
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    addProducto: (body) => dispatch(addProducto(body))
+    addProducto: (body) => dispatch(addProducto(body)),
+    fetchCategories: () => dispatch(fetchCategories())
   }
 };
 
-export default connect(null, mapDispatchToProps)(AddProductoContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(AddProductoContainer)
