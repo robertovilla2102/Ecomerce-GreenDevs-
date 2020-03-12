@@ -16,7 +16,6 @@ export default ({
         <select
           onChange={e => filterByCategories(e, e.target.value)}
           name="categoria"
-          id=""
         >
           <option value="">Categoria</option>
           {categories.map(categoria => {
@@ -34,14 +33,12 @@ export default ({
           <input
             type="text"
             name="minPrice"
-            id=""
             placeholder="Minimo"
             onChange={onChange}
           />
           <input
             type="text"
             name="maxPrice"
-            id=""
             placeholder="Maximo"
             onChange={onChange}
           />

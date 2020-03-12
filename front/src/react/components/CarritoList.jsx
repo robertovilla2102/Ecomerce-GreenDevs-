@@ -1,13 +1,13 @@
 import React from "react";
 import Carrito from "./Carrito";
-import Alert from "react-bootstrap/Alert";
+import ErrorDetected from "./ErrorDetected";
+import { CARRITO_VACIO } from "../../assets/ErrorsMsg";
 
 export default ({ listaCarrito, handlerButtonDelete, handleButtonComprar }) => {
   return (
-    <div>
+    <div className="container">
       {listaCarrito.length > 0 ? (
         <div>
-
           <table class="table text-center">
             <thead>
               <tr>
@@ -29,24 +29,18 @@ export default ({ listaCarrito, handlerButtonDelete, handleButtonComprar }) => {
           </table>
 
           <button
-            className='btn btn-success'
-            type='submit'
+            className="btn btn-success"
+            type="submit"
             onClick={handleButtonComprar}
           >
             COMPRAR
-            </button>
+          </button>
         </div>
-
-      )
-
-        : (
-          <div className="col-md-6 mx-auto mt-5">
-            <Alert variant="info">
-              <Alert.Heading>Your shopping cart is empty!</Alert.Heading>
-              <p>Visit our catalog to add products to your cart!</p>
-            </Alert>
-          </div>
-        )}
+      ) : (
+        <div className="col-md-8 mx-auto">
+          <ErrorDetected msg={CARRITO_VACIO} />
+        </div>
+      )}
     </div>
   );
 };

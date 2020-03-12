@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import {
   fetchCarritos,
@@ -9,15 +9,19 @@ import { createVariasCompras } from "../../redux/action-creators/compras";
 
 import CarritoList from "../components/CarritoList";
 import Footer from "../components/Footer";
+import Loading from "../components/Loading";
 
 const CarritoContaienr = ({
   deleteCart,
   fetchCarritos,
-  listaCarrito,
   createVariasCompras
 }) => {
+  const [listaCarrito, setListaCarrito] = useState([]);
+
   useEffect(() => {
-    fetchCarritos();
+    fetchCarritos().then(res => {
+      setListaCarrito(res);
+    });
   }, []);
 
   const handlerButtonDelete = id => {
@@ -26,7 +30,7 @@ const CarritoContaienr = ({
 
   const handleButtonComprar = e => {
     e.preventDefault();
-    createVariasCompras().then(algo => console.log("todo bien"));
+    createVariasCompras();
   };
 
   return (
@@ -46,11 +50,15 @@ const CarritoContaienr = ({
               alt="shop-image"
               className="profile"
             />
-            <CarritoList
-              handlerButtonDelete={handlerButtonDelete}
-              listaCarrito={listaCarrito}
-              handleButtonComprar={handleButtonComprar}
-            />
+            {listaCarrito ? (
+              <CarritoList
+                handlerButtonDelete={handlerButtonDelete}
+                listaCarrito={listaCarrito}
+                handleButtonComprar={handleButtonComprar}
+              />
+            ) : (
+              <Loading />
+            )}
           </div>
         </div>
       </div>
@@ -61,14 +69,13 @@ const CarritoContaienr = ({
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    listaCarrito: state.carrito.listaCarrito,
     user: state.login.userLogueado.id
   };
 };
 
 const mapDispathToProps = (dispatch, ownProps) => {
   return {
-    fetchCarritos: id => dispatch(fetchCarritos(id)),
+    fetchCarritos: () => dispatch(fetchCarritos()),
     deleteCart: id => dispatch(carritoDelete(id)),
     createVariasCompras: () => dispatch(createVariasCompras())
   };

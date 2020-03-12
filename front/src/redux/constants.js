@@ -30,6 +30,7 @@ export const EDIT_PERFIL = "EDIT_PERFIL";
 export const ADD_COMPRA = " ADD_COMPRA";
 export const RECEIVE_ALL_COMPRAS = "RECEIVE_ALL_COMPRAS";
 export const ADD_VARIAS_COMPRAS = "ADD_VARIAS_COMPRAS";
+export const RECEIVE_COMPRA = "RECEIVE_COMPRA";
 
 //Ratings
 

@@ -35,7 +35,7 @@ const ProductContainer = ({
     e.preventDefault();
     createCarrito(id, {
       cantidad: 1,
-      user: usuario
+      userId: usuario
     });
   };
 

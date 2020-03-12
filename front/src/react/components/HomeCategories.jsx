@@ -15,7 +15,11 @@ export default ({ categories }) => {
         <div className="row d-flex justify-content-center">
           {categories.map(cat => {
             return (
-              <div className="img-thumbnail" style={styleDivCAtegory}>
+              <div
+                key={cat.id}
+                className="img-thumbnail"
+                style={styleDivCAtegory}
+              >
                 <Link
                   to={`/products/categories/${cat.id}`}
                   className="col-xs-4"
