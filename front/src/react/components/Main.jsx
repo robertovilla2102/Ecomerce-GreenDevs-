@@ -19,6 +19,12 @@ import ProductsSearchByAlfabetContainer from "../containers/ProductsSearchByAlfa
 import UserListaContainer from "../containers/UserListaContainer";
 import CompraContainer from '../containers/CompraContainer'
 
+import AddProductoContainer from "../containers/AddProductoContainer";
+import AdminContainer from "../containers/AdminContainer";
+import EditProductContainer from "../containers/EditProductContainer";
+import EditProductFormContainer from '../containers/EditProductFormContainer'
+import CategoriesAdminContainer from '../containers/CategoriesAdminContainer'
+
 
 const Main = ({ user, userLogin }) => {
   useEffect(() => {
@@ -101,6 +107,37 @@ const Main = ({ user, userLogin }) => {
           path='/miPerfil/compras'
           component={CompraContainer}
         />
+
+        <Route
+          exact
+          path='/admin/addProduct'
+          component={AddProductoContainer}
+        />
+
+        <Route
+          exact
+          path='/admin'
+          component={AdminContainer}
+        />
+
+        <Route
+          exact
+          path='/admin/editProduct'
+          component={EditProductContainer}
+        />
+
+        <Route
+          exact
+          path='/posta/:id'
+          component={EditProductFormContainer}
+        />
+
+        <Route
+          exact
+          path='/admin/listCategories'
+          component={CategoriesAdminContainer}
+        />
+
 
         <Redirect from="/" to="/home" />
       </Switch>

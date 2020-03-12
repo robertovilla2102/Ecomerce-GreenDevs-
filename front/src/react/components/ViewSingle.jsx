@@ -71,7 +71,8 @@ export default ({
               type="submit"
               onClick={onSubmitComprar}
             >
-              Comprar
+              BUY NOW
+              
             </button>
           </div>
         </div>

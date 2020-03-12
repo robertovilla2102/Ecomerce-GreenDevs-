@@ -4,7 +4,7 @@ import "../css/estilosPerfil.css"
 export default ({ listaCarrito, handlerButtonDelete }) => {
   return listaCarrito.map((carrito, index) => {
     return (
-      <tr className="text-center">
+      <tr className="text-center" key={index}>
         <td>
           <img className="profile-buy rounded-circle" src={carrito.producto.imgProfile} alt="" />
         </td>

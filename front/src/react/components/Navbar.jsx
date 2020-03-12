@@ -75,13 +75,13 @@ export default ({
           <UserInfo user={user} onSubmitLogout={onSubmitLogout} />
         </div>
       ) : (
-        <div className="row ml-1">
-          <UserRegister
-            onSubmitForm={onSubmitForm}
-            handlerInputForm={handlerInputForm}
-          />
-        </div>
-      )}
+          <div className="row ml-1">
+            <UserRegister
+              onSubmitForm={onSubmitForm}
+              handlerInputForm={handlerInputForm}
+            />
+          </div>
+        )}
     </nav>
   );
 };

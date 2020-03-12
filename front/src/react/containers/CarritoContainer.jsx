@@ -1,25 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import {
   fetchCarritos,
   carritoDelete
 } from "../../redux/action-creators/carrito";
 import "../css/estilosPerfil.css";
-
 import { createVariasCompras } from "../../redux/action-creators/compras";
 
 import CarritoList from "../components/CarritoList";
 import Footer from "../components/Footer";
 
-const CarritoContaienr = ({
-  deleteCart,
-  fetchCarritos,
-  listaCarrito,
-  createVariasCompras
-}) => {
+const CarritoContaienr = ({ deleteCart, fetchCarritos, listaCarrito, createVariasCompras }) => {
+  const [esVisible, setEsVisible] = useState(false)
+
+
   useEffect(() => {
     fetchCarritos();
-  }, []);
+  }, [])
 
   const handlerButtonDelete = id => {
     deleteCart(id);
@@ -27,8 +24,14 @@ const CarritoContaienr = ({
 
   const handleButtonComprar = e => {
     e.preventDefault();
-    createVariasCompras().then(algo => console.log("todo bien"));
+    createVariasCompras()
+      .then(algo => console.log("todo bien"));
   };
+
+  const mostrarDetalle = (e) => {
+    e.preventDefault()
+    setEsVisible(!esVisible)
+  }
 
   return (
     <div>
@@ -51,7 +54,10 @@ const CarritoContaienr = ({
               handlerButtonDelete={handlerButtonDelete}
               listaCarrito={listaCarrito}
               handleButtonComprar={handleButtonComprar}
+              mostrarDetalle={mostrarDetalle}
+              esVisible={esVisible}
             />
+
           </div>
         </div>
       </div>

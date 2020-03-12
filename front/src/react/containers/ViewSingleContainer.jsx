@@ -4,10 +4,11 @@ import { connect } from "react-redux";
 //importando components
 import ViewSingle from "../components/ViewSingle";
 import Alert from "../components/Alert";
+import RatingContainer from "./RatingContainer";
+
 //importando action-creators
 import { fetchProduct } from "../../redux/action-creators/productos";
 import { createCarrito } from "../../redux/action-creators/carrito";
-
 import { createCompra } from "../../redux/action-creators/compras";
 import { CARRITO_ALERT, COMPRA_ALERT } from "../../assets/mensajesAlert";
 
@@ -51,6 +52,7 @@ class ViewSingleContainer extends React.Component {
       cantidad: this.state.cantidad,
       user: this.props.usuario
     });
+
     this.setState({
       mensaje: CARRITO_ALERT,
       boolean: true
@@ -63,6 +65,7 @@ class ViewSingleContainer extends React.Component {
       estado: "comprado",
       cantidad: this.state.cantidad
     });
+
     this.setState({
       mensaje: COMPRA_ALERT,
       boolean: true
@@ -71,6 +74,7 @@ class ViewSingleContainer extends React.Component {
   cambio() {
     console.log("entreee");
     this.setState({ boolean: false });
+
   }
 
   componentDidMount() {
@@ -78,10 +82,10 @@ class ViewSingleContainer extends React.Component {
   }
 
   render() {
-    console.log(this.state.boolean);
     return this.state.boolean ? (
       <div>
         <Alert cambio={this.cambio} pedorro={this.state.mensaje} />
+
         <ViewSingle
           product={this.props.producto}
           onSubmitCarrito={this.onSubmitCarrito}
@@ -90,6 +94,7 @@ class ViewSingleContainer extends React.Component {
           cantidad={this.state.cantidad}
           onSubmitComprar={this.onSubmitComprar}
         />
+
       </div>
     ) : (
       <ViewSingle
@@ -100,7 +105,9 @@ class ViewSingleContainer extends React.Component {
         cantidad={this.state.cantidad}
         onSubmitComprar={this.onSubmitComprar}
       />
-    );
+        <RatingContainer />
+      </div>
+    )
   }
 }
 

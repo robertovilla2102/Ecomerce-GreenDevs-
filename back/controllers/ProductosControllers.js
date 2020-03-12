@@ -44,4 +44,54 @@ ProductoController.buscarPorNombre = (req, res) => {
     .catch(err => res.send(err));
 };
 
+ProductoController.addProducto = (req, res) => {
+  Producto.create({
+    name: req.body.body.name,
+    price: req.body.body.price,
+    imgProfile: req.body.body.imgProfile,
+    stock: req.body.body.stock,
+    description: req.body.body.description,
+    categoryId: req.body.body.categoryId
+  })
+    .then(producto => {
+      res.status(201).json(producto)
+    })
+    .catch(err => res.send(err))
+}
+
+ProductoController.modificarProducto = (req, res) => {
+  Producto.update({
+    name: req.body.body.name,
+    price: req.body.body.price,
+    imgProfile: req.body.body.imgProfile,
+    stock: req.body.body.stock,
+    description: req.body.body.description,
+    categoryId: req.body.body.categoryId
+  }, {
+    returning: true,
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(([updated, [producto]]) => {
+      res.status(201).json(producto)
+    })
+    .catch(err => res.send(err))
+}
+
+ProductoController.deleteProduct = (req, res) => {
+  Producto.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(product => {
+      Producto.findAll()
+        .then(productos => {
+          res.status(200).json(productos)
+        })
+    })
+}
+
+
 module.exports = ProductoController;
