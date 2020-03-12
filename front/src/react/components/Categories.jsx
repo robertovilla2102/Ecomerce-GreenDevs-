@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default ({ categorias, handlerSubmitDelete }) => (
   <div className="container">
@@ -27,12 +28,14 @@ export default ({ categorias, handlerSubmitDelete }) => (
               <td className="align-middle">{categoria.name}</td>
 
               <td className="align-middle">
-                <button
-                  className="btn btn-warning"
-                  type="submit"
-                >
-                  Editar
+                <Link to={`/admin/editCategory/${categoria.id}`}>
+                  <button
+                    className="btn btn-warning"
+                    type="submit"
+                  >
+                    Editar
                 </button>
+                </Link>
               </td>
 
               <td className="align-middle">
@@ -47,6 +50,18 @@ export default ({ categorias, handlerSubmitDelete }) => (
             </tr>
           );
         })}
+
+        <tr className="text-center">
+          <td className="align-middle">
+            <Link to='/admin/addCategory'>
+              <button
+                className="btn btn-danger"
+              >
+                Agregar Producto
+                </button>
+            </Link>
+          </td>
+        </tr>
       </tbody>
 
     </table>
