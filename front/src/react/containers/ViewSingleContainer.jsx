@@ -70,7 +70,6 @@ const ViewSingleContainer = ({
   return (
     <div>
       {boolean ? <Alert cambio={cambio} pedorro={mensaje} /> : null}
-
       <ViewSingle
         product={producto}
         onSubmitCarrito={onSubmitCarrito}
@@ -81,7 +80,7 @@ const ViewSingleContainer = ({
       />
     </div>
   );
-};
+
 
 const mapStateToProps = (state, ownProps) => {
   return {
