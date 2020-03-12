@@ -18,7 +18,7 @@ export default ({ pedorro, cambio }) => {
       <Modal.Footer>
         {pedorro.boolean ? (
           <Link to={pedorro.ruta}>
-            <Button variant="secondary">Ok</Button>
+            <Button variant="secondary">{pedorro.boton}</Button>
           </Link>
         ) : null}
         {pedorro.booleanBoton ? (

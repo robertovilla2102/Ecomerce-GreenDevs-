@@ -1,18 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import {fetchCarritos,carritoDelete } from "../../redux/action-creators/carrito";
+import {
+  fetchCarritos,
+  carritoDelete
+} from "../../redux/action-creators/carrito";
 import "../css/estilosPerfil.css";
 import { createVariasCompras } from "../../redux/action-creators/compras";
 
 import CarritoList from "../components/CarritoList";
 import Footer from "../components/Footer";
 
-const CarritoContaienr = ({ deleteCart, fetchCarritos, listaCarrito, createVariasCompras }) => {
-  const [esVisible, setEsVisible] = useState(false)
+const CarritoContaienr = ({
+  deleteCart,
+  fetchCarritos,
+  listaCarrito,
+  createVariasCompras
+}) => {
+  const [esVisible, setEsVisible] = useState(false);
+  const [boolean, setBoolean] = useState(false);
 
   useEffect(() => {
     fetchCarritos();
-  }, [])
+  }, []);
 
   const handlerButtonDelete = id => {
     deleteCart(id);
@@ -20,21 +29,27 @@ const CarritoContaienr = ({ deleteCart, fetchCarritos, listaCarrito, createVaria
 
   const handleButtonComprar = e => {
     e.preventDefault();
-    createVariasCompras()
-      .then(algo => console.log("todo bien"));
+    createVariasCompras().then(algo => console.log("todo bien"));
   };
 
-  const mostrarDetalle = (e) => {
-    e.preventDefault()
-    setEsVisible(!esVisible)
-  }
+  const mostrarDetalle = e => {
+    e.preventDefault();
+    setEsVisible(!esVisible);
+  };
+  const cambio = () => {
+    setBoolean(true);
+  };
 
   return (
     <div>
       <div className="container-fluid mt-3 mb-3">
         <div className="card profile-card-2">
           <div className="card-img-block">
-            <img className="img-fluid" src="/imagenes/Fondos/fondofranja.png" alt="Card image cap" />
+            <img
+              className="img-fluid"
+              src="/imagenes/Fondos/fondofranja.png"
+              alt="Card image cap"
+            />
           </div>
           <div className="card-body2">
             <img
@@ -43,13 +58,13 @@ const CarritoContaienr = ({ deleteCart, fetchCarritos, listaCarrito, createVaria
               className="profile"
             />
             <CarritoList
+              cambio={cambio}
               handlerButtonDelete={handlerButtonDelete}
               listaCarrito={listaCarrito}
               handleButtonComprar={handleButtonComprar}
               mostrarDetalle={mostrarDetalle}
               esVisible={esVisible}
             />
-
           </div>
         </div>
       </div>

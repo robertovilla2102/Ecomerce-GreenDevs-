@@ -17,7 +17,7 @@ export const receiveCarrito = carritos => ({
 
 //agrega un carrito relacionando un userId y un ProductID
 export const createCarrito = (productID, body) => dispatch => {
-  axios
+  return axios
     .post(`http://localhost:3001/api/carrito/add/${productID}`, { body })
     .then(carrito => carrito.data)
     .then(carritoCreado => dispatch(addCarrito(carritoCreado)))

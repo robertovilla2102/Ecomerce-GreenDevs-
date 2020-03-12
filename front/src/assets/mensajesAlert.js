@@ -20,6 +20,24 @@ export const LOGEASTE_ALERT = {
   title: "You entered correctly",
   descripcion: "Welcome to our page",
   ruta: "/home",
+  boton: "Ok",
+  booleanBoton: false,
+  boolean: true
+};
+
+export const NO_HAY_CARRITO = {
+  title: "Your cart has no products",
+  descripcion: "Look at our products, INCREDIBLE",
+  ruta: "/products/page/1",
+  boton: "Ir a Productos",
+  booleanBoton: false,
+  boolean: true
+};
+export const NO_HAY_COMPRAS = {
+  title: "There aren't purchases",
+  descripcion: "You have no purchases, go to our product list",
+  ruta: "/products/page/1",
+  boton: "Ir a Productos",
   booleanBoton: false,
   boolean: true
 };
