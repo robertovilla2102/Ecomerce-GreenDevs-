@@ -7,7 +7,6 @@ export default ({ pedorro, cambio }) => {
   const [show, setShow] = useState(true);
 
   const handleClose = () => setShow(false);
-  console.log(cambio, "kajsndkjansdkjasdnkj");
 
   return (
     <Modal show={show}>

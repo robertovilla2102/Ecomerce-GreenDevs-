@@ -1,5 +1,5 @@
-const ComprasController = {}
-const { Carrito, Compra, Producto } = require("../models/index")
+const ComprasController = {};
+const { Carrito, Compra, Producto } = require("../models/index");
 
 ComprasController.buscarCompras = (req, res) => {
   Carrito.findAll({
@@ -63,7 +63,8 @@ ComprasController.addCompra = (req, res) => {
       Carrito.findOne({
         where: {
           userId: req.user.id,
-          productoId: productoId
+          productoId: productoId,
+          estado: "pending"
         }
       }).then(carrito => {
         if (carrito) {
@@ -154,16 +155,12 @@ ComprasController.addMultiples = (req, res) => {
     dateCompra: 123,
     salt: `${Math.round(Math.random() * 12345)}`
   }).then(compra => {
-    console.log("se creo correctamente laorden de compre");
-
     Carrito.findAll({
       where: {
         userId: req.user.id,
         estado: "pending"
       }
     }).then(carritos => {
-      console.log("estos son los carritos");
-
       return Promise.all(
         carritos.map(carrito => {
           return carrito.update(
@@ -232,7 +229,7 @@ ComprasController.addMultiples2 = async (req, res, next) => {
         }
       }
     );
-  })
+  });
 
   return console.log(arrCarritosUpdateados);
 };

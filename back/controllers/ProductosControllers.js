@@ -18,7 +18,7 @@ ProductoController.buscarProductos = (req, res) => {
       });
     }
   } else {
-    Producto.findAll({ where: { id: { [Op.gt]: 0 } } })
+    Producto.findAll({ where: { stock: { [Op.gt]: 0 } } })
       .then(productos => {
         res.status(200).json(productos);
       })

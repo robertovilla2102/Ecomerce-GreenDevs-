@@ -30,7 +30,8 @@ Producto.init(
     disponibilidad: {
       type: S.BOOLEAN,
       defaultValue: true
-    }
+    },
+    valoracionGeneral: { type: S.INTEGER, defaultValue: 5 }
   },
   { sequelize: db, modelName: "producto" }
 );
