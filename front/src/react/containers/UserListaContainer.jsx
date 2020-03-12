@@ -40,7 +40,7 @@ class UserListaContainer extends React.Component{
       <div className="container-fluid mt-3 mb-3">
         <div className="card profile-card-2">
           <div className="card-img-block">
-              <img className="img-fluid" src="https://images.unsplash.com/photo-1506784693919-ef06d93c28d2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" alt="Card image cap"/>
+              <img className="img-fluid" src="/imagenes/Fondos/fondofranja.png" alt="Card image cap"/>
           </div>
             <UserLista users={users} borrarUsers={this.borrarUsers} hacerAdmin={this.hacerAdmin} quitarAdmin={this.quitarAdmin}/>
             <IconProfile/>

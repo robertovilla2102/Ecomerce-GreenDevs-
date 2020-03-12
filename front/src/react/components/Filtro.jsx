@@ -10,51 +10,65 @@ export default ({
   priceErr
 }) => {
   return (
-    <div className="mt-4">
-      <div className="input-filter cat ">
-        <label htmlFor="">Ordenar por categoria:</label>
-        <select
-          onChange={e => filterByCategories(e, e.target.value)}
-          name="categoria"
-          id=""
-        >
-          <option value="">Categoria</option>
-          {categories.map(categoria => {
-            return (
-              <option key={categoria.id} value={categoria.id}>
-                {categoria.name}
-              </option>
-            );
-          })}
-        </select>
+
+<div className="card shadow" style={{marginTop:"30px"}}>
+	<article className="card-group-item">
+		<header className="card-header" style={{backgroundColor: "#e9ecef",
+    borderBottom: "1px solid #e9ecef"}}>
+			<h6 className="title" style={{marginBottom:"0rem" , fontWeight:"500",fontSize:"17px"}}>Precio </h6>
+		</header>
+		<div className="filter-content">
+			<div className="card-body">
+  			<div className="form-row">
+    			<div className="form-group col-md-6">
+    			  <label>Min</label>
+    			  <input type="text" name="minPrice" className="form-control" id="inputEmail4" placeholder="$0" onChange={onChange}/>
+    			</div>
+    			<div className="form-group col-md-6 text-right">
+    			  <label>Max</label>
+    			  <input type="text" name="maxPrice" className="form-control" placeholder="$1,0000" onChange={onChange}/>
+    			</div>
+  			</div>
+      <button onClick={filterByPrice} className="btn-block btn-info">Filtrar</button>
+			</div>
+		</div>
+	</article>
+	<article className="card-group-item">
+		<header className="card-header"style={{backgroundColor: "#e9ecef",
+    borderBottom: "1px solid #e9ecef"}}>
+			<h6 className="title" style={{marginBottom:"0rem", fontWeight:"500",fontSize:"17px"}}>Categoria </h6>
+		</header>
+    <div className="ml-3 mr-3 mt-3 mb-3">
+      <select
+        onChange={e => filterByCategories(e, e.target.value)}
+        name="categoria"
+        id=""
+        className="custom-select mr-sm-2"
+        style={{width: "100%", position: "relative"}}
+      >
+        <option value="">Seleccioná</option>
+        {categories.map(categoria => {
+          return (
+            <option key={categoria.id} value={categoria.id}>
+              {categoria.name}
+            </option>
+          );
+        })}
+      </select>
       </div>
-      <div className="input-filter range-price">
-        <label htmlFor="">Ordenar por precio:</label>
-        <div className="precios">
-          <input
-            type="text"
-            name="minPrice"
-            id=""
-            placeholder="Minimo"
-            onChange={onChange}
-          />
-          <input
-            type="text"
-            name="maxPrice"
-            id=""
-            placeholder="Maximo"
-            onChange={onChange}
-          />
-        </div>
-        <button onClick={filterByPrice}>Filtrar</button>
-      </div>
-      <div className="input-filter alfabeto">
-        <label htmlFor="">Ordenar alfabeticamente:</label>
-        <div className="orden">
-          <button onClick={e => filterByAlfabet(e, "asc")}>Ascendente</button>
-          <button onClick={e => filterByAlfabet(e, "desc")}>Descendente</button>
-        </div>
-      </div>
-    </div>
+	</article>
+  <article className="card-group-item">
+    <header className="card-header" style={{backgroundColor: "#e9ecef",
+    borderBottom: "1px solid #e9ecef"}}>
+      <h6 className="title" style={{marginBottom:"0rem", fontWeight:"500",fontSize:"17px"}}>Ordenar A-Z </h6>
+    </header>
+  <div className="ml-3 mr-3 mt-3 mb-3">
+      <button className= "btn-info btn-block" style={{marginTop:"3px",marginBottom:"8px"}} onClick={e => filterByAlfabet(e, "asc")}>Ascendente</button>
+      <button className= "btn-info btn-block" style={{marginTop:"8px",marginBottom:"3px"}} onClick={e => filterByAlfabet(e, "desc")}>Descendente</button>
+  </div>
+  </article>
+</div>
+
+
   );
 };
