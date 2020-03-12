@@ -10,9 +10,9 @@ import { createVariasCompras } from "../../redux/action-creators/compras";
 import CarritoList from "../components/CarritoList";
 import Footer from "../components/Footer";
 
-
 const CarritoContaienr = ({ deleteCart, fetchCarritos, listaCarrito, createVariasCompras }) => {
   const [esVisible, setEsVisible] = useState(false)
+
 
   useEffect(() => {
     fetchCarritos();
@@ -24,7 +24,8 @@ const CarritoContaienr = ({ deleteCart, fetchCarritos, listaCarrito, createVaria
 
   const handleButtonComprar = e => {
     e.preventDefault();
-    createVariasCompras().then(algo => console.log("todo bien"));
+    createVariasCompras()
+      .then(algo => console.log("todo bien"));
   };
 
   const mostrarDetalle = (e) => {
