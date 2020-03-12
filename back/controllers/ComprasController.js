@@ -1,6 +1,7 @@
 const ComprasController = {}
 const { Carrito, Compra, Producto } = require("../models/index")
 
+
 ComprasController.buscarCompras = (req, res) => {
   Carrito.findAll({
     include: [
@@ -53,6 +54,36 @@ ComprasController.addCompra = (req, res) => {
   let productoId = req.params.productId;
   let user = req.user;
 
+
+  const email = (email, content) => {
+    const nodemailer = require('nodemailer');
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'robertvlopez27@gmail.com',
+        pass: 'elgatomu'
+      },
+    });
+
+    const mailOptions = {
+      from: 'robertvlopez27@gmail.com',
+      to: `${email}`,
+      subject: 'Sending Email using Node.js',
+      text: `That was easy! Has comprado ${content} en nuestra web BotanicaBinaria`
+    };
+
+    console.log("sending email", mailOptions);
+    transporter.sendMail(mailOptions, function (error, info) {
+      console.log("senMail returned!");
+      if (error) {
+        console.log("ERROR!!!!!!", error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
+  }
+
+
   Compra.create({
     dateCompra: 123,
     salt: `${Math.round(Math.random() * 12345)}`
@@ -92,7 +123,9 @@ ComprasController.addCompra = (req, res) => {
                   }
                 )
                 .then(([rowsUpdate, [updateProducto]]) => {
-                  res.status(200).json({ updateProducto, carrito });
+                  console.log('se ha anadidocon exito')
+                  email(req.user.userEmail, updateCarrito.cantidad)
+                  res.status(200).json({ updateProducto, carrito })
                 })
                 .catch(err => res.json(err));
             });
@@ -121,6 +154,7 @@ ComprasController.addCompra = (req, res) => {
                   }
                 )
                 .then(([rowsUpdate, [updateProducto]]) => {
+                  email(req.user.userEmail, updateCarrito.cantidad)
                   res.status(200).json({ updateProducto, carrito });
                 })
                 .catch(err => res.json(err));
