@@ -24,7 +24,8 @@ import AdminContainer from "../containers/AdminContainer";
 import EditProductContainer from "../containers/EditProductContainer";
 import EditProductFormContainer from '../containers/EditProductFormContainer'
 import CategoriesAdminContainer from '../containers/CategoriesAdminContainer'
-
+import AddCategoriesContainer from '../containers/AddCategoriesContainer'
+import EditCategoryContainer from '../containers/EditCategoryContainer'
 
 const Main = ({ user, userLogin }) => {
   useEffect(() => {
@@ -136,6 +137,18 @@ const Main = ({ user, userLogin }) => {
           exact
           path='/admin/listCategories'
           component={CategoriesAdminContainer}
+        />
+
+        <Route
+          exact
+          path='/admin/addCategory'
+          component={AddCategoriesContainer}
+        />
+
+        <Route
+          exact
+          path='/admin/editCategory/:id'
+          component={EditCategoryContainer}
         />
 
 
