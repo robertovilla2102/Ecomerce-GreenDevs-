@@ -1,6 +1,5 @@
 import React from "react";
-import "../css/adminStyle.css"
-
+import "../css/adminStyle.css";
 
 export default ({ users, borrarUsers, hacerAdmin }) => {
   return (
@@ -54,3 +53,4 @@ export default ({ users, borrarUsers, hacerAdmin }) => {
     </div >
   )
 }
+

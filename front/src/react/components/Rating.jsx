@@ -4,9 +4,9 @@ import RatingStyles from "../css/RatingStyles.css";
 
 export default ({ setHover, setRating, hover, rating }) => {
   return (
-    <div>
+    <div className="review-box">
       {[...Array(5)].map((star, index) => {
-        const ratingValue = index + 1
+        const ratingValue = index + 1;
         return (
           <label key={index}>
             <input

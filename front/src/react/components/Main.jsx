@@ -17,8 +17,8 @@ import EditPerfil from "../containers/ContainerEditPerfil";
 import ProductsSearchByPriceContainer from "../containers/ProductsSearchByPriceContainer";
 import ProductsSearchByAlfabetContainer from "../containers/ProductsSearchByAlfabetContainer";
 import UserListaContainer from "../containers/UserListaContainer";
-import CompraContainer from '../containers/CompraContainer'
-
+import CompraContainer from "../containers/CompraContainer";
+import RatingContainer from "../containers/RatingContainer";
 import AddProductoContainer from "../containers/AddProductoContainer";
 import AdminContainer from "../containers/AdminContainer";
 import EditProductContainer from "../containers/EditProductContainer";
@@ -44,11 +44,7 @@ const Main = ({ user, userLogin }) => {
           component={ProductsContainer}
         />
 
-        <Route
-          exact
-          path="/products/:id"
-          component={ViewSingleContainer}
-        />
+        <Route exact path="/products/:id" component={ViewSingleContainer} />
 
         <Route
           exact
@@ -68,29 +64,13 @@ const Main = ({ user, userLogin }) => {
           component={CateogryContainer}
         />
 
-        <Route
-          exact
-          path="/login"
-          component={LoginContainer}
-        />
+        <Route exact path="/login" component={LoginContainer} />
 
-        <Route
-          exact
-          path="/register"
-          component={RegisterContainer}
-        />
+        <Route exact path="/register" component={RegisterContainer} />
 
-        <Route
-          exact
-          path="/miPerfil"
-          component={PerfilUsuarioContainer}
-        />
+        <Route exact path="/miPerfil" component={PerfilUsuarioContainer} />
 
-        <Route
-          exact
-          path="/editPerfil"
-          component={EditPerfil}
-        />
+        <Route exact path="/editPerfil" component={EditPerfil} />
 
         <Route exact path="/userList" component={UserListaContainer} />
 
@@ -102,10 +82,12 @@ const Main = ({ user, userLogin }) => {
           component={ProductSearchContainer}
         />
 
+        <Route exact path="/miPerfil/compras" component={CompraContainer} />
+
         <Route
           exact
-          path='/miPerfil/compras'
-          component={CompraContainer}
+          path="/miPerfil/compras/:compraId/valorar/:productoId"
+          component={RatingContainer}
         />
 
         <Route

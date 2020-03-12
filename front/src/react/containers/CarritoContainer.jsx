@@ -6,13 +6,21 @@ import { createVariasCompras } from "../../redux/action-creators/compras";
 
 import CarritoList from "../components/CarritoList";
 import Footer from "../components/Footer";
+import Loading from "../components/Loading";
 
-const CarritoContaienr = ({ deleteCart, fetchCarritos, listaCarrito, createVariasCompras }) => {
-  const [esVisible, setEsVisible] = useState(false)
+
+const CarritoContaienr = ({
+  deleteCart,
+  fetchCarritos,
+  createVariasCompras
+}) => {
+  const [listaCarrito, setListaCarrito] = useState([]);
 
   useEffect(() => {
-    fetchCarritos();
-  }, [])
+    fetchCarritos().then(res => {
+      setListaCarrito(res);
+    });
+  }, []);
 
   const handlerButtonDelete = id => {
     deleteCart(id);
@@ -20,8 +28,7 @@ const CarritoContaienr = ({ deleteCart, fetchCarritos, listaCarrito, createVaria
 
   const handleButtonComprar = e => {
     e.preventDefault();
-    createVariasCompras()
-      .then(algo => console.log("todo bien"));
+    createVariasCompras();
   };
 
   const mostrarDetalle = (e) => {
@@ -42,14 +49,15 @@ const CarritoContaienr = ({ deleteCart, fetchCarritos, listaCarrito, createVaria
               alt="shop-image"
               className="profile"
             />
-            <CarritoList
-              handlerButtonDelete={handlerButtonDelete}
-              listaCarrito={listaCarrito}
-              handleButtonComprar={handleButtonComprar}
-              mostrarDetalle={mostrarDetalle}
-              esVisible={esVisible}
-            />
-
+            {listaCarrito ? (
+              <CarritoList
+                handlerButtonDelete={handlerButtonDelete}
+                listaCarrito={listaCarrito}
+                handleButtonComprar={handleButtonComprar}
+              />
+            ) : (
+              <Loading />
+            )}
           </div>
         </div>
       </div>
@@ -60,14 +68,13 @@ const CarritoContaienr = ({ deleteCart, fetchCarritos, listaCarrito, createVaria
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    listaCarrito: state.carrito.listaCarrito,
     user: state.login.userLogueado.id
   };
 };
 
 const mapDispathToProps = (dispatch, ownProps) => {
   return {
-    fetchCarritos: id => dispatch(fetchCarritos(id)),
+    fetchCarritos: () => dispatch(fetchCarritos()),
     deleteCart: id => dispatch(carritoDelete(id)),
     createVariasCompras: () => dispatch(createVariasCompras())
   };

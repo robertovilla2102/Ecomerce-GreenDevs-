@@ -10,7 +10,6 @@ export default ({
   priceErr
 }) => {
   return (
-
 <div className="card shadow" style={{marginTop:"30px"}}>
 	<article className="card-group-item">
 		<header className="card-header" style={{backgroundColor: "#e9ecef",

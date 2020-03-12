@@ -1,15 +1,15 @@
 import React from "react";
 import Carrito from "./Carrito";
-import Alert from "react-bootstrap/Alert";
+import ErrorDetected from "./ErrorDetected";
+import { CARRITO_VACIO } from "../../assets/ErrorsMsg";
 
 import VistaConfirmacion from './VistaConfirmacion'
 
 export default ({ listaCarrito, handlerButtonDelete, handleButtonComprar, mostrarDetalle, esVisible }) => {
   return (
-    <div>
+    <div className="container">
       {listaCarrito.length > 0 ? (
         <div>
-
           <table class="table text-center">
             <thead>
               <tr>
@@ -50,12 +50,9 @@ export default ({ listaCarrito, handlerButtonDelete, handleButtonComprar, mostra
 
       )
         : (
-          <div className="col-md-6 mx-auto mt-5">
-            <Alert variant="info">
-              <Alert.Heading>Your shopping cart is empty!</Alert.Heading>
-              <p>Visit our catalog to add products to your cart!</p>
-            </Alert>
-          </div>
+         <div className="col-md-8 mx-auto">
+          <ErrorDetected msg={CARRITO_VACIO} />
+        </div>
         )}
     </div>
   );

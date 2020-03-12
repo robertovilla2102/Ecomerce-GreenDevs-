@@ -50,7 +50,7 @@ class ViewSingleContainer extends React.Component {
     e.preventDefault();
     this.props.createCarrito(this.props.match.params.id, {
       cantidad: this.state.cantidad,
-      user: this.props.usuario
+      userId: this.props.usuario
     });
 
     this.setState({
@@ -94,7 +94,6 @@ class ViewSingleContainer extends React.Component {
           cantidad={this.state.cantidad}
           onSubmitComprar={this.onSubmitComprar}
         />
-
       </div>
     ) : (
       <ViewSingle
@@ -105,8 +104,6 @@ class ViewSingleContainer extends React.Component {
         cantidad={this.state.cantidad}
         onSubmitComprar={this.onSubmitComprar}
       />
-        <RatingContainer />
-      </div>
     )
   }
 }
