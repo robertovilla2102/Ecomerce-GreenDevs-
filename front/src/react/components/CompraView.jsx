@@ -18,8 +18,8 @@ export default ({ compras }) => (
         </thead>
         <tbody>
 
-          {compras.map(compra => (
-            <tr className="text-center">
+          {compras.map((compra, i) => (
+            <tr className="text-center" key={i}>
               <td>
                 <img className="profile-buy rounded-circle" src={compra.producto.imgProfile} alt="" style={{
                   width: '70px',

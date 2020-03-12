@@ -6,7 +6,7 @@ export default ({ productList, onSubmitCarrito }) => (
   <div className="container">
     <div className="row page-wrapper">
       {productList.map((product, index) => (
-        <div className="page-inner">
+        <div className="page-inner" key={index}>
           <div className="row">
             <div className="el-wrapper">
               <div className="box-up">

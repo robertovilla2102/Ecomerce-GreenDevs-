@@ -43,14 +43,15 @@ export default ({
               PRODUCTOS
             </Link>
           </li>
-
+          
           <li className="nav-item" style={{fontWeight:"300",fontSize:"18px"}}>
             <p className="nav-link">ABOUT US</p>
           </li>
-
+          
           <li className="nav-item" style={{fontWeight:"300",fontSize:"18px"}}>
             <p className="nav-link">CONTACTO</p>
           </li>
+          
         </ul>
 
         <form className="form-inline my-2 my-lg-0" onSubmit={onSubmitSearch}>

@@ -2,7 +2,9 @@ import React from "react";
 import Carrito from "./Carrito";
 import Alert from "react-bootstrap/Alert";
 
-export default ({ listaCarrito, handlerButtonDelete, handleButtonComprar }) => {
+import VistaConfirmacion from './VistaConfirmacion'
+
+export default ({ listaCarrito, handlerButtonDelete, handleButtonComprar, mostrarDetalle, esVisible }) => {
   return (
     <div>
       {listaCarrito.length > 0 ? (
@@ -31,14 +33,22 @@ export default ({ listaCarrito, handlerButtonDelete, handleButtonComprar }) => {
           <button
             className='btn btn-success'
             type='submit'
-            onClick={handleButtonComprar}
+            onClick={mostrarDetalle}
           >
             COMPRAR
             </button>
+
+          {esVisible ?
+            <VistaConfirmacion
+              mostrarDetalle={mostrarDetalle}
+              listaCarrito={listaCarrito}
+              handleButtonComprar={handleButtonComprar}
+            />
+            : null
+          }
         </div>
 
       )
-
         : (
           <div className="col-md-6 mx-auto mt-5">
             <Alert variant="info">
