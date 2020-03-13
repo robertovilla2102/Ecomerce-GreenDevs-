@@ -16,10 +16,18 @@ const NavbarContainer = ({
   const [inputSearch, setInputSearch] = useState("");
   const [inputEmail, setInputEmail] = useState("");
   const [inputPassword, setInputPassword] = useState("");
+  const [errSearch, setErrSearch] = useState(false);
 
   const handlerInput = e => {
     let search = e.target.value;
-    setInputSearch(value => search);
+    let ultimaEntrada = search.slice(search.length - 1, 1);
+
+    if (isNaN(ultimaEntrada)) {
+      setInputSearch(search);
+      setErrSearch(false);
+    } else {
+      setErrSearch(true);
+    }
   };
 
   const handlerInputForm = e => {
@@ -59,6 +67,7 @@ const NavbarContainer = ({
   return (
     <div>
       <Navbar
+        errSearch={errSearch}
         onSubmitLogout={onSubmitLogout}
         onSubmitForm={onSubmitForm}
         handlerInputForm={handlerInputForm}

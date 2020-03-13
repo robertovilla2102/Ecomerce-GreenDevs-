@@ -25,8 +25,8 @@ import EditProductFormContainer from "../containers/EditProductFormContainer";
 import CategoriesAdminContainer from "../containers/CategoriesAdminContainer";
 import FormPasswordContainer from "../containers/FormPasswordContainer";
 import RatingContainer from "../containers/RatingContainer";
-import AddCategoriesContainer from '../containers/AddCategoriesContainer'
-import EditCategoryContainer from '../containers/EditCategoryContainer'
+import AddCategoriesContainer from "../containers/AddCategoriesContainer";
+import EditCategoryContainer from "../containers/EditCategoryContainer";
 
 const Main = ({ user, userLogin }) => {
   useEffect(() => {
@@ -86,7 +86,6 @@ const Main = ({ user, userLogin }) => {
 
         <Route exact path="/miPerfil/compras" component={CompraContainer} />
 
-
         <Route
           exact
           path="/miPerfil/compras/:compraId/valorar/:productoId"
@@ -115,16 +114,15 @@ const Main = ({ user, userLogin }) => {
           component={CategoriesAdminContainer}
         />
 
-
         <Route
           exact
-          path='/admin/addCategory'
+          path="/admin/addCategory"
           component={AddCategoriesContainer}
         />
 
         <Route
           exact
-          path='/admin/editCategory/:id'
+          path="/admin/editCategory/:id"
           component={EditCategoryContainer}
         />
 

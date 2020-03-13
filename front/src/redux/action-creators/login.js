@@ -8,14 +8,14 @@ const receivedUser = user => ({
 
 // verifica en la base de datos si el usuario existe y lo loguea
 export const loginUser = (email, password) => dispatch => {
-  console.log(email, password);
-
   return axios
     .post("http://localhost:3001/api/user/login", {
       userEmail: email,
       password: password
     })
-    .then(res => dispatch(receivedUser(res.data)))
+    .then(res => {
+      dispatch(receivedUser(res.data));
+    })
     .catch(err => err.response);
 };
 
@@ -23,7 +23,10 @@ export const loginUser = (email, password) => dispatch => {
 export const loginUserFacebook = () => dispatch => {
   return axios
     .post("http://localhost:3001/api/auth/facebook")
-    .then(user => dispatch(receivedUser(user)))
+    .then(user => {
+      dispatch(receivedUser(user.data));
+      return user.data;
+    })
     .catch(err => err);
 };
 
@@ -38,4 +41,13 @@ export const userLogout = () => dispatch => {
   return axios
     .get("http://localhost:3001/api/user/logout")
     .then(() => dispatch(receivedUser({})));
+};
+
+export const editPerfil = user => dispatch => {
+  return axios
+    .post("http://localhost:3001/api/user/editPerfil", { user })
+    .then(res => {
+      dispatch(receivedUser(res.data));
+    })
+    .catch(err => err);
 };

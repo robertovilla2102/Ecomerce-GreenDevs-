@@ -7,8 +7,6 @@ import Products from "../components/Products";
 import Pagination from "../components/Paginacion";
 import FiltroContainer from "./FiltroContainer";
 
-import { COMPRA_ALERT } from "../../assets/mensajesAlert";
-
 import Alert from "../components/Alert";
 
 //importando action-creators
@@ -27,10 +25,8 @@ const ProductContainer = ({
 }) => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(match.params.page || 1);
-  const [postsPerPage, setPostsPerPage] = useState(9);
+  const [postsPerPage, setPostsPerPage] = useState(8);
   const [boolean, setBoolean] = useState(false);
-  const [booleanCarrito, setBooleanCarrito] = useState(false);
-
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirtsPost = indexOfLastPost - postsPerPage;
@@ -57,40 +53,36 @@ const ProductContainer = ({
     setBoolean(false);
   };
 
-  return boolean ? (
-    <Alert pedorro={COMPRA_ALERT} cambio={cambio} />
-
-  return booleanCarrito ? (
-    <Alert cambio={cambio} pedorro={CARRITO_ALERT} />
-
-  ) : (
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col-md-3">
-          <FiltroContainer />
-        </div>
-        <div className="col-md-9" >
-          {lista ? (
-            <div>
-
+  return (
+    <div>
+      {boolean ? <Alert pedorro={CARRITO_ALERT} cambio={cambio} /> : null}
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-3">
+            <FiltroContainer />
+          </div>
+          <div className="col-md-9">
+            {lista ? (
+              <div>
                 <Products
                   onSubmitCarrito={onSubmitCarrito}
                   productList={currentPosts}
                 />
 
-              <div className="container">
-                <div className="row">
-                  <div className="col-md-3 mx-auto">
-                    <Pagination
-                      postsPerPage={postsPerPage}
-                      totalPosts={posts.length}
-                      onChangePage={onChangePage}
-                    />
+                <div className="container">
+                  <div className="row">
+                    <div className="col-md-3 mx-auto">
+                      <Pagination
+                        postsPerPage={postsPerPage}
+                        totalPosts={posts.length}
+                        onChangePage={onChangePage}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ) : null}
+            ) : null}
+          </div>
         </div>
       </div>
     </div>

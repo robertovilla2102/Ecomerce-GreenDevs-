@@ -66,7 +66,7 @@ const ViewSingleContainer = ({
   const cambio = () => {
     setBoolean(false);
   };
-  
+
   return (
     <div>
       {boolean ? <Alert cambio={cambio} pedorro={mensaje} /> : null}
@@ -80,7 +80,7 @@ const ViewSingleContainer = ({
       />
     </div>
   );
-
+};
 const mapStateToProps = (state, ownProps) => {
   return {
     producto: state.productos.selectedProduct,

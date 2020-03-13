@@ -16,12 +16,10 @@ const CarritoContaienr = ({
   fetchCarritos,
   listaCarrito,
   createVariasCompras,
-  createVariasCompras,
   listaCarritos
 }) => {
-   const [boolean, setBoolean] = useState(false);
-   const [esVisible, setEsVisible] = useState(false);
-
+  const [boolean, setBoolean] = useState(false);
+  const [esVisible, setEsVisible] = useState(false);
 
   useEffect(() => {
     fetchCarritos();
@@ -35,7 +33,6 @@ const CarritoContaienr = ({
     e.preventDefault();
 
     createVariasCompras();
-
   };
 
   const mostrarDetalle = e => {
