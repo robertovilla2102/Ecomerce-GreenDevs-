@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { imgSingleView } from "../css/estilosComunes";
-import CardsStyles from "../css/CardsStyles.css";
+import singleViewCard from "../css/singleViewCard.css";
 import RatingGeneral from "./RatingGeneral";
 
 export default ({
@@ -36,11 +36,11 @@ export default ({
           <div class="description">
             <p>{product.description}</p>
           </div>
+          <p className="align-middle">Stock: {product.stock}</p>
           <div className="botones d-flex">
-            <p className="align-middle">Stock: {product.stock}</p>
             <div
               className="d-flex"
-              style={{ marginTop: "10px", marginLeft: "21px" }}
+              style={{ marginTop: "10px", marginBottom: "10px" }}
             >
               <button onClick={removeCantidad} className="btn btn-secondary">
                 -

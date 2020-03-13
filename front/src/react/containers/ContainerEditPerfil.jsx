@@ -1,69 +1,64 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-
+import { withRouter } from "react-router";
 import IconProfile from "../components/IconProfile";
 import PerfilEdit from "../components/PerfilEdit";
 import Footer from "../containers/FooterContainer";
 import "../css/estilosPerfil.css";
-import { editPerfil } from "../../redux/action-creators/editarUsuario";
+import { editPerfil, userIsLogin } from "../../redux/action-creators/login";
 
-class PerfilUsuarioContainer extends React.Component {
-  constructor({ userLogueado }) {
-    super();
-    this.state = {
-      userEmail: userLogueado.userEmail,
-      userName: userLogueado.userName,
-      address: userLogueado.address,
-      birthDay: userLogueado.birthDay
-    };
-    this.onChange = this.onChange.bind(this);
-    this.mandarFormulario = this.mandarFormulario.bind(this);
-  }
+const PerfilUsuarioContainer = ({
+  userLogueado,
+  editPerfil,
+  history,
+  userIsLogin
+}) => {
+  const [userEmail, setUserEmail] = useState(userLogueado.userEmail);
+  const [userName, setUserName] = useState(userLogueado.userName);
+  const [userAddress, setUserAddress] = useState(userLogueado.userAddress);
+  const [userBirthDay, setUserBirthDay] = useState(userLogueado.userBirthDay);
+  useEffect(() => {
+    userIsLogin();
+  }, []);
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
-  mandarFormulario(e) {
+  const mandarFormulario = e => {
     e.preventDefault();
     let user = {
-      userName: this.state.userName,
-      userEmail: this.state.userEmail,
-      birthDay: this.state.birthDay,
-      address: this.state.address
-    }
+      userName: userName,
+      userEmail: userEmail,
+      birthDay: userBirthDay,
+      address: userAddress
+    };
 
-    this.props.editPerfil(user)
-      .then(res => this.props.history.push("/home"));
-  }
+    editPerfil(user).then(res => history.push("/home"));
+  };
 
-  render() {
-    return (
-      <div>
-        <div className="container-fluid mt-3 mb-3">
-          <div className="card profile-card-2">
-            <div className="card-img-block">
-              <img
-                className="img-fluid"
-                src="/imagenes/Fondos/fondofranja.png"
-                alt="Card image cap"
-              />
-            </div>
-            <PerfilEdit
-              onChange={this.onChange}
-              userEmail={this.state.userEmail}
-              userName={this.state.userName}
-              birthDay={this.state.birthDay}
-              address={this.state.address}
-              mandarFormulario={this.mandarFormulario}
+  return (
+    <div>
+      <div className="container-fluid mt-3 mb-3">
+        <div className="card profile-card-2">
+          <div className="card-img-block">
+            <img
+              className="img-fluid"
+              src="/imagenes/Fondos/fondofranja.png"
+              alt="Card image cap"
             />
-            <IconProfile />
           </div>
+          <PerfilEdit
+            setUserEmail={setUserEmail}
+            setUserName={setUserName}
+            setUserAddress={setUserAddress}
+            setUserBirthDay={setUserBirthDay}
+            userLogueado={userLogueado}
+            mandarFormulario={mandarFormulario}
+          />
+          <IconProfile />
         </div>
-        <Footer />
       </div>
-    );
-  }
-}
+      <Footer />
+    </div>
+  );
+};
 const mapStateToProps = (state, ownProps) => {
   return {
     userLogueado: state.login.userLogueado
@@ -72,11 +67,11 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispathToProps = (dispatch, ownProps) => {
   return {
-    editPerfil: user => dispatch(editPerfil(user))
+    editPerfil: user => dispatch(editPerfil(user)),
+    userIsLogin: () => dispatch(userIsLogin())
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispathToProps
-)(PerfilUsuarioContainer);
+export default withRouter(
+  connect(mapStateToProps, mapDispathToProps)(PerfilUsuarioContainer)
+);

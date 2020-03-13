@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import UserInfo from "./UserInfo";
 import UserRegister from "./UserRegister";
+import AlertInput from "./AlertInput";
 
 export default ({
   handlerInputForm,
@@ -10,7 +11,8 @@ export default ({
   inputSearch,
   onSubmitForm,
   user,
-  onSubmitLogout
+  onSubmitLogout,
+  errSearch
 }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light align-middle">
@@ -65,6 +67,7 @@ export default ({
             className="btn btn-outline-success my-2 my-sm-0"
             style={{ color: "#1c4c50", borderColor: "#1c4c50" }}
             type="submit"
+            disabled={errSearch}
           >
             Search
           </button>

@@ -3,7 +3,7 @@ const CategoriaController = require("../controllers/CategoriasControllers");
 
 router.get("/", CategoriaController.buscarCategorias);
 
-router.get("/find/:id", CategoriaController.traerUno);
+router.get("/:id", CategoriaController.traerUno);
 
 router.get(
   "/find-products/:id",
