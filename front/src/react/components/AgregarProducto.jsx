@@ -55,7 +55,7 @@ export default ({ handleSubmit, InputChangue, categorias }) => (
             optionsClass={"d-flex"}
             onChange={InputChangue}
             name={"stock"}
-            type={"password"}
+            type={"text"}
             placeholder={"Stock"}
             style={{ width: "100%" }}
           />

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 import {
   fetchCarritos,
   carritoDelete
@@ -16,7 +17,9 @@ const CarritoContaienr = ({
   fetchCarritos,
   listaCarrito,
   createVariasCompras,
-  listaCarritos
+  listaCarritos,
+  history,
+  user
 }) => {
   const [boolean, setBoolean] = useState(false);
   const [esVisible, setEsVisible] = useState(false);
@@ -31,8 +34,11 @@ const CarritoContaienr = ({
 
   const handleButtonComprar = e => {
     e.preventDefault();
-
-    createVariasCompras();
+    if (user) {
+      createVariasCompras().then(() => history.push("/miPerfil/compras"));
+    } else {
+      history.push("/login");
+    }
   };
 
   const mostrarDetalle = e => {
@@ -95,4 +101,6 @@ const mapDispathToProps = (dispatch, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispathToProps)(CarritoContaienr);
+export default withRouter(
+  connect(mapStateToProps, mapDispathToProps)(CarritoContaienr)
+);
