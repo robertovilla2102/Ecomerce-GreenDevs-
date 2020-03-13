@@ -52,7 +52,7 @@ export const fetchCompra = id => dispatch => {
 };
 
 export const createVariasCompras = () => dispatch => {
-  Axios.post(`http://localhost:3001/api/compra/muchos`).then(res => {
+  return Axios.post(`http://localhost:3001/api/compra/muchos`).then(res => {
     dispatch(receiveCarrito([]));
   });
 };
