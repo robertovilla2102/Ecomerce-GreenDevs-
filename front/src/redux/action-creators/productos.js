@@ -19,7 +19,7 @@ const receivedProductsSearch = products => ({
 const receivedProduct = product => ({
   type: RECEIVE_ONE_PRODUCT,
   product
-})
+});
 
 //busca todos los productos en localhost:3001
 export const fetchProducts = queries => dispatch => {
@@ -72,31 +72,30 @@ export const fetchProductsByName = name => dispatch => {
   return axios
     .get(`http://localhost:3001/api/products/search/${name}`)
     .then(res => res.data)
-    .then(products => dispatch(receivedProductsSearch(products)))
+    .then(products => {
+      dispatch(receivedProductsSearch(products));
+      return products;
+    })
     .catch(err => console.error(err));
 };
 
-
-export const addProducto = (body) => dispatch => {
+export const addProducto = body => dispatch => {
   return axios
     .post(`http://localhost:3001/api/products/add`, { body })
-    .then(data => console.log(data)
-    )
-}
+    .then(data => console.log(data));
+};
 
 export const editProduct = (id, body) => dispatch => {
   return axios
     .put(`http://localhost:3001/api/products/edit/${id}`, { body })
-    .then(data => console.log(data)
-    )
-}
+    .then(data => console.log(data));
+};
 
-
-export const deletProduct = (id) => dispatch => {
+export const deletProduct = id => dispatch => {
   return axios
     .delete(`http://localhost:3001/api/products/delete/${id}`)
     .then(data => {
-      console.log(data)
-      dispatch(receivedProducts(data.data))
-    })
-}
+      console.log(data);
+      dispatch(receivedProducts(data.data));
+    });
+};
