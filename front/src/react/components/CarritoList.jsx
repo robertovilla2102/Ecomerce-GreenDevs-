@@ -25,7 +25,6 @@ export default ({
                 <th scope="col">pecio</th>
                 <th scope="col">Cantidad</th>
                 <th scope="col">Total</th>
-                <th scope="col">Incluir</th>
                 <th scope="col">Eliminar</th>
               </tr>
             </thead>
@@ -38,9 +37,10 @@ export default ({
           </table>
 
           <button
-            className="btn btn-success"
+            className="btn btn-success btn-block"
             type="submit"
             onClick={mostrarDetalle}
+            style={{backgroundColor:"#1f4e52", border:"#1f4e52"}}
           >
             COMPRAR
           </button>

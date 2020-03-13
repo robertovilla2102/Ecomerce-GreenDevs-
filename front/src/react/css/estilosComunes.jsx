@@ -62,6 +62,7 @@ export const imgSingleView = {
 
 export const popUp = {
   position: 'fixed',
+  zIndex:"100",
   width: '100%',
   height: '100%',
   top: '0',
@@ -80,6 +81,6 @@ export const popUpInner = {
   bottom: '5%',
   margin: 'auto',
   borderRadius: '20px',
-  background: 'white',
+  background: 'transparent',
   padding: '30px',
 }

@@ -19,13 +19,6 @@ export default ({ listaCarrito, handlerButtonDelete }) => {
           {carrito.cantidad * carrito.producto.price}
         </td>
         <td className="align-middle">
-          <input
-            type="checkbox"
-            aria-label="Checkbox for following text input"
-            value={carrito.id}
-          />
-        </td>
-        <td className="align-middle">
           <button
             className="btn btn-danger"
             type="submit"
@@ -33,6 +26,7 @@ export default ({ listaCarrito, handlerButtonDelete }) => {
               e.preventDefault();
               handlerButtonDelete(carrito.id);
             }}
+            style={{backgroundColor:"#f17d30", border:"#f17d30"}}
           >
             Eliminar
           </button>

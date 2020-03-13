@@ -44,4 +44,3 @@ db.sync({ force: false })
       console.log("Server on port: ", app.get("port"));
     });
   })
-
