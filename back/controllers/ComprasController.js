@@ -1,5 +1,14 @@
-const ComprasController = {};
+const ComprasController = {}
+const nodemailer = require('nodemailer')
 const { Carrito, Compra, Producto } = require("../models/index");
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'robertvlopez27@gmail.com',
+    pass: 'elgatomu'
+  }
+})
 
 
 ComprasController.buscarCompras = (req, res) => {
@@ -52,36 +61,23 @@ ComprasController.buscarCompraPorId = (req, res) => {
 
 ComprasController.addCompra = (req, res) => {
   let productoId = req.params.productId;
-  let user = req.user;
+  let user = req.user
 
+  const mailOptions = {
+    from: 'robertvlopez27@gmail.com',
+    to: `${req.user.userEmail}`,
+    subject: 'Resumen de su compra botanica Binaria',
+    text: `Esperamos que disfrutes de las plantas mas lindas y mejor cuidadas de toda argentina.! Vuelva pronto!`
+  };
 
-  const email = (email, content) => {
-    const nodemailer = require('nodemailer');
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'robertvlopez27@gmail.com',
-        pass: 'elgatomu'
-      },
-    });
-
-    const mailOptions = {
-      from: 'robertvlopez27@gmail.com',
-      to: `${email}`,
-      subject: 'Sending Email using Node.js',
-      text: `That was easy! Has comprado ${content} en nuestra web BotanicaBinaria`
-    };
-
-    console.log("sending email", mailOptions);
-    transporter.sendMail(mailOptions, function (error, info) {
-      console.log("senMail returned!");
-      if (error) {
-        console.log("ERROR!!!!!!", error);
-      } else {
-        console.log('Email sent: ' + info.response);
-      }
-    });
-  }
+  transporter.sendMail(mailOptions, function (error, info) {
+    console.log("senMail returned!");
+    if (error) {
+      console.log("ERROR!!!!!!", error)
+    } else {
+      console.log('Email enviado');
+    }
+  });
 
 
   Compra.create({
@@ -108,6 +104,7 @@ ComprasController.addCompra = (req, res) => {
               }
             }
           ).then(([rowsUpdate, [updateCarrito]]) => {
+
             Producto.findOne({
               where: {
                 id: productoId
@@ -125,7 +122,6 @@ ComprasController.addCompra = (req, res) => {
                 )
                 .then(([rowsUpdate, [updateProducto]]) => {
                   console.log('se ha anadidocon exito')
-                  email(req.user.userEmail, updateCarrito.cantidad)
                   res.status(200).json({ updateProducto, carrito })
                 })
                 .catch(err => res.json(err));
@@ -155,7 +151,7 @@ ComprasController.addCompra = (req, res) => {
                   }
                 )
                 .then(([rowsUpdate, [updateProducto]]) => {
-                  email(req.user.userEmail, updateCarrito.cantidad)
+                  console.log('se ha anadidocon exito')
                   res.status(200).json({ updateProducto, carrito });
                 })
                 .catch(err => res.json(err));
@@ -185,6 +181,23 @@ ComprasController.eliminarCompra = (req, res) => {
 };
 
 ComprasController.addMultiples = (req, res) => {
+
+  const mailOptions = {
+    from: 'robertvlopez27@gmail.com',
+    to: `${req.user.userEmail}`,
+    subject: 'Resumen de su compra botanica Binaria',
+    text: `Esperamos que disfrutes de las plantas mas lindas y mejor cuidadas de toda argentina.! Vuelva pronto`
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    console.log("senMail returned!");
+    if (error) {
+      console.log("ERROR!!!!!!", error);
+    } else {
+      console.log('Email enviado');
+    }
+  });
+
   Compra.create({
     dateCompra: 123,
     salt: `${Math.round(Math.random() * 12345)}`
@@ -230,42 +243,12 @@ ComprasController.addMultiples = (req, res) => {
           );
         })
         .then(() => {
+          console.log('se han agregado con exito');
           res.status(201);
         })
         .catch(err => res.json(err));
     });
   });
-};
-
-ComprasController.addMultiples2 = async (req, res, next) => {
-  const ordenCompra = await Compra.create({
-    dateCompra: 123,
-    salt: `${Math.round(Math.random() * 12345)}`
-  });
-
-  const arrCarritos = await Carrito.findAll({
-    where: {
-      userId: req.user.id,
-      estado: "pending"
-    }
-  });
-
-  const arrCarritosUpdateados = await arrCarritos.map(carrito => {
-    carrito.update(
-      {
-        estado: "comprado",
-        compraId: ordenCompra.id
-      },
-      {
-        returning: true,
-        where: {
-          id: carrito.id
-        }
-      }
-    );
-  });
-
-  return console.log(arrCarritosUpdateados);
 };
 
 module.exports = ComprasController;

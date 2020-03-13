@@ -2,9 +2,14 @@ import React from 'react'
 import { popUp, popUpInner } from '../css/estilosComunes'
 
 export default ({ listaCarrito, mostrarDetalle, handleButtonComprar }) => (
-  <div className="container">
-    <div style={popUp}>
-      <div style={popUpInner} className='container col-xs-4'>
+  <div style={popUp}>
+    <div style={popUpInner} className="container">
+
+  <div class="jumbotron">
+    <h1 class="display-4">Ya casi terminás tu compra!</h1>
+    <p class="lead">A continuación te mostramos un detalle de las plantas que agregaste a tu carrito y están listas para ser enviadas a tu hogar!</p>
+    <hr class="my-4"></hr>
+
         <div className="container">
           <table className="table text-center">
             <thead>
@@ -12,7 +17,7 @@ export default ({ listaCarrito, mostrarDetalle, handleButtonComprar }) => (
                 <th>ID P.</th>
                 <th>Nombre</th>
                 <th>Precio</th>
-                <th>Cantiad</th>
+                <th>Cantidad</th>
                 <th>Total</th>
               </tr>
             </thead>
@@ -41,27 +46,31 @@ export default ({ listaCarrito, mostrarDetalle, handleButtonComprar }) => (
           </table>
 
 
-          <button
-            className='btn btn-danger'
-            type='submit'
-            onClick={mostrarDetalle}
-          >cancelar
-        </button>
+
 
           <button
-            className='btn btn-success'
+            className='btn btn-success btn-block'
             type='submit'
             onClick={handleButtonComprar}
+            style={{backgroundColor:"#1f4e52", border:"#1f4e52"}}
           >
-            confirmar compra
+            Confirmar Compra
           </button>
-        </div>
 
+          <button
+            className='btn btn-danger btn-block'
+            type='submit'
+            onClick={mostrarDetalle}
+            style={{backgroundColor:"#f17d30", border:"#f17d30"}}
+          >Cancelar
+        </button>
 
 
 
       </div>
     </div>
   </div>
-)
 
+  </div>
+
+)
