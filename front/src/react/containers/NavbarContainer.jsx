@@ -16,18 +16,9 @@ const NavbarContainer = ({
   const [inputSearch, setInputSearch] = useState("");
   const [inputEmail, setInputEmail] = useState("");
   const [inputPassword, setInputPassword] = useState("");
-  const [errSearch, setErrSearch] = useState(false);
 
   const handlerInput = e => {
-    let search = e.target.value;
-    let ultimaEntrada = search.slice(search.length - 1, 1);
-
-    if (isNaN(ultimaEntrada)) {
-      setInputSearch(search);
-      setErrSearch(false);
-    } else {
-      setErrSearch(true);
-    }
+    setInputSearch(e.target.value);
   };
 
   const handlerInputForm = e => {
@@ -45,6 +36,8 @@ const NavbarContainer = ({
   const onSubmitSearch = e => {
     e.preventDefault();
     if (inputSearch.length >= 1) {
+      console.log("ENTRA AL ONSUBMIT");
+
       fetchProductsByName(inputSearch).then(() => {
         history.push(`/products/product/${inputSearch}`);
       });
@@ -67,7 +60,6 @@ const NavbarContainer = ({
   return (
     <div>
       <Navbar
-        errSearch={errSearch}
         onSubmitLogout={onSubmitLogout}
         onSubmitForm={onSubmitForm}
         handlerInputForm={handlerInputForm}

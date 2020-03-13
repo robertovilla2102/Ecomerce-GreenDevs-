@@ -35,11 +35,9 @@ ProductoController.buscarUnProducto = (req, res) => {
 };
 
 ProductoController.buscarPorNombre = (req, res) => {
-  Producto.findAll({
-    where: { name: { [Op.substring]: req.params.name } }
-  })
+  Producto.findAll({ where: { name: { [Op.iLike]: `%${req.params.name}%` } } })
     .then(productos => {
-      res.json(productos);
+      res.send(productos);
     })
     .catch(err => res.send(err));
 };

@@ -6,7 +6,6 @@ const db = require("./config/db/index");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
-
 const app = express();
 require("./config/passport");
 require("./config/passport-facebook");
@@ -37,10 +36,10 @@ app.get("/*", (req, res) => {
   res.sendFile(__dirname + "/public/" + "index.html");
 });
 
-db.sync({ force: false })
-  .then(() => {
-    console.log("DB is connected");
-    app.listen(app.get("port"), () => {
-      console.log("Server on port: ", app.get("port"));
-    });
-  })
+db.sync({ force: false }).then(() => {
+  console.log("DB is connected");
+  app.listen(app.get("port"), () => {
+    console.log("Server on port: ", app.get("port"));
+  });
+});
+

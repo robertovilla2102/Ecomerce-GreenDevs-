@@ -15,18 +15,35 @@ export default ({ pedorro, cambio }) => {
       <Modal.Footer>
         {pedorro.boolean ? (
           <Link to={pedorro.ruta}>
-            <Button variant="secondary">{pedorro.boton}</Button>
+            <Button
+              style={{ backgroundColor: "#1c4c50", borderColor: "#1c4c50" }}
+            >
+              {pedorro.boton}
+            </Button>
           </Link>
         ) : null}
         {pedorro.booleanBoton ? (
-          <div>
-            <span>
-              <Link to={pedorro.ruta}>
-                <Button variant="secondary">{pedorro.boton}</Button>
+          <div className="container d-flex">
+            <span className=" col-md-6 mr-3">
+              <Link style={{ textDecoration: "none" }} to={pedorro.ruta}>
+                <Button
+                  style={{
+                    backgroundColor: "#1c4c50",
+                    borderColor: "#1c4c50"
+                  }}
+                  variant="success"
+                  className="btn-block"
+                >
+                  {pedorro.boton}
+                </Button>
               </Link>
             </span>
-            <span>
-              <Button onClick={cambio} variant="secondary">
+            <span className="col-md-6">
+              <Button
+                className="btn-block"
+                onClick={cambio}
+                style={{ backgroundColor: "#f17d30", borderColor: "#f17d30" }}
+              >
                 close
               </Button>
             </span>
