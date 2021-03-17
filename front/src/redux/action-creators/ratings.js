@@ -1,52 +1,52 @@
 import { ADD_RATING, RECEIVE_RATINGS, RECEIVE_RATING } from "../constants";
 import Axios from "axios";
 
-const setRating = rating => ({
+const setRating = (rating) => ({
   type: ADD_RATING,
-  rating
+  rating,
 });
 
-const receiveRatings = ratings => ({
+const receiveRatings = (ratings) => ({
   type: RECEIVE_RATINGS,
-  ratings
+  ratings,
 });
 
-const ratingGeneral = rating => ({
+const ratingGeneral = (rating) => ({
   type: RECEIVE_RATING,
-  rating
+  rating,
 });
 
-export const fetchRatingById = id => dispatch => {
+export const fetchRatingById = (id) => (dispatch) => {
   Axios.get(`/api/rating/all-ratings/${id}`)
-    .then(res => dispatch(ratingGeneral(res.data)))
-    .catch(err => err);
+    .then((res) => dispatch(ratingGeneral(res.data)))
+    .catch((err) => err);
 };
 
-export const fetchAllRatings = dispatch => {
+export const fetchAllRatings = (dispatch) => {
   return Axios.get("/api/ratings/all-ratings")
-    .then(res => {
+    .then((res) => {
       dispatch(receiveRatings(res.data));
       return res;
     })
-    .catch(err => err);
+    .catch((err) => err);
 };
 
-export const fetchValoracion = id => dispatch => {
-  return Axios.get(`/http://localhost:3001/api/rating/valoracion/${id}`).then(
-    res => {
+export const fetchValoracion = (id) => (dispatch) => {
+  return Axios.get(`/http://localhost:3000/api/rating/valoracion/${id}`).then(
+    (res) => {
       dispatch(setRating(res.data));
       return res;
     }
   );
 };
 
-export const addNewReview = (review, id) => dispatch => {
-  return Axios.post(`http://localhost:3001/api/rating/add-rating/${id}`, {
-    review
+export const addNewReview = (review, id) => (dispatch) => {
+  return Axios.post(`http://localhost:3000/api/rating/add-rating/${id}`, {
+    review,
   })
-    .then(res => {
+    .then((res) => {
       dispatch(setRating(res.data));
       return res;
     })
-    .catch(err => err);
+    .catch((err) => err);
 };

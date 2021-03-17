@@ -1,45 +1,46 @@
+const { Op } = require("sequelize");
+const { Producto } = require("../models/index");
+
 const ProductoController = {};
-const { Producto, Categoria } = require("../models/index");
-const Op = require("sequelize").Op;
 
 ProductoController.buscarProductos = (req, res) => {
   if (Object.keys(req.query).length != 0) {
     if (req.query.min && req.query.max) {
       Producto.findAll({
-        where: { price: { [Op.gt]: req.query.min, [Op.lte]: req.query.max } }
-      }).then(productos => {
+        where: { price: { [Op.gt]: req.query.min, [Op.lte]: req.query.max } },
+      }).then((productos) => {
         res.send(productos);
       });
     } else if (req.query.alfabetico) {
       Producto.findAll({
-        order: [["name", req.query.alfabetico]]
-      }).then(productos => {
+        order: [["name", req.query.alfabetico]],
+      }).then((productos) => {
         res.send(productos);
       });
     }
   } else {
     Producto.findAll({ where: { stock: { [Op.gt]: 0 } } })
-      .then(productos => {
+      .then((productos) => {
         res.status(200).json(productos);
       })
-      .catch(err => res.send(err));
+      .catch((err) => res.send(err));
   }
 };
 
 ProductoController.buscarUnProducto = (req, res) => {
   Producto.findByPk(req.params.id)
-    .then(producto => {
+    .then((producto) => {
       res.status(200).json(producto);
     })
-    .catch(err => res.send(err));
+    .catch((err) => res.send(err));
 };
 
 ProductoController.buscarPorNombre = (req, res) => {
   Producto.findAll({ where: { name: { [Op.iLike]: `%${req.params.name}%` } } })
-    .then(productos => {
+    .then((productos) => {
       res.send(productos);
     })
-    .catch(err => res.send(err));
+    .catch((err) => res.send(err));
 };
 
 ProductoController.addProducto = (req, res) => {
@@ -49,12 +50,12 @@ ProductoController.addProducto = (req, res) => {
     imgProfile: req.body.body.imgProfile,
     stock: req.body.body.stock,
     description: req.body.body.description,
-    categoryId: req.body.body.categoryId
+    categoryId: req.body.body.categoryId,
   })
-    .then(producto => {
+    .then((producto) => {
       res.status(201).json(producto);
     })
-    .catch(err => res.send(err));
+    .catch((err) => res.send(err));
 };
 
 ProductoController.modificarProducto = (req, res) => {
@@ -65,28 +66,28 @@ ProductoController.modificarProducto = (req, res) => {
       imgProfile: req.body.body.imgProfile,
       stock: req.body.body.stock,
       description: req.body.body.description,
-      categoryId: req.body.body.categoryId
+      categoryId: req.body.body.categoryId,
     },
     {
       returning: true,
       where: {
-        id: req.params.id
-      }
+        id: req.params.id,
+      },
     }
   )
     .then(([updated, [producto]]) => {
       res.status(201).json(producto);
     })
-    .catch(err => res.send(err));
+    .catch((err) => res.send(err));
 };
 
 ProductoController.deleteProduct = (req, res) => {
   Producto.destroy({
     where: {
-      id: req.params.id
-    }
-  }).then(product => {
-    Producto.findAll().then(productos => {
+      id: req.params.id,
+    },
+  }).then((product) => {
+    Producto.findAll().then((productos) => {
       res.status(200).json(productos);
     });
   });

@@ -1,19 +1,22 @@
-const AdminController = {};
 const { User } = require("../models/index");
 
+const AdminController = {};
 
 AdminController.asignarAdministrador = (req, res) => {
   User.findOne(req.params.id)
-    .then(user => {
-      user.update({ isAdmin: !user.isAdmin }, { where: { id: req.params.userId } })
+    .then((user) => {
+      user
+        .update(
+          { isAdmin: !user.isAdmin },
+          { where: { id: req.params.userId } }
+        )
         .then(() => {
-          User.findAll()
-            .then(users => {
-              res.status(200).json(users)
-            })
-        })
+          User.findAll().then((users) => {
+            res.status(200).json(users);
+          });
+        });
     })
-    .catch(err => res.send(err));
+    .catch((err) => res.send(err));
 };
 
 AdminController.borrarUsuario = (req, res) => {
@@ -21,15 +24,15 @@ AdminController.borrarUsuario = (req, res) => {
     .then(() => {
       res.sendStatus(200);
     })
-    .catch(err => res.send(err));
+    .catch((err) => res.send(err));
 };
 
 AdminController.buscarUsuarios = (req, res) => {
   User.findAll()
-    .then(user => {
+    .then((user) => {
       res.status(200).json(user);
     })
-    .catch(err => res.send(err));
+    .catch((err) => res.send(err));
 };
 
 module.exports = AdminController;

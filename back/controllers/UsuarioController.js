@@ -1,5 +1,6 @@
+const { User, Carrito } = require("../models/index");
+
 const UsuarioController = {};
-const { User, Valoracion, Carrito } = require("../models/index");
 
 UsuarioController.verificarLogin = (req, res, next) => {
   if (req.user) {
@@ -9,7 +10,7 @@ UsuarioController.verificarLogin = (req, res, next) => {
       birthDay: req.user.birthDay,
       address: req.user.address,
       imgProfile: req.user.imgProfile,
-      isAdmin: req.user.isAdmin
+      isAdmin: req.user.isAdmin,
     });
   } else {
     next();
@@ -18,10 +19,11 @@ UsuarioController.verificarLogin = (req, res, next) => {
 
 UsuarioController.crearUsuario = (req, res) => {
   User.create(req.body.user)
-    .then(user => {
+    .then((user) => {
       if (
         user.userEmail == "german@german.com" ||
-        user.userEmail == "celeste@gmail.com"
+        user.userEmail == "celeste@gmail.com" ||
+        user.userEmail == "rober@rober.com"
       ) {
         User.update({ isAdmin: true }, { where: { id: user.id } });
       }
@@ -30,10 +32,10 @@ UsuarioController.crearUsuario = (req, res) => {
         userEmail: user.userEmail,
         userProfile: user.imgProfile,
         userBirthDay: user.birthDay,
-        userAddress: user.address
+        userAddress: user.address,
       });
     })
-    .catch(error => res.send(error));
+    .catch((error) => res.send(error));
 };
 
 UsuarioController.edit = (req, res) => {
@@ -41,13 +43,13 @@ UsuarioController.edit = (req, res) => {
     .then(() => {
       return User.findOne({ where: { id: req.user.id } });
     })
-    .then(user => {
+    .then((user) => {
       res.status(201).json({
         userName: user.userName,
         userEmail: user.userEmail,
         userProfile: user.imgProfile,
         userBirthDay: user.birthDay,
-        userAddress: user.address
+        userAddress: user.address,
       });
     });
 };
@@ -55,10 +57,10 @@ UsuarioController.edit = (req, res) => {
 UsuarioController.login = async (req, res) => {
   var listCarrito = req.session.carrito;
   if (listCarrito) {
-    await listCarrito.forEach(carrito => {
+    await listCarrito.forEach((carrito) => {
       Carrito.findOne({
-        where: { userId: req.user.id, productoId: carrito.producto.id }
-      }).then(carritos => {
+        where: { userId: req.user.id, productoId: carrito.producto.id },
+      }).then((carritos) => {
         if (carritos) {
           Carrito.update(
             { cantidad: carritos.cantidad + carrito.cantidad },
@@ -69,7 +71,7 @@ UsuarioController.login = async (req, res) => {
             estado: carrito.estado,
             cantidad: carrito.cantidad,
             userId: req.user.id,
-            productoId: carrito.producto.id
+            productoId: carrito.producto.id,
           });
         }
       });
@@ -82,7 +84,7 @@ UsuarioController.login = async (req, res) => {
     birthDay: req.user.birthDay,
     address: req.user.address,
     imgProfile: req.user.imgProfile,
-    isAdmin: req.user.isAdmin
+    isAdmin: req.user.isAdmin,
   });
 };
 

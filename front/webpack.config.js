@@ -5,11 +5,15 @@ module.exports = {
 
   output: {
     filename: "bundle.js",
-    path: __dirname + "/../back/public/bundle"
+    path: __dirname + "/../back/public/bundle",
+  },
+  devServer: {
+    inline: false,
+    contentBase: "./dist",
   },
 
   resolve: {
-    extensions: [".js", ".jsx"]
+    extensions: [".js", ".jsx"],
   },
 
   context: __dirname,
@@ -20,16 +24,16 @@ module.exports = {
         test: /jsx?$/,
         exclude: /(node_modules)/,
         loader: "babel-loader",
-        query: {
-          presets: ["@babel/preset-react", "@babel/env"]
-        }
+        options: {
+          presets: ["@babel/preset-react", "@babel/env"],
+        },
       },
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"]
-      }
-    ]
+        use: ["style-loader", "css-loader"],
+      },
+    ],
   },
 
-  devtool: "source-map"
+  devtool: "source-map",
 };

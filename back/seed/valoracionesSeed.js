@@ -1,58 +1,58 @@
-const { Valoracion } = require("./models/index");
+const { Valoracion } = require("../models/index");
 
 Valoracion.bulkCreate([
   {
     userId: 1,
     productoId: 1,
     rating: 3,
-    review: "Nada"
+    review: "Nada",
   },
   {
     userId: 1,
     productoId: 1,
     rating: 5,
-    review: "Nada"
+    review: "Nada",
   },
   {
     userId: 1,
     productoId: 1,
     rating: 4,
-    review: "Nada"
+    review: "Nada",
   },
   {
     userId: 1,
     productoId: 1,
     rating: 1,
-    review: "Nada"
+    review: "Nada",
   },
   {
     userId: 1,
     productoId: 1,
     rating: 5,
-    review: "Nada"
+    review: "Nada",
   },
   {
     userId: 1,
     productoId: 1,
     rating: 1,
-    review: "Nada"
+    review: "Nada",
   },
   {
     userId: 1,
     productoId: 1,
     rating: 1,
-    review: "Nada"
+    review: "Nada",
   },
   {
     userId: 1,
     productoId: 1,
     rating: 1,
-    review: "Nada"
+    review: "Nada",
   },
   {
     userId: 1,
     productoId: 1,
     rating: 2,
-    review: "Nada"
-  }
+    review: "Nada",
+  },
 ]);

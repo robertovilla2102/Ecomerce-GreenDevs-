@@ -1,15 +1,19 @@
-const db = require("../config/db");
 const S = require("sequelize");
-const Carrito = db.define("carrito", {
-  cantidad: {
-    type: S.INTEGER
+const db = require("../config/db");
+
+class Carrito extends S.Model {}
+
+Carrito.init(
+  {
+    cantidad: {
+      type: S.INTEGER,
+    },
+    estado: {
+      type: S.STRING,
+      defaultValue: "pending",
+    },
   },
-  estado: {
-    //pending , comprado
-    type: S.STRING,
-    defaultValue: "pending"
-  },
-  valorado: { type: S.BOOLEAN, defaultValue: false }
-});
+  { sequelize: db, modelName: "carrito" }
+);
 
 module.exports = Carrito;
