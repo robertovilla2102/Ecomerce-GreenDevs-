@@ -1,9 +1,9 @@
-import { Prisma, PrismaClient } from "@prisma/client";
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 import morgan from "morgan";
 import cors from "cors";
 
 import routes from "./routes";
+import errorHandler from "./helpers/errorHandler";
 
 const app = express();
 
@@ -153,16 +153,19 @@ app.get("/feed", async (req, res) => {
   res.json(posts);
 }); */
 
-app.get(`/`, async (_, res) => {
+/* app.get(`/`, async (_, res) => {
   res.json({
     message: "OK",
   });
+}); */
+
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  const error = errorHandler(err, req, res);
+  res.json({ error: error.message });
 });
 
 const server = app.listen(3000, () =>
-  console.log(`
-🚀 Server ready at: http://localhost:3000
-`)
+  console.log(`🚀 Server ready at: http://localhost:3000`)
 );
 
 export default server;
