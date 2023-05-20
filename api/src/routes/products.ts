@@ -1,25 +1,64 @@
 import { Request, Router } from "express";
-import { createProduct } from "../queries/products";
-import client from "../client";
+import {
+  createProductQuery,
+  getProductQuery,
+  getProductsQuery,
+} from "../queries/products";
+import { QueryOptions } from "../types";
+import {
+  success,
+  internalServerError,
+  badRequest,
+  notFound,
+} from "../helpers/responseHandler";
 
-const productsRouter = Router({
-  caseSensitive: true,
-});
+const routes = Router();
 
 const ROUTES = {
   PRODUCTS: "/products",
+  PRODUCT: "/products/:id",
 };
 
-productsRouter.get(ROUTES.PRODUCTS, async (req, res) => {
-  const products = await client.product.findMany();
-  res.json(products);
+routes.post(ROUTES.PRODUCTS, async (req: Request, res) => {
+  try {
+    const body = req.body;
+    const product = await createProductQuery(body);
+    return success(res, product);
+  } catch (error) {
+    internalServerError(res);
+  }
 });
 
-productsRouter.post(ROUTES.PRODUCTS, async (req: Request, res) => {
-  const body = req.body;
-  const product = await createProduct(body);
+routes.get(ROUTES.PRODUCTS, async (req: Request, res) => {
+  try {
+    const { orderBy, skip, take } = req.query as QueryOptions;
 
-  res.json(product);
+    const options = { orderBy, skip, take };
+    const products = await getProductsQuery(options);
+    success(res, products);
+  } catch (error) {
+    internalServerError(res);
+  }
 });
 
-export default productsRouter;
+routes.get(ROUTES.PRODUCT, async (req: Request, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!id) {
+      return badRequest(res, "ID is required ");
+    }
+
+    const product = await getProductQuery(id);
+
+    if (!product) {
+      return notFound(res, `Product with ID ${id} does not exist`);
+    }
+
+    return success(res, product);
+  } catch (error) {
+    internalServerError(res);
+  }
+});
+
+export default routes;
