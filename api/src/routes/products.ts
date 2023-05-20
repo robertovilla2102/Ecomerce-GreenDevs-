@@ -48,14 +48,13 @@ routes.get(ROUTES.PRODUCT, async (req: Request, res) => {
     if (!id) {
       return badRequest(res, "ID is required ");
     }
-
     const product = await getProductQuery(id);
 
     if (!product) {
       return notFound(res, `Product with ID ${id} does not exist`);
     }
 
-    return success(res, product);
+    success(res, product);
   } catch (error) {
     internalServerError(res);
   }

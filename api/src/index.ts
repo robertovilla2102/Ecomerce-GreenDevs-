@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express, { NextFunction, Request, Response } from "express";
 import morgan from "morgan";
 import cors from "cors";
 
@@ -153,15 +153,15 @@ app.get("/feed", async (req, res) => {
   res.json(posts);
 }); */
 
-app.get(`/`, async (_, res) => {
+/* app.get(`/`, async (_, res) => {
   res.json({
     message: "OK",
   });
-});
+}); */
 
-app.use((err: Error, req: Request, res: Response) => {
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   const error = errorHandler(err, req, res);
-  res.status(error.statusCode).json({ error: error.message });
+  res.json({ error: error.message });
 });
 
 const server = app.listen(3000, () =>

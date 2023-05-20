@@ -15,7 +15,7 @@ const errorHandler = (err: Error, _req: Request, res: Response): ApiError => {
     message,
   };
 
-  logger.error(err.message, { error: err });
+  /*   logger.error(err.message, { error: err }); */
 
   return error;
 };
