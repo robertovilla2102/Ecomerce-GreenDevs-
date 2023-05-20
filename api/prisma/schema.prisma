@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id         Int          @id @default(autoincrement())
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt()
+  email      String       @unique()
+  name       String       @default("New User")
+  // valorations Valoration[]
+  // Order       Order[]
+  Valoration Valoration[]
+}
+
+model Product {
+  id            Int          @id @default(autoincrement())
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt()
+  price         Float        @default(0)
+  description   String       @default("New Product")
+  image         String       @default("")
+  quantity      Int          @default(1)
+  averageRating Float        @default(0)
+  availability  Boolean      @default(true)
+  title         String       @unique @default("New Product")
+  // categories    Category[]
+  // valorations   Valoration[]
+  Valoration    Valoration[]
+}
+
+model Valoration {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+  rating    Int
+  comment   String
+  productId Int
+  userId    Int
+  User      User     @relation(fields: [userId], references: [id])
+  Product   Product  @relation(fields: [productId], references: [id])
+}
+
+// model Category {
+//   id          Int       @id @default(dbgenerated("random() * 1000000000"))
+//   createdAt   DateTime  @default(now())
+//   updatedAt   DateTime  @updatedAt
+//   name        String
+//   products    Product[]
+//   description String
+//   image       String
+// }
+
+// model Order {
+//   id        Int      @id @default(dbgenerated("random() * 1000000000"))
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   quantity  Int
+//   userId    Int
+//   productId Int
+//   user      User     @relation(fields: [userId], references: [id])
+//   product   Product  @relation(fields: [productId], references: [id])
+// }
