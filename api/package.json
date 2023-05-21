@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-      "build": "npm-run-all lint format clean && tsc",
+    "build": "npm-run-all lint format clean && tsc",
     "start": "node src",
     "dev": "ts-node src/index.ts",
     "dev:watch": "nodemon src -e ts,json --exec 'yarn run dev'",
     "lint": "eslint src",
     "format": "npx prettier --write src",
-    "format:check": "npx prettier --check src"
+    "format:check": "npx prettier --check src",
+    "run:dev": "docker compose up"
   },
   "dependencies": {
     "@prisma/client": "4.13.0",

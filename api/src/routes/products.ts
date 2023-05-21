@@ -35,6 +35,7 @@ routes.get(ROUTES.PRODUCTS, async (req: Request, res) => {
 
     const options = { orderBy, skip, take };
     const products = await getProductsQuery(options);
+    console.log("%cproducts.ts line:38 products", "color: #26bfa5;", products);
     success(res, products);
   } catch (error) {
     internalServerError(res);

@@ -41,7 +41,7 @@ export const badRequest = (res: Response, message: string) => {
     errorName: ERROR_NAMES.BAD_REQUEST,
   };
 
-  res.json(response);
+  res.status(STATUS_CODES.BAD_REQUEST).json(response);
 };
 
 export const notFound = (res: Response, message: string) => {
@@ -51,7 +51,7 @@ export const notFound = (res: Response, message: string) => {
     errorName: ERROR_NAMES.NOT_FOUND,
   };
 
-  res.json(response);
+  res.status(STATUS_CODES.NOT_FOUND).json(response);
 };
 
 export const internalServerError = (res: Response) => {
@@ -61,5 +61,5 @@ export const internalServerError = (res: Response) => {
     errorName: ERROR_NAMES.INTERNAL_SERVER_ERROR,
   };
 
-  res.json(response);
+  res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json(response);
 };
