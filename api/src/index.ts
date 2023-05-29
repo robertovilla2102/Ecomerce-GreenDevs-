@@ -153,13 +153,8 @@ app.get("/feed", async (req, res) => {
   res.json(posts);
 }); */
 
-/* app.get(`/`, async (_, res) => {
-  res.json({
-    message: "OK",
-  });
-}); */
-
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+app.use((err: Error, req: Request, res: Response, _next: NextFunction) => {
   const error = errorHandler(err, req, res);
   res.json({ error: error.message });
 });

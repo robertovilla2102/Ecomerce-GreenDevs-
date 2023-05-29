@@ -1,8 +1,14 @@
 import productsRouter from "./products";
+import categoriesRouter from "./categories";
 import express from "express";
 
-const router = express.Router();
+const routes = express.Router();
 
-router.use(productsRouter);
+routes.use(productsRouter);
+routes.use(categoriesRouter);
 
-export default router;
+routes.get(`/`, async (_, res) => {
+  res.json({ message: "API is working" });
+});
+
+export default routes;

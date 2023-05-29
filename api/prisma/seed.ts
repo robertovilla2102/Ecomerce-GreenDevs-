@@ -1,4 +1,5 @@
 import { PrismaClient, Prisma } from "@prisma/client";
+import { mockedCategories } from "./mocks/categories";
 
 const prisma = new PrismaClient({
   log: ["query", "info", "warn"],
@@ -19,6 +20,13 @@ async function main() {
       data: u,
     });
     console.log(`Created user with id: ${user.id}`);
+  }
+
+  for (const p of mockedCategories) {
+    const plant = await prisma.category.create({
+      data: p,
+    });
+    console.log(`Created category with id: ${plant.id}`);
   }
   console.log(`Seeding finished.`);
 }
