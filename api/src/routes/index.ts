@@ -1,11 +1,12 @@
-import productsRouter from "./products";
-import categoriesRouter from "./categories";
+import productRoutes from "./productRoutes";
+import categoryRoutes from "./categoryRoutes";
+
 import express from "express";
 
 const routes = express.Router();
 
-routes.use(productsRouter);
-routes.use(categoriesRouter);
+routes.use(productRoutes);
+routes.use(categoryRoutes);
 
 routes.get(`/`, async (_, res) => {
   res.json({ message: "API is working" });

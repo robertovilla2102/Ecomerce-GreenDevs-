@@ -5,11 +5,7 @@ import { QueryOptions } from "../types";
 const { create } = client.product;
 
 export const createProductQuery = async (body: Product): Promise<Product> => {
-  const result = await create({ data: body });
-
-  console.log(result);
-
-  return result;
+  return create({ data: body });
 };
 
 export const getProductsQuery = async (

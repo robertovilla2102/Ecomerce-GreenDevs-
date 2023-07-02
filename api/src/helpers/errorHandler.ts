@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import logger from "../logs/logger";
+/* import logger from "../logs/logger"; */
 
 interface ApiError {
   statusCode: number;

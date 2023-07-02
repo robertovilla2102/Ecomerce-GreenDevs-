@@ -1,28 +1,7 @@
 import { Response } from "express";
-
-interface ApiResponse {
-  message: string;
-  data: unknown;
-  status: number;
-}
-
-interface ApiError extends Partial<ApiResponse> {
-  errorName: string;
-}
-
-const STATUS_CODES = {
-  OK: 200,
-  CREATED: 201,
-  BAD_REQUEST: 400,
-  NOT_FOUND: 404,
-  INTERNAL_SERVER_ERROR: 500,
-};
-
-const ERROR_NAMES = {
-  BAD_REQUEST: "Bad Request",
-  NOT_FOUND: "Not Found",
-  INTERNAL_SERVER_ERROR: "Internal Server Error",
-};
+import { ERROR_NAMES, STATUS_CODES } from "./responseHandler.consts";
+import { ApiError, ApiResponse } from "./responseHandle.types";
+import { ValidationError } from "express-validator";
 
 export const success = (res: Response, data: unknown) => {
   const response: ApiResponse = {
@@ -31,17 +10,22 @@ export const success = (res: Response, data: unknown) => {
     data,
   };
 
-  res.json(response.data);
+  return res.json(response.data);
 };
 
-export const badRequest = (res: Response, message: string) => {
+export const badRequest = (
+  res: Response,
+  message: string,
+  errors: ValidationError[]
+) => {
   const response: ApiError = {
     message,
+    errors: errors || [],
     status: STATUS_CODES.BAD_REQUEST,
     errorName: ERROR_NAMES.BAD_REQUEST,
   };
 
-  res.status(STATUS_CODES.BAD_REQUEST).json(response);
+  return res.status(STATUS_CODES.BAD_REQUEST).json(response);
 };
 
 export const notFound = (res: Response, message: string) => {
@@ -51,7 +35,7 @@ export const notFound = (res: Response, message: string) => {
     errorName: ERROR_NAMES.NOT_FOUND,
   };
 
-  res.status(STATUS_CODES.NOT_FOUND).json(response);
+  return res.status(STATUS_CODES.NOT_FOUND).json(response);
 };
 
 export const internalServerError = (res: Response) => {
@@ -61,5 +45,5 @@ export const internalServerError = (res: Response) => {
     errorName: ERROR_NAMES.INTERNAL_SERVER_ERROR,
   };
 
-  res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json(response);
+  return res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json(response);
 };

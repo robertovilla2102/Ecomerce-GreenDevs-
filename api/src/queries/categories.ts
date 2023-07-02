@@ -15,3 +15,13 @@ export const getCategoriesQuery = async (
 
   return categories;
 };
+
+export const getCategoryQuery = async (
+  id: string
+): Promise<Category | null> => {
+  const category = await client.category.findUnique({
+    where: { id: Number(id) },
+  });
+
+  return category;
+};
