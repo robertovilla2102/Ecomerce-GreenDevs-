@@ -29,3 +29,11 @@ export const getProductQuery = async (id: string): Promise<Product | null> => {
 
   return product;
 };
+
+export const isProductTitleUnique = async (title: string): Promise<boolean> => {
+  const product = await client.product.findMany({
+    where: { title },
+  });
+
+  return !product.length;
+};

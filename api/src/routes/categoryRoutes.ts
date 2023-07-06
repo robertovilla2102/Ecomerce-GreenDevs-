@@ -4,10 +4,10 @@ import { QueryOptions } from "../types";
 import {
   success,
   internalServerError,
-  badRequest,
+  badRequestError,
 } from "../helpers/responseHandler/responseHandler";
 import { getCategoriesQuery, getCategoryQuery } from "../queries/categories";
-import { notFound } from "../helpers/responseHandler/responseHandler";
+import { notFoundError } from "../helpers/responseHandler/responseHandler";
 import { validateGetEntityById } from "../validators/commonsValidator";
 import { validationResult } from "express-validator";
 
@@ -37,14 +37,14 @@ categoryRoutes.get(
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return badRequest(res, "Validation failed", errors.array());
+        return badRequestError(res, "Validation failed", errors.array());
       }
 
       const { id } = req.params;
       const category = await getCategoryQuery(id);
 
       if (!category)
-        return notFound(res, `Product with ID ${id} does not exist`);
+        return notFoundError(res, `Product with ID ${id} does not exist`);
 
       success(res, category);
     } catch (error) {

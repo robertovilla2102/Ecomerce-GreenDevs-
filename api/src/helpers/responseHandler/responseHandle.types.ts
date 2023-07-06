@@ -8,5 +8,6 @@ export interface ApiResponse {
 
 export interface ApiError extends Partial<ApiResponse> {
   errorName: string;
-  errors?: ValidationError[];
+  timestamp: string;
+  errorsDetails?: ValidationError[];
 }
