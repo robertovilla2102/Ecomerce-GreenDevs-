@@ -12,9 +12,34 @@ import {
   createProductQuery,
   getProductQuery,
   getProductsQuery,
-  isProductTitleUnique,
-} from "../queries/products";
+  isProductTitleUniqueQuery,
+} from "../queries/productQueries";
 import { validationResult } from "express-validator";
+
+export const createProduct = async (req: Request, res: Response) => {
+  try {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return badRequestError(res, "Validation failed", errors.array());
+    }
+
+    const body = req.body;
+    const isTitleUnique = await isProductTitleUniqueQuery(body.title);
+
+    if (!isTitleUnique) {
+      return conflictRequestError(
+        res,
+        `Product with title ${body.title} already exists`
+      );
+    }
+
+    const product = await createProductQuery(body);
+    return success(res, product);
+  } catch (error) {
+    internalServerError(res);
+  }
+};
 
 export const getProducts = async (req: Request, res: Response) => {
   try {
@@ -42,31 +67,6 @@ export const getProductById = async (req: Request, res: Response) => {
       return notFoundError(res, `Product with ID ${id} does not exist`);
 
     success(res, product);
-  } catch (error) {
-    internalServerError(res);
-  }
-};
-
-export const createProduct = async (req: Request, res: Response) => {
-  try {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      return badRequestError(res, "Validation failed", errors.array());
-    }
-
-    const body = req.body;
-    const isTitleUnique = await isProductTitleUnique(body.title);
-
-    if (!isTitleUnique) {
-      return conflictRequestError(
-        res,
-        `Product with title ${body.title} already exists`
-      );
-    }
-
-    const product = await createProductQuery(body);
-    return success(res, product);
   } catch (error) {
     internalServerError(res);
   }

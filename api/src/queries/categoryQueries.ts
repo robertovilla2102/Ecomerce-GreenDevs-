@@ -26,7 +26,9 @@ export const getCategoryQuery = async (
   return category;
 };
 
-export const isCategoryNameUnique = async (name: string): Promise<boolean> => {
+export const isCategoryNameUniqueQuery = async (
+  name: string
+): Promise<boolean> => {
   const category = await client.category.findMany({
     where: { name },
   });
