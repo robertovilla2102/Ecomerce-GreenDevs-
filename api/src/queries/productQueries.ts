@@ -2,10 +2,8 @@ import { Product } from "@prisma/client";
 import client from "../client";
 import { QueryOptions } from "../types";
 
-const { create } = client.product;
-
 export const createProductQuery = async (body: Product): Promise<Product> => {
-  return create({ data: body });
+  return client.product.create({ data: body });
 };
 
 export const getProductsQuery = async (

@@ -11,7 +11,16 @@ export const success = (res: Response, data: unknown) => {
     data,
   };
 
-  return res.json(response.data);
+  return res.json(response);
+};
+
+export const createdResponse = (res: Response) => {
+  const response = {
+    status: STATUS_CODES.CREATED,
+    message: "Created",
+  };
+
+  return res.status(STATUS_CODES.CREATED).json(response);
 };
 
 export const badRequestError = (
@@ -57,4 +66,14 @@ export const conflictRequestError = (res: Response, message: string) => {
   });
 
   return res.status(STATUS_CODES.CONFLICT).json(response);
+};
+
+export const unauthorizedError = (res: Response, message: string) => {
+  const response = generateResponse({
+    message: message,
+    status: STATUS_CODES.UNAUTHORIZED,
+    errorName: ERROR_NAMES.UNAUTHORIZED,
+  });
+
+  return res.status(STATUS_CODES.UNAUTHORIZED).json(response);
 };

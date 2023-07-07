@@ -25,12 +25,12 @@ export const getCategories = async (req: Request, res: Response) => {
 };
 
 export const getCategoryById = async (req: Request, res: Response) => {
-  try {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return badRequestError(res, "Validation failed", errors.array());
-    }
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return badRequestError(res, "Validation failed", errors.array());
+  }
 
+  try {
     const { id } = req.params;
     const category = await getCategoryQuery(id);
 
