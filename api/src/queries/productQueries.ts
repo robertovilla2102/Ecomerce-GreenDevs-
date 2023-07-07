@@ -25,6 +25,7 @@ export const getProductsQuery = async (
 export const getProductQuery = async (id: string): Promise<Product | null> => {
   const product = await client.product.findUnique({
     where: { id: Number(id) },
+    include: { categories: true },
   });
 
   return product;
@@ -38,4 +39,22 @@ export const isProductTitleUniqueQuery = async (
   });
 
   return !product.length;
+};
+
+export const assignCategoriesToProductQuery = async (
+  productId: string,
+  categoriesIds: string[]
+): Promise<Product> => {
+  const product = await client.product.update({
+    where: { id: Number(productId) },
+    data: {
+      categories: {
+        connect: categoriesIds.map((categoryId) => ({
+          id: Number(categoryId),
+        })),
+      },
+    },
+  });
+
+  return product;
 };
