@@ -27,3 +27,6 @@ prisma/migrations
 prisma/dev.db
 
 .yarn/*
+
+# Files
+*.log
