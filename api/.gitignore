@@ -22,5 +22,8 @@ gen
 dist
 build
 node_modules
+
 prisma/migrations
 prisma/dev.db
+
+.yarn/*
