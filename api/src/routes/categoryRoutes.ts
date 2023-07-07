@@ -4,7 +4,7 @@ import { validateGetEntityById } from "../validators/commonsValidator";
 import {
   getCategories,
   getCategoryById,
-} from "../controllers/categoriesController";
+} from "../controllers/categoryController";
 
 const ROUTES = {
   CATEGORIES: "/categories",

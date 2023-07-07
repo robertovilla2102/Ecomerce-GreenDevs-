@@ -14,6 +14,7 @@ model User {
   updatedAt   DateTime     @updatedAt()
   email       String       @unique()
   name        String       @default("New User")
+  password    String
   valorations Valoration[]
   // orders       Order[]
 }

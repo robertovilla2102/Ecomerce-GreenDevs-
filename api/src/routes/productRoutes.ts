@@ -7,6 +7,7 @@ import {
   getProductById,
   getProducts,
 } from "../controllers/productController";
+import authMiddleware from "../middlewares/auth";
 
 const productRoutes = Router();
 
@@ -16,13 +17,19 @@ const ROUTES = {
   ASSIGN_CATEGORIES: "/products/:id/categories",
 };
 
-productRoutes.post(ROUTES.PRODUCTS, validateProductSchema, createProduct);
+productRoutes.post(
+  ROUTES.PRODUCTS,
+  authMiddleware,
+  validateProductSchema,
+  createProduct
+);
 
 productRoutes.get(ROUTES.PRODUCTS, getProducts);
 productRoutes.get(ROUTES.PRODUCT, validateGetEntityById, getProductById);
 
 productRoutes.put(
   ROUTES.ASSIGN_CATEGORIES,
+  authMiddleware,
   validateGetEntityById,
   assignCategoriesToProduct
 );
